@@ -1,0 +1,569 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   EcoPath Design System — Field Research Edition
+   Aesthetic: NASA Worldview × naturalist's journal · map-first, muted, scientific
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Surfaces ───────────────────────────────────────────────────────────── */
+  --background:        #F4F7F4;
+  --surface:           #EAEFE9;
+  --surface-raised:    #FFFFFF;
+
+  /* ── Borders ────────────────────────────────────────────────────────────── */
+  --border:            #D1DDD0;
+  --border-subtle:     #E2EAE1;
+
+  /* ── Text ───────────────────────────────────────────────────────────────── */
+  --text-primary:      #1A2B1A;
+  --text-secondary:    #4A6741;
+  --text-tertiary:     #7A9876;
+  --text-on-accent:    #FFFFFF;
+
+  /* ── Accents ────────────────────────────────────────────────────────────── */
+  --accent-primary:    #2D7D52;
+  --accent-secondary:  #3A9E7A;
+  --accent-muted:      #C8E6D4;
+  --accent-data:       #5BB89A;
+
+  /* ── Map chrome — dark panels that overlay the Mapbox/MapLibre canvas ──── */
+  --map-chrome:        #1C2B20;
+  --map-chrome-soft:   rgba(28, 43, 32, 0.92);
+  --map-chrome-text:   #E8F0E6;
+  --map-chrome-text-2: #A8C8A8;
+  --map-chrome-text-3: #7A9E7A;
+  --map-chrome-input:  #253528;
+  --map-chrome-border: #3A5240;
+  --map-chrome-active: #2D4A32;
+
+  /* ── State ──────────────────────────────────────────────────────────────── */
+  --danger:            #C0392B;
+  --danger-soft:       rgba(192, 57, 43, 0.12);
+  --warning:           #D4880A;
+  --warning-soft:      rgba(212, 136, 10, 0.12);
+  --success:           #2D7D52;
+  --success-soft:      rgba(45, 125, 82, 0.12);
+
+  /* ── Typography ─────────────────────────────────────────────────────────── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-serif:   'DM Sans', system-ui, sans-serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Space Mono', 'Courier New', monospace;
+
+  /* ── Radius ─────────────────────────────────────────────────────────────── */
+  --r-sm: 4px;   /* chips / badges */
+  --r-md: 6px;   /* cards / panels */
+  --r-lg: 8px;   /* inputs / modals */
+
+  /* ── Shadow — the only shadow in the system ─────────────────────────────── */
+  --shadow-card: 0 1px 3px rgba(26, 43, 26, 0.08), 0 1px 2px rgba(26, 43, 26, 0.04);
+
+  /* ── Legacy aliases — keep old CSS-var names valid during transition ───── */
+  --bg-primary:    var(--background);
+  --bg-secondary:  var(--surface);
+  --bg-elevated:   var(--surface-raised);
+
+  --text-muted:    var(--text-tertiary);
+  --text-ghost:    var(--text-tertiary);
+
+  --border-strong: var(--border);
+
+  --accent-soft:   var(--accent-muted);
+  --accent-glow:   transparent;
+
+  --state-success:     var(--success);
+  --state-success-dim: var(--success);
+  --state-success-soft:var(--success-soft);
+  --state-warning:     var(--warning);
+  --state-warning-soft:var(--warning-soft);
+  --state-error:       var(--danger);
+  --state-error-soft:  var(--danger-soft);
+
+  --surge:        var(--accent-data);
+  --surge-soft:   rgba(91, 184, 154, 0.12);
+
+  --bg:           var(--background);
+  --surface-2:    var(--surface-raised);
+  --surface-3:    var(--border);
+  --text:         var(--text-primary);
+  --text-2:       var(--text-secondary);
+  --text-3:       var(--text-tertiary);
+  --text-4:       var(--text-tertiary);
+
+  --amber:        var(--accent-primary);
+  --amber-2:      var(--accent-secondary);
+  --amber-soft:   var(--accent-muted);
+  --amber-glow:   transparent;
+  --sage:         var(--success);
+  --sage-dim:     var(--success);
+  --sage-soft:    var(--success-soft);
+  --gold:         var(--warning);
+  --danger-soft-legacy: var(--danger-soft);
+
+  --color-bg:          var(--background);
+  --color-surface:     var(--surface);
+  --color-surface-2:   var(--surface-raised);
+  --color-border:      var(--border);
+  --color-border-glow: var(--accent-primary);
+  --color-accent:      var(--accent-primary);
+  --color-text:        var(--text-primary);
+  --shadow-glow:       none;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── Typography ──────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ─── Scrollbar — muted green ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-secondary); }
+
+/* ─── Surfaces ────────────────────────────────────────────────────────────────── */
+.field-panel {
+  background: var(--surface);
+}
+
+.field-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: border-color 180ms ease;
+  box-shadow: var(--shadow-card);
+}
+.field-card:hover { border-color: var(--accent-primary); }
+
+.eco-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: border-color 180ms ease;
+  box-shadow: var(--shadow-card);
+}
+.eco-card:hover { border-color: var(--accent-primary); }
+
+/* Glass — only used in map-chrome contexts now */
+.glass {
+  background: var(--map-chrome-soft);
+  border: 1px solid rgba(91, 184, 154, 0.3);
+}
+.glass-strong {
+  background: rgba(28, 43, 32, 0.96);
+  border: 1px solid rgba(91, 184, 154, 0.3);
+}
+
+/* ─── Gradient text → flat accent text ───────────────────────────────────────── */
+.gradient-text       { color: var(--text-primary); }
+.gradient-text-warm  { color: var(--accent-primary); }
+
+/* ─── Background helper ──────────────────────────────────────────────────────── */
+.particle-bg {
+  background: var(--background);
+}
+
+/* ─── Horizontal rule ─────────────────────────────────────────────────────────── */
+.field-rule {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ─── IUCN badges — muted ─────────────────────────────────────────────────────── */
+.badge-LC { color: var(--success); }
+.badge-NT { color: var(--accent-secondary); }
+.badge-VU { color: var(--warning); }
+.badge-EN { color: #B5602A; }
+.badge-CR { color: var(--danger); }
+.badge-EW { color: var(--text-tertiary); }
+.badge-EX { color: var(--text-tertiary); }
+
+/* ─── Anomaly animations — quiet pulse ───────────────────────────────────────── */
+@keyframes pulse-dip   { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+@keyframes pulse-surge { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+.anomaly-dip   { animation: pulse-dip   2.5s ease-in-out infinite; }
+.anomaly-surge { animation: pulse-surge 2.5s ease-in-out infinite; }
+
+/* ─── Audio waveform ──────────────────────────────────────────────────────────── */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50%       { transform: scaleY(1.0); }
+}
+.wave-bar {
+  display: inline-block;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent-primary);
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+/* ─── Chat bubble entrance ────────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.chat-bubble { animation: fade-up 0.18s ease-out both; }
+
+/* ─── Typing indicator ────────────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.15; }
+  40%           { opacity: 0.7; }
+}
+.typing-dot {
+  display: inline-block;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  animation: blink 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ─── Glow stubs (no-op) ──────────────────────────────────────────────────────── */
+.glow-accent { }
+.glow-text   { }
+
+/* ─── MapLibre / Mapbox controls ──────────────────────────────────────────────── */
+.maplibregl-canvas { outline: none; }
+.maplibregl-ctrl-attrib {
+  font-family: var(--font-mono) !important;
+  font-size: 9px !important;
+  color: var(--text-tertiary) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 2px 4px !important;
+}
+.maplibregl-ctrl-attrib a { color: var(--text-tertiary) !important; }
+.maplibregl-ctrl-group {
+  background: var(--map-chrome-soft) !important;
+  border: 1px solid rgba(91, 184, 154, 0.25) !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: none !important;
+}
+.maplibregl-ctrl-group button {
+  width: 30px !important;
+  height: 30px !important;
+}
+.maplibregl-ctrl button .maplibregl-ctrl-icon {
+  filter: invert(0.85) sepia(0.1) saturate(0.7);
+}
+
+/* ─── Migration map overlays ──────────────────────────────────────────────────── */
+.migration-map-shell {
+  background: #000;
+}
+.migration-map-shell canvas {
+  display: block;
+}
+
+.birds-counter {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 10;
+  background: var(--map-chrome-soft);
+  border: 1px solid rgba(91, 184, 154, 0.3);
+  color: var(--map-chrome-text);
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  font-family: var(--font-sans);
+  pointer-events: none;
+  max-width: min(330px, calc(100% - 32px));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.birds-counter .date-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--map-chrome-text-2);
+  margin-bottom: 3px;
+  letter-spacing: 0.04em;
+}
+.birds-counter .count-box {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.birds-counter .count-box strong {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--accent-data);
+  font-weight: 500;
+}
+.birds-counter .count-box span {
+  font-size: 13px;
+  color: var(--map-chrome-text-2);
+}
+.birds-counter .map-title {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--map-chrome-text-3);
+  letter-spacing: 0.04em;
+}
+
+.migration-legend {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: rgba(244, 247, 244, 0.92);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  pointer-events: none;
+  width: 220px;
+  max-width: calc(100% - 24px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-card);
+}
+.legend-title {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.legend-subtitle {
+  margin-top: 2px;
+  margin-bottom: 8px;
+  color: var(--text-tertiary);
+  font-size: 10px;
+}
+.legend-section-title {
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.legend-body {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 10px;
+}
+.legend-gradient {
+  width: 16px;
+  min-height: 72px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    #ffffc8,
+    #fde725,
+    #1f9e89,
+    #2760a3,
+    #591480
+  );
+}
+.legend-scale {
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+.legend-items {
+  display: grid;
+  gap: 7px;
+  padding-top: 9px;
+  border-top: 1px solid var(--border-subtle);
+}
+.legend-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  line-height: 1.25;
+}
+.legend-arrow {
+  width: 22px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--accent-primary);
+  font-size: 17px;
+  line-height: 1;
+}
+.legend-line {
+  width: 22px;
+  height: 0;
+  border-top: 2px dashed var(--danger);
+}
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  margin-left: 6px;
+  border-radius: 50%;
+}
+.legend-dot-active   { background: var(--accent-data); }
+.legend-dot-inactive { background: var(--danger); }
+
+.migration-controls input[type="range"]::-webkit-slider-thumb {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.migration-controls input[type="range"]::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: 0;
+  opacity: 0;
+}
+.migration-controls button:hover,
+.migration-controls select:hover {
+  border-color: rgba(91, 184, 154, 0.45) !important;
+}
+
+@media (max-width: 760px) {
+  .migration-workspace {
+    min-height: 620px;
+  }
+  .migration-legend {
+    top: 10px;
+    right: 10px;
+    width: min(210px, calc(100% - 20px));
+    padding: 8px 10px;
+  }
+  .birds-counter {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    max-width: none;
+  }
+  .birds-counter .count-box strong {
+    font-size: 19px;
+  }
+}
+
+/* ─── Range slider (audio player) ────────────────────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.4); }
+
+/* ─── Chat scroll ─────────────────────────────────────────────────────────────── */
+.chat-thread {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* ─── Scrollbar hide ──────────────────────────────────────────────────────────── */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* ─── Select options ──────────────────────────────────────────────────────────── */
+select option { background: var(--surface-raised); color: var(--text-primary); }
+
+/* ─── Input focus — single rule for entire system ─────────────────────────────── */
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-color: var(--accent-primary) !important;
+}
+
+/* ─── Evidence label pills (chat) ─────────────────────────────────────────────── */
+.evidence-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+  vertical-align: middle;
+  margin-right: 4px;
+  font-weight: 500;
+}
+.evidence-stat     { color: var(--warning);          background: var(--warning-soft); }
+.evidence-climate  { color: var(--accent-secondary); background: var(--accent-muted); }
+.evidence-fact     { color: var(--text-secondary);   background: var(--surface); }
+.evidence-hypo     { color: var(--accent-primary);   background: var(--accent-muted); }
+
+/* ─── Inline mono numbers ─────────────────────────────────────────────────────── */
+.data-num {
+  font-family: var(--font-mono);
+  color: var(--accent-primary);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* ─── Migration marker pulse ──────────────────────────────────────────────────── */
+@keyframes marker-pulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.marker-pulse { animation: marker-pulse 600ms ease-out; }
+
+/* ─── Live position indicator pulse ──────────────────────────────────────────── */
+@keyframes live-pulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.live-pulse { animation: live-pulse 1.4s ease-in-out infinite; }
+
+/* ─── Shimmer / skeleton ─────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { opacity: 0.5; }
+  50%  { opacity: 0.85; }
+  100% { opacity: 0.5; }
+}
+.shimmer { animation: shimmer 1.2s ease-in-out infinite; background: var(--surface-raised) !important; }
+
+/* ─── Narrative fade-in ──────────────────────────────────────────────────────── */
+@keyframes narrative-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.narrative-fade { animation: narrative-fade 300ms ease-out both; }

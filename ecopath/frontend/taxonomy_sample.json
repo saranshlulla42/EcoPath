@@ -1,0 +1,94 @@
+[
+  {
+    "sciName": "Struthio camelus",
+    "comName": "Common Ostrich",
+    "speciesCode": "ostric2",
+    "category": "species",
+    "taxonOrder": 2,
+    "bandingCodes": [],
+    "comNameCodes": [
+      "COOS"
+    ],
+    "sciNameCodes": [
+      "STCA"
+    ],
+    "order": "Struthioniformes",
+    "familyCode": "struth1",
+    "familyComName": "Ostriches",
+    "familySciName": "Struthionidae"
+  },
+  {
+    "sciName": "Struthio molybdophanes",
+    "comName": "Somali Ostrich",
+    "speciesCode": "ostric3",
+    "category": "species",
+    "taxonOrder": 7,
+    "bandingCodes": [],
+    "comNameCodes": [
+      "SOOS"
+    ],
+    "sciNameCodes": [
+      "STMO"
+    ],
+    "order": "Struthioniformes",
+    "familyCode": "struth1",
+    "familyComName": "Ostriches",
+    "familySciName": "Struthionidae"
+  },
+  {
+    "sciName": "Struthio camelus/molybdophanes",
+    "comName": "Common/Somali Ostrich",
+    "speciesCode": "y00934",
+    "category": "slash",
+    "taxonOrder": 8,
+    "bandingCodes": [],
+    "comNameCodes": [
+      "SOOS",
+      "COOS"
+    ],
+    "sciNameCodes": [
+      "STCA",
+      "STMO"
+    ],
+    "order": "Struthioniformes",
+    "familyCode": "struth1",
+    "familyComName": "Ostriches",
+    "familySciName": "Struthionidae"
+  },
+  {
+    "sciName": "Casuarius casuarius",
+    "comName": "Southern Cassowary",
+    "speciesCode": "soucas1",
+    "category": "species",
+    "taxonOrder": 10,
+    "bandingCodes": [],
+    "comNameCodes": [
+      "SOCA"
+    ],
+    "sciNameCodes": [
+      "CACA"
+    ],
+    "order": "Casuariiformes",
+    "familyCode": "casuar1",
+    "familyComName": "Cassowaries and Emu",
+    "familySciName": "Casuariidae"
+  },
+  {
+    "sciName": "Casuarius bennetti",
+    "comName": "Dwarf Cassowary",
+    "speciesCode": "dwacas1",
+    "category": "species",
+    "taxonOrder": 11,
+    "bandingCodes": [],
+    "comNameCodes": [
+      "DWCA"
+    ],
+    "sciNameCodes": [
+      "CABE"
+    ],
+    "order": "Casuariiformes",
+    "familyCode": "casuar1",
+    "familyComName": "Cassowaries and Emu",
+    "familySciName": "Casuariidae"
+  }
+]

@@ -1,0 +1,56 @@
+/** Shared country list used by the maps page and species detail page. */
+export type CountryOption = {
+  code: string;
+  name: string;
+  center: [number, number]; // [lng, lat]
+  zoom: number;
+};
+
+export const COUNTRY_OPTIONS: CountryOption[] = [
+  { code: "GLOBAL", name: "Global (All Countries)", center: [0, 20], zoom: 1.5 },
+  { code: "IN", name: "India", center: [78.96, 20.59], zoom: 4.5 },
+  { code: "US", name: "United States", center: [-95.71, 37.09], zoom: 3.5 },
+  { code: "GB", name: "United Kingdom", center: [-1.17, 52.36], zoom: 5.5 },
+  { code: "AU", name: "Australia", center: [133.78, -25.27], zoom: 3.5 },
+  { code: "CA", name: "Canada", center: [-96.80, 56.13], zoom: 3.5 },
+  { code: "BR", name: "Brazil", center: [-51.92, -14.24], zoom: 3.5 },
+  { code: "CN", name: "China", center: [104.19, 35.86], zoom: 3.5 },
+  { code: "ZA", name: "South Africa", center: [25.08, -29.00], zoom: 4.5 },
+  { code: "DE", name: "Germany", center: [10.45, 51.16], zoom: 5.5 },
+  { code: "FR", name: "France", center: [2.21, 46.23], zoom: 5.5 },
+  { code: "JP", name: "Japan", center: [138.25, 36.20], zoom: 5.0 },
+  { code: "ES", name: "Spain", center: [-3.75, 40.46], zoom: 5.5 },
+  { code: "IT", name: "Italy", center: [12.57, 41.87], zoom: 5.5 },
+  { code: "MX", name: "Mexico", center: [-102.55, 23.63], zoom: 4.5 },
+  { code: "NL", name: "Netherlands", center: [5.29, 52.13], zoom: 6.5 },
+  { code: "PT", name: "Portugal", center: [-8.22, 39.40], zoom: 6.0 },
+  { code: "SE", name: "Sweden", center: [18.64, 60.13], zoom: 4.5 },
+  { code: "NO", name: "Norway", center: [8.47, 60.47], zoom: 4.5 },
+  { code: "FI", name: "Finland", center: [25.75, 61.92], zoom: 4.5 },
+  { code: "NZ", name: "New Zealand", center: [174.88, -40.90], zoom: 5.0 },
+  { code: "KE", name: "Kenya", center: [37.91, 0.02], zoom: 5.5 },
+  { code: "TZ", name: "Tanzania", center: [34.89, -6.37], zoom: 5.5 },
+  { code: "NG", name: "Nigeria", center: [8.68, 9.08], zoom: 5.5 },
+  { code: "ET", name: "Ethiopia", center: [40.49, 9.15], zoom: 5.5 },
+  { code: "PH", name: "Philippines", center: [122.87, 12.88], zoom: 5.5 },
+  { code: "ID", name: "Indonesia", center: [113.92, -0.79], zoom: 4.5 },
+  { code: "MY", name: "Malaysia", center: [109.70, 4.21], zoom: 5.5 },
+  { code: "TH", name: "Thailand", center: [100.99, 15.87], zoom: 5.5 },
+  { code: "VN", name: "Vietnam", center: [108.28, 14.06], zoom: 5.0 },
+  { code: "KR", name: "South Korea", center: [127.77, 35.91], zoom: 6.0 },
+  { code: "RU", name: "Russia", center: [105.32, 61.52], zoom: 2.5 },
+  { code: "PL", name: "Poland", center: [19.15, 51.92], zoom: 5.5 },
+  { code: "AR", name: "Argentina", center: [-63.62, -38.42], zoom: 3.5 },
+  { code: "CL", name: "Chile", center: [-71.54, -35.68], zoom: 3.5 },
+  { code: "CO", name: "Colombia", center: [-74.30, 4.57], zoom: 5.0 },
+  { code: "PE", name: "Peru", center: [-75.01, -9.19], zoom: 4.5 },
+  { code: "EC", name: "Ecuador", center: [-78.18, -1.83], zoom: 6.0 },
+  { code: "CR", name: "Costa Rica", center: [-83.76, 9.75], zoom: 7.0 },
+  { code: "PA", name: "Panama", center: [-80.78, 8.53], zoom: 7.0 },
+  { code: "PK", name: "Pakistan", center: [69.35, 30.38], zoom: 5.0 },
+  { code: "BD", name: "Bangladesh", center: [90.36, 23.68], zoom: 6.0 },
+  { code: "LK", name: "Sri Lanka", center: [80.77, 7.87], zoom: 6.5 },
+  { code: "NP", name: "Nepal", center: [84.12, 28.39], zoom: 6.5 },
+  { code: "MM", name: "Myanmar", center: [95.96, 19.15], zoom: 5.5 },
+  { code: "KH", name: "Cambodia", center: [104.99, 12.57], zoom: 6.0 },
+];
