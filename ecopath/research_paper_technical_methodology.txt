@@ -278,7 +278,65 @@ The report pipeline was validated in several ways:
 
 The most important validation result was that the backend could still produce a structured report even when one or more evidence sources were missing or rate-limited.
 
-18. Key Implementation Lessons
+18. Evaluation Metrics and Methods for Demonstrating Fine-Tuning Improvement
+
+To demonstrate that the fine-tuning methodology improved the quality of the extinction-risk reports, the evaluation should combine both automated metrics and human-centered review. The strongest evidence comes from comparing the fine-tuned model against a baseline model using the same species inputs, the same retrieval context, and the same prompt format.
+
+Evaluation design:
+
+- Use a held-out evaluation set containing species not seen during training.
+- Split the dataset into train, validation, and test subsets, ideally with stratification across conservation status, taxonomic family, and habitat type so that the evaluation is not biased toward a narrow subset of birds.
+- Compare at least three settings under identical conditions:
+  - the base pre-trained model without fine-tuning
+  - the fine-tuned model after LoRA adaptation
+  - optionally, an ablation variant such as fine-tuning without synthetic data or without species-specific evidence context
+- Keep the prompt template and retrieval inputs fixed across systems so that any performance difference can be attributed primarily to the model adaptation.
+
+Training-time metrics:
+
+- Training loss and validation loss over epochs, used to verify that the model is learning the target structure and style.
+- Perplexity on the validation set, which provides a standard language-model measure of how well the adapted model predicts the reference outputs.
+- Loss curves and checkpoint selection criteria, including whether the best checkpoint is chosen by validation loss rather than final epoch performance.
+
+Task-specific generation metrics:
+
+- JSON validity rate: percentage of responses that parse successfully as valid JSON.
+- Schema compliance rate: percentage of outputs that contain all required report fields such as decision_support_draft, current_conservation_status, key_threats, survivability_assessment, mitigation_actions, sources, limited_evidence_reasons, and reviewer_notes.
+- Field completeness: proportion of required fields populated with non-empty values.
+- Conservation status classification metrics: accuracy, macro-F1, balanced accuracy, and confusion matrix for predicting the canonical IUCN-style status code. Because status labels are discrete and important for the UI, this is one of the most interpretable evaluation metrics.
+- Threat and mitigation list quality: precision, recall, and F1-score against reference threat or mitigation labels, or alternatively Jaccard overlap if the evaluation uses set-based outputs.
+- Semantic similarity for long-form text: Sentence-BERT cosine similarity, BERTScore, or ROUGE-L between the generated draft and a reference output. These metrics capture whether the model is producing text that is semantically close to the expected report style and content.
+- Evidence grounding score: a manual or automatic measure of whether generated claims are supported by the supplied evidence snippets. This is especially important for a decision-support tool, because factual grounding is more valuable than fluent prose alone.
+
+Human evaluation protocol:
+
+- Recruit 3 to 5 reviewers with domain familiarity in conservation or biodiversity science.
+- Evaluate a representative set of outputs, ideally 100 to 200 reports, on a 1-to-5 scale for:
+  - factuality
+  - specificity to the species
+  - usefulness for a reviewer
+  - completeness of the report
+  - clarity and organization
+- Report both the average score and the inter-rater agreement, for example using Cohen’s kappa or intraclass correlation, to ensure the evaluation is not driven by a single reviewer.
+
+Statistical analysis:
+
+- Use paired comparisons whenever possible, because each model is evaluated on the same held-out examples.
+- Report mean and standard deviation for each metric, along with confidence intervals.
+- For classification-style metrics such as status accuracy, use paired tests such as McNemar’s test if the output is binary or categorical and the comparison is paired.
+- For continuous measures such as semantic similarity scores, use a paired Wilcoxon signed-rank test or bootstrap confidence intervals.
+- A result is considered stronger evidence of improvement when the fine-tuned model shows a statistically significant gain and the effect size is meaningful rather than trivial.
+
+Reporting strategy for the paper:
+
+- Present a table comparing baseline and fine-tuned models across the major metrics.
+- Highlight the largest gains in structure-following metrics, such as JSON validity and schema compliance, because these are directly relevant to system reliability.
+- Also report content-quality metrics, including conservation status F1 and semantic similarity, since these show that the model is not only more stable but also more useful.
+- If the system is intended for human review, include human-evaluation results as the most persuasive evidence of practical improvement.
+
+In practice, a convincing demonstration would show that the fine-tuned model improves both reliability and content quality. For example, a strong outcome would be higher schema compliance, higher conservation-status F1, better threat-list overlap, and better reviewer-rated usefulness than the base model on the same evaluation set. These metrics provide a rigorous way to justify the training methodology in the paper rather than relying solely on qualitative impressions.
+
+19. Key Implementation Lessons
 
 The main lessons from the implementation were:
 
@@ -288,7 +346,7 @@ The main lessons from the implementation were:
 - Reports feel more credible when threat and mitigation sections are tied to the same ecological traits and live evidence.
 - Training data quality is more important than raw quantity for this kind of structured drafting task.
 
-19. Recommended Paper Framing
+20. Recommended Paper Framing
 
 If this feature is described in a research paper, the strongest framing is:
 
@@ -297,6 +355,6 @@ If this feature is described in a research paper, the strongest framing is:
 - a hybrid system that combines live evidence, structured ecological metadata, and supervised fine-tuning
 - a robust reporting workflow that degrades gracefully when evidence sources are incomplete
 
-20. Summary
+21. Summary
 
-EcoPath’s extinction-risk feature is a layered system that combines live biodiversity data, web evidence retrieval, species-specific heuristics, and a locally hosted fine-tuned language model. The most important engineering decisions were to ground the prompt in structured species context, make threat and mitigation generation species-aware, normalize conservation status codes, and preserve a deterministic fallback path so the frontend always receives a coherent report.
+EcoPath’s extinction-risk feature is a layered system that combines live biodiversity data, web evidence retrieval, species-specific heuristics, and a locally hosted fine-tuned language model. The most important engineering decisions were to ground the prompt in structured species context, make threat and mitigation generation species-aware, normalize conservation status codes, preserve a deterministic fallback path so the frontend always receives a coherent report, and evaluate the fine-tuning methodology with both automated metrics and human review so its benefit can be demonstrated rigorously.
