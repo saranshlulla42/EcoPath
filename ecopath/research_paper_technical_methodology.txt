@@ -1,0 +1,302 @@
+EcoPath Extinction-Risk Report Generation: Technical Methodology and Implementation
+
+1. Project Purpose
+
+EcoPath adds an extinction-risk decision-support feature to a bird monitoring platform. The feature generates a reviewer-facing report for a requested species by combining live species metadata, targeted evidence retrieval, and a local language model synthesis step. The goal is not to produce an authoritative conservation verdict, but to create a structured, species-specific draft that helps a human reviewer quickly understand the likely status, threats, and mitigation priorities for that species.
+
+2. System Overview
+
+The feature is implemented as a multi-stage pipeline:
+
+- Species resolution: identify the species through GBIF and enrich the record with taxonomic metadata.
+- Evidence gathering: retrieve live evidence from GBIF, IUCN, Google News RSS, and GDELT where available.
+- Threat extraction: detect species-relevant threat signals from evidence text and taxonomic context.
+- Model synthesis: send a compact structured prompt to a local Ollama-hosted model.
+- Response repair and normalization: recover from malformed JSON or partial model output.
+- Report assembly: merge model output with deterministic fallback logic and return a final report payload to the frontend.
+
+This design keeps the model grounded in structured inputs, while allowing the backend to recover gracefully when external sources are incomplete or the model output is noisy.
+
+3. Report Generation Architecture
+
+The main implementation lives in backend/services/extinction_risk_service.py. The backend exposes the report through a FastAPI router, and the frontend renders the returned payload in the report panel on the species page.
+
+Core data structures:
+
+- SpeciesProfile: stores species identity and biological context such as common name, scientific name, family, order, status, habitat, range summary, diet, breeding behavior, and migration behavior.
+- EvidenceItem: stores each retrieved evidence record, including query, title, URL, snippet, source, date, and language.
+
+Key backend responsibilities:
+
+- Resolve species identity from GBIF.
+- Query evidence sources.
+- Build the prompt passed to the local model.
+- Parse the model response.
+- Normalize the final report fields for the frontend.
+
+4. Species Resolution Methodology
+
+Species identification begins with GBIF because it provides a stable taxonomic anchor. The backend first tries to fetch a species record using a known GBIF key. If that is unavailable, it performs a GBIF species match query using the scientific or common name.
+
+Once the species is resolved, the system stores:
+
+- GBIF key
+- common and scientific names
+- family and order
+- IUCN status when present in GBIF metadata
+- habitat and distribution context when available
+
+This stage matters because the entire downstream pipeline uses the species profile to shape evidence queries and to avoid generic reports.
+
+5. Evidence Retrieval Methodology
+
+The report is intended to feel specific to the species, so the backend does not rely on a single generic query. Instead, it builds a list of species-scoped search templates.
+
+Typical query families include:
+
+- habitat loss and deforestation
+- climate change and drought stress
+- wetland drainage and agricultural expansion
+- poaching, hunting, disturbance, and trade
+- policy, conservation, protected areas, and development pressure
+- population decline and regional conservation concerns
+
+The backend then fetches evidence from:
+
+- GBIF, for taxonomic and occurrence context.
+- IUCN Red List, for conservation status and population trend when accessible.
+- Google News RSS, for recent species-related reporting.
+- GDELT, for additional live article evidence when RSS coverage is thin.
+
+The service also caches evidence to reduce repeated network calls and to keep the pipeline responsive during repeated requests.
+
+6. Species-Specific Threat Extraction
+
+A core weakness in early versions was that reports felt generic. To address this, the backend extracts threat statements from both evidence and species traits.
+
+The threat extraction logic does the following:
+
+- Scans evidence text for patterns such as habitat loss, climate stress, power-line collisions, hunting, poisoning, and infrastructure expansion.
+- Incorporates IUCN-provided threats when available.
+- Uses species habitat and range summary to produce context-specific statements.
+- Falls back to family-level ecological hints when live evidence is sparse.
+
+Examples of species-specific logic:
+
+- Grassland birds can surface threats related to habitat conversion, fencing, and power lines.
+- Wetland birds can surface drainage, floodplain loss, or hydrological disruption.
+- Raptors can surface poisoning and electrocution risks.
+- Urban passerines can surface nest-site loss, pesticide pressure, and reduced insect prey.
+
+This approach makes the report feel anchored to the species rather than reusing the same generic prose.
+
+7. Mitigation Logic
+
+Mitigation actions are also generated from species context rather than copied from a fixed template.
+
+The system considers:
+
+- habitat type
+- evidence-derived threat keywords
+- migratory behavior
+- conservation status
+- IUCN context
+
+Examples of generated mitigation actions:
+
+- Protect and restore the relevant habitat type for the species.
+- Retrofit or bury hazardous power lines when collision mortality is relevant.
+- Regulate toxins, pesticides, or veterinary drugs when poisoning risk is detected.
+- Strengthen anti-poaching or anti-trapping measures when direct take is a concern.
+- Protect migration corridors for migratory taxa.
+- Add species-specific monitoring when the conservation status is CR, EN, VU, or EW.
+
+This keeps the mitigation section tied to the same ecological signals that generated the threat section.
+
+8. Prompt Design for the Local Model
+
+The local model is hosted in Ollama and used only for synthesis, not for raw fact discovery. To improve output quality, the prompt was deliberately shortened and structured.
+
+The prompt includes:
+
+- a short system instruction telling the model to act as a conservation science assistant
+- a structured user payload containing species profile, IUCN context, evidence snippets, and extracted heuristics
+- a requirement that the model return valid JSON only
+- a request for specific report fields such as decision_support_draft, current_conservation_status, key_threats, survivability_assessment, mitigation_actions, sources, limited_evidence_reasons, and reviewer_notes
+
+This compact prompt reduces failure rates and helps the local model focus on the report structure rather than generating long, unstable prose.
+
+9. Response Repair and Normalization
+
+A major implementation detail is the model output recovery path. Local models can return:
+
+- malformed JSON
+- fenced code blocks
+- partial objects
+- extra trailing text
+- wrapped responses with partial keys
+
+The backend therefore performs several steps after the model reply arrives:
+
+- Strip Markdown fences.
+- Repair broken JSON strings where possible.
+- Attempt JSON decoding.
+- Salvage partial objects if the full response cannot be parsed.
+- Normalize alternate key names into the final report schema.
+
+If the model output is incomplete, the system does not fail immediately. Instead, it merges any usable fields into the deterministic report assembly step.
+
+10. Final Report Assembly
+
+The final report is assembled by merging three layers:
+
+- deterministic species and evidence context
+- normalized model output
+- safe fallback content when the model reply is weak or malformed
+
+The final payload returned to the frontend includes:
+
+- species metadata
+- current conservation status
+- key threats
+- survivability assessment
+- mitigation actions
+- sources
+- limited evidence reasons
+- reviewer notes
+- decision_support_draft
+- generation mode and model output status
+
+This makes the report stable for the UI even when upstream evidence sources are flaky.
+
+11. Status Handling
+
+Status normalization was added because species were sometimes shown as Not Evaluated even when GBIF or IUCN context suggested a real conservation category.
+
+The implementation normalizes common aliases into canonical codes such as:
+
+- LC
+- NT
+- VU
+- EN
+- CR
+- EW
+- EX
+- DD
+- NE
+
+The report then formats the status in a consistent way, so the frontend can show meaningful tags and not default to a vague label whenever some upstream field is available.
+
+12. Dataset and Model Training Methodology
+
+The training pipeline lives under ecopath/ml/extinction_risk. It was built to generate supervised examples that teach a local instruction model how to draft the report.
+
+The synthetic dataset pipeline works as follows:
+
+- Load a species list from CSV, JSON, or JSONL.
+- Normalize each species row into a common schema.
+- Resolve species metadata from GBIF.
+- Pull optional IUCN context.
+- Build species-specific news search queries.
+- Retrieve live evidence snippets from GDELT and related sources.
+- Use a stronger teacher model to draft the ideal report output.
+- Save each example as a JSONL row containing input, search_queries, search_results, and output.
+
+The training data is intentionally species-specific so the student model learns the pattern of grounding its answer in a particular bird record rather than producing generic conservation commentary.
+
+13. Synthetic Data Generation
+
+The synthetic dataset generator is designed to bootstrap a high-quality training set even when manually labeled examples are limited.
+
+Important design choices:
+
+- It caches GBIF, IUCN, and GDELT lookups to reduce repeated network traffic.
+- It allows input from curated bird lists or species tables.
+- It produces structured records that match the report-generation format.
+- It can optionally use a teacher model to draft stronger target outputs.
+
+The dataset format is compatible with supervised fine-tuning because it explicitly pairs a structured input payload with a desired assistant response.
+
+14. QLoRA Fine-Tuning in Colab
+
+The training script train_qlora_colab.py is designed for Google Colab so the team can fine-tune a local model without requiring a high-end local GPU.
+
+Training methodology:
+
+- Load a 4-bit quantized base model.
+- Prepare the model for k-bit training.
+- Apply LoRA adapters to the attention and feed-forward projection layers.
+- Convert each dataset record into a chat-style training sample.
+- Split the dataset into train and evaluation subsets.
+- Train using a standard causal-language-model objective.
+- Save checkpoints and final adapters to Google Drive.
+
+Typical configuration uses:
+
+- batch size 1
+- gradient accumulation to simulate larger batches
+- 2 to 3 epochs
+- sequence length around 2048 to 4096 depending on memory constraints
+
+The result is a LoRA adapter that specializes the base model for the EcoPath report-writing task.
+
+15. Export to GGUF and Ollama
+
+After training, the adapter is exported for local inference.
+
+The export workflow includes:
+
+- merging the LoRA adapter into the base model
+- converting the merged model to GGUF
+- creating an Ollama Modelfile
+- registering the final model with Ollama under the name ecopath-extinction-risk
+
+At runtime, the backend points to the local Ollama server and requests the report model by name.
+
+16. Runtime Configuration
+
+The backend uses environment variables to connect to the local model and external data sources.
+
+Typical runtime settings include:
+
+- OLLAMA_BASE_URL
+- OLLAMA_REPORT_MODEL
+- OLLAMA_TIMEOUT_SECONDS
+- IUCN_API_TOKEN
+- GDELT_BASE_URL
+
+This makes the feature easy to move between a development machine and a demo machine, as long as Ollama and the backend are both available.
+
+17. Validation and Testing
+
+The report pipeline was validated in several ways:
+
+- direct Python execution of the report service
+- HTTP calls through the FastAPI endpoint
+- parser regression tests for malformed JSON recovery
+- repeated runs against real species inputs
+
+The most important validation result was that the backend could still produce a structured report even when one or more evidence sources were missing or rate-limited.
+
+18. Key Implementation Lessons
+
+The main lessons from the implementation were:
+
+- Species-specific prompts and context matter more than adding a larger generic prompt.
+- The model boundary is fragile, so response repair and normalization are necessary.
+- A deterministic fallback must always exist so the UI can display a usable report.
+- Reports feel more credible when threat and mitigation sections are tied to the same ecological traits and live evidence.
+- Training data quality is more important than raw quantity for this kind of structured drafting task.
+
+19. Recommended Paper Framing
+
+If this feature is described in a research paper, the strongest framing is:
+
+- a retrieval-augmented, species-aware conservation drafting pipeline
+- a local-model decision-support assistant for bird extinction-risk analysis
+- a hybrid system that combines live evidence, structured ecological metadata, and supervised fine-tuning
+- a robust reporting workflow that degrades gracefully when evidence sources are incomplete
+
+20. Summary
+
+EcoPath’s extinction-risk feature is a layered system that combines live biodiversity data, web evidence retrieval, species-specific heuristics, and a locally hosted fine-tuned language model. The most important engineering decisions were to ground the prompt in structured species context, make threat and mitigation generation species-aware, normalize conservation status codes, and preserve a deterministic fallback path so the frontend always receives a coherent report.
