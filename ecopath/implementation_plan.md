@@ -41,4 +41,4 @@ If you are okay with shifting entirely to a stateless frontend for the species d
 
 ### Automated Tests
 - Run search queries for non-seeded birds, verify the immediate link execution to the detail page.
-- Evaluate the Network Tab to assure we directly ping `api.gbif.org` as opposed to `localhost:8001`.
+- Evaluate the Network Tab to assure we directly ping `api.gbif.org` as opposed to `localhost:8000`.

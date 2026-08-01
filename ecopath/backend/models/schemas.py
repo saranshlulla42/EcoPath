@@ -141,7 +141,8 @@ class MigrationRouteResponse(BaseModel):
 
 class VisionIDRequest(BaseModel):
     image_base64: str = Field(..., description="Base64-encoded image data")
-    mime_type: str = Field(default="image/jpeg", description="MIME type of the image")
+    mime_type: str = Field(default="image/jpeg",
+                           description="MIME type of the image")
 
 
 class VisionIDResponse(BaseModel):
@@ -173,6 +174,64 @@ class ChatStreamChunk(BaseModel):
     delta: str
     done: bool = False
     sources: list[str] = []
+
+
+# ─── EXTINCTION RISK REPORT ─────────────────────────────────────────────────
+
+
+class ExtinctionRiskReportRequest(BaseModel):
+    species_name: str = Field(..., min_length=2,
+                              description="Bird common name or scientific name")
+    gbif_key: Optional[int] = Field(
+        default=None, description="Optional GBIF species key")
+    country_code: Optional[str] = Field(
+        default=None, description="Optional ISO country code for localized evidence")
+    language: Optional[str] = Field(
+        default=None, description="Optional language hint for evidence retrieval")
+
+
+class ReportEvidenceItem(BaseModel):
+    query: str
+    title: str
+    url: str
+    snippet: str
+    source: Optional[str] = None
+    seendate: Optional[str] = None
+    language: Optional[str] = None
+
+
+class SpeciesProfileSummary(BaseModel):
+    gbif_key: Optional[int] = None
+    common_name: str
+    scientific_name: str
+    family: Optional[str] = None
+    order_name: Optional[str] = None
+    iucn_status: Optional[str] = None
+    population_trend: Optional[str] = None
+    population_size: Optional[str] = None
+    habitat: list[str] = []
+    range_summary: list[str] = []
+    diet: Optional[str] = None
+    breeding_behavior: Optional[str] = None
+    migratory_behavior: Optional[str] = None
+    source_urls: list[str] = []
+
+
+class ExtinctionRiskReportResponse(BaseModel):
+    species: SpeciesProfileSummary
+    current_conservation_status: str
+    key_threats: list[str]
+    survivability_assessment: str
+    mitigation_actions: list[str]
+    sources: list[ReportEvidenceItem]
+    limited_evidence_reasons: list[str] = []
+    reviewer_notes: str
+    decision_support_draft: str
+    model_name: str
+    generation_mode: str
+    model_output_status: str
+    evidence_items_reviewed: int
+    disclaimer: str
 
 
 # ─── XENO-CANTO ───────────────────────────────────────────────────────────────

@@ -23,7 +23,8 @@ settings = get_settings()
 
 GBIF_BASE = settings.gbif_base_url
 AVES_KEY = settings.gbif_aves_taxon_key   # 212 = Class Aves
-INDIA_CODE = settings.gbif_country_code   # "IN" for Indian inventory; empty = global
+# "IN" for Indian inventory; empty = global
+INDIA_CODE = settings.gbif_country_code
 
 
 # ─── HTTP Client ─────────────────────────────────────────────────────────────
@@ -35,14 +36,16 @@ def _get_client() -> httpx.AsyncClient:
     if _client is None or _client.is_closed:
         _client = httpx.AsyncClient(
             timeout=30.0,
-            headers={"User-Agent": "EcoPath/1.0 (ecological research dashboard)"},
+            headers={
+                "User-Agent": "EcoPath/1.0 (ecological research dashboard)"},
         )
     return _client
 
 
 # ─── Core Request with Retry ─────────────────────────────────────────────────
 @retry(
-    retry=retry_if_exception_type((httpx.HTTPStatusError, httpx.TimeoutException)),
+    retry=retry_if_exception_type(
+        (httpx.HTTPStatusError, httpx.TimeoutException)),
     wait=wait_exponential(multiplier=1, min=2, max=30),
     stop=stop_after_attempt(5),
     reraise=True,
@@ -65,17 +68,21 @@ async def search_species(query: str, limit: int = 10) -> list[dict]:
     Fuzzy search for bird species by name.
     Returns list of matching GBIF species records.
     """
-    data = await _get(
-        f"{GBIF_BASE}/species/search",
-        params={
-            "q": query,
-            "rank": "SPECIES",
-            "higherTaxonKey": AVES_KEY,
-            "status": "ACCEPTED",
-            "limit": limit,
-        },
-    )
-    return data.get("results", [])
+    try:
+        data = await _get(
+            f"{GBIF_BASE}/species/search",
+            params={
+                "q": query,
+                "rank": "SPECIES",
+                "higherTaxonKey": AVES_KEY,
+                "status": "ACCEPTED",
+                "limit": limit,
+            },
+        )
+        return data.get("results", [])
+    except Exception as e:
+        logger.warning(f"GBIF species search failed for {query}: {e}")
+        return []
 
 
 async def get_species_by_key(gbif_key: int) -> Optional[dict]:
@@ -85,16 +92,24 @@ async def get_species_by_key(gbif_key: int) -> Optional[dict]:
     except httpx.HTTPStatusError as e:
         if e.response.status_code == 404:
             return None
-        raise
+        logger.warning(f"GBIF species lookup failed for {gbif_key}: {e}")
+        return None
+    except Exception as e:
+        logger.warning(f"GBIF species lookup failed for {gbif_key}: {e}")
+        return None
 
 
 async def get_species_media(gbif_key: int, limit: int = 5) -> list[dict]:
     """Fetch media (images) for a species from GBIF."""
-    data = await _get(
-        f"{GBIF_BASE}/species/{gbif_key}/media",
-        params={"limit": limit},
-    )
-    return data.get("results", [])
+    try:
+        data = await _get(
+            f"{GBIF_BASE}/species/{gbif_key}/media",
+            params={"limit": limit},
+        )
+        return data.get("results", [])
+    except Exception as e:
+        logger.warning(f"GBIF media lookup failed for {gbif_key}: {e}")
+        return []
 
 
 # ─── Indian Bird Species Inventory ───────────────────────────────────────────
@@ -105,29 +120,33 @@ async def fetch_indian_bird_species_keys(limit: int = 500) -> list[int]:
     Returns a list of GBIF species keys.
     """
     logger.info(f"Fetching Indian bird species inventory (limit={limit})...")
-    data = await _get(
-        f"{GBIF_BASE}/occurrence/search",
-        params={
-            "taxonKey": AVES_KEY,
-            "country": "IN",  # This function is always India-specific
-            "limit": 0,
-            "facet": "speciesKey",
-            "facetLimit": limit,
-            "hasCoordinate": "true",
-            "hasGeospatialIssue": "false",
-        },
-    )
-    facets = data.get("facets", [])
-    species_keys = []
-    for facet in facets:
-        if facet.get("field") == "SPECIES_KEY":
-            for item in facet.get("counts", []):
-                try:
-                    species_keys.append(int(item["name"]))
-                except (KeyError, ValueError):
-                    continue
-    logger.info(f"Found {len(species_keys)} Indian bird species in GBIF")
-    return species_keys
+    try:
+        data = await _get(
+            f"{GBIF_BASE}/occurrence/search",
+            params={
+                "taxonKey": AVES_KEY,
+                "country": "IN",  # This function is always India-specific
+                "limit": 0,
+                "facet": "speciesKey",
+                "facetLimit": limit,
+                "hasCoordinate": "true",
+                "hasGeospatialIssue": "false",
+            },
+        )
+        facets = data.get("facets", [])
+        species_keys = []
+        for facet in facets:
+            if facet.get("field") == "SPECIES_KEY":
+                for item in facet.get("counts", []):
+                    try:
+                        species_keys.append(int(item["name"]))
+                    except (KeyError, ValueError):
+                        continue
+        logger.info(f"Found {len(species_keys)} Indian bird species in GBIF")
+        return species_keys
+    except Exception as e:
+        logger.warning(f"GBIF Indian species inventory failed: {e}")
+        return []
 
 
 # ─── Occurrence Count by Year × State ─────────────────────────────────────────
@@ -163,7 +182,8 @@ async def get_occurrence_counts_by_year(
             # Polite delay to avoid rate limiting
             await asyncio.sleep(0.3)
         except Exception as e:
-            logger.warning(f"Failed to fetch count for key={gbif_species_key}, year={year}: {e}")
+            logger.warning(
+                f"Failed to fetch count for key={gbif_species_key}, year={year}: {e}")
             results.append({"year": year, "count": 0})
     return results
 
@@ -190,20 +210,25 @@ async def get_occurrence_points(
     effective_country = country_code or INDIA_CODE
     if effective_country:
         params["country"] = effective_country
-    data = await _get(f"{GBIF_BASE}/occurrence/search", params=params)
-    points = []
-    for r in data.get("results", []):
-        lat = r.get("decimalLatitude")
-        lng = r.get("decimalLongitude")
-        if lat is not None and lng is not None:
-            points.append({
-                "lat": float(lat),
-                "lng": float(lng),
-                "state": r.get("stateProvince", "Unknown"),
-                "year": r.get("year", year),
-                "month": r.get("month"),
-            })
-    return points
+    try:
+        data = await _get(f"{GBIF_BASE}/occurrence/search", params=params)
+        points = []
+        for r in data.get("results", []):
+            lat = r.get("decimalLatitude")
+            lng = r.get("decimalLongitude")
+            if lat is not None and lng is not None:
+                points.append({
+                    "lat": float(lat),
+                    "lng": float(lng),
+                    "state": r.get("stateProvince", "Unknown"),
+                    "year": r.get("year", year),
+                    "month": r.get("month"),
+                })
+        return points
+    except Exception as e:
+        logger.warning(
+            f"GBIF occurrence points lookup failed for {gbif_species_key}/{year}: {e}")
+        return []
 
 
 # ─── xeno-canto: Bird Call Search ─────────────────────────────────────────────

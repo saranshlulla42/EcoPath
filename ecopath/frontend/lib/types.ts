@@ -112,6 +112,48 @@ export interface ChatMessage {
   content: string;
 }
 
+export interface ExtinctionRiskReportEvidenceItem {
+  query: string;
+  title: string;
+  url: string;
+  snippet: string;
+  source?: string;
+  seendate?: string;
+  language?: string;
+}
+
+export interface ExtinctionRiskReportResult {
+  species: {
+    gbif_key?: number | null;
+    common_name: string;
+    scientific_name: string;
+    family?: string | null;
+    order_name?: string | null;
+    iucn_status?: string | null;
+    population_trend?: string | null;
+    population_size?: string | null;
+    habitat: string[];
+    range_summary: string[];
+    diet?: string | null;
+    breeding_behavior?: string | null;
+    migratory_behavior?: string | null;
+    source_urls: string[];
+  };
+  current_conservation_status: string;
+  key_threats: string[];
+  survivability_assessment: string;
+  mitigation_actions: string[];
+  sources: ExtinctionRiskReportEvidenceItem[];
+  limited_evidence_reasons: string[];
+  reviewer_notes: string;
+  decision_support_draft: string;
+  model_name: string;
+  generation_mode: string;
+  model_output_status: string;
+  evidence_items_reviewed: number;
+  disclaimer: string;
+}
+
 // ── Migration Visualization Types ──────────────────────────────────────────
 
 /** Normalised eBird observation — consistent shape for all internal use */

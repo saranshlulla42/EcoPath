@@ -34,7 +34,8 @@ async def proxy_xenocanto(query: str = Query(..., description="Xeno-Canto v3 sea
     api_key = getattr(settings, "xenocanto_api_key", None) or ""
 
     url = f"{XC_BASE}?query={quote(query)}&key={api_key}"
-    logger.info(f"Proxying Xeno-Canto v3 request: {XC_BASE}?query={quote(query)}&key=***")
+    logger.info(
+        f"Proxying Xeno-Canto v3 request: {XC_BASE}?query={quote(query)}&key=***")
 
     async with httpx.AsyncClient(timeout=15.0, follow_redirects=True) as client:
         try:
@@ -42,11 +43,12 @@ async def proxy_xenocanto(query: str = Query(..., description="Xeno-Canto v3 sea
             resp.raise_for_status()
             return resp.json()
         except httpx.HTTPStatusError as e:
-            logger.error(f"Xeno-Canto returned {e.response.status_code}: {e.response.text[:200]}")
-            raise HTTPException(status_code=e.response.status_code, detail="Xeno-Canto API error")
+            logger.error(
+                f"Xeno-Canto returned {e.response.status_code}: {e.response.text[:200]}")
+            return {"recordings": [], "count": 0, "message": "Xeno-Canto unavailable"}
         except httpx.RequestError as e:
             logger.error(f"Xeno-Canto request failed: {e}")
-            raise HTTPException(status_code=502, detail="Could not reach Xeno-Canto API")
+            return {"recordings": [], "count": 0, "message": "Xeno-Canto unavailable"}
 
 
 @router.get("/audio/{recording_id}")
@@ -66,10 +68,10 @@ async def proxy_audio(recording_id: str = Path(..., description="Xeno-Canto reco
             resp.raise_for_status()
         except httpx.HTTPStatusError as e:
             logger.error(f"Xeno-Canto audio returned {e.response.status_code}")
-            raise HTTPException(status_code=e.response.status_code, detail="Audio file not found")
+            return StreamingResponse(iter([b""]), media_type="application/octet-stream")
         except httpx.RequestError as e:
             logger.error(f"Xeno-Canto audio request failed: {e}")
-            raise HTTPException(status_code=502, detail="Could not fetch audio from Xeno-Canto")
+            return StreamingResponse(iter([b""]), media_type="application/octet-stream")
 
     content_type = resp.headers.get("content-type", "audio/mpeg")
 

@@ -11,7 +11,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
 from config import get_settings
-from routers import species, maps, anomalies, chat, xenocanto, movebank
+from routers import species, maps, anomalies, chat, xenocanto, movebank, extinction_risk
+from services.extinction_risk_service import warm_report_model
 
 # ─── Logging ─────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -29,7 +30,11 @@ async def lifespan(app: FastAPI):
     logger.info("🦜 EcoPath API starting up...")
     logger.info(f"  Supabase URL: {settings.supabase_url[:40]}...")
     logger.info(f"  Gemini Pro Model: {settings.gemini_pro_model}")
+    logger.info(f"  Ollama Model: {settings.ollama_report_model}")
     logger.info(f"  CORS Origins: {settings.cors_origins_list}")
+    # Warm up the report model in background without blocking startup
+    import asyncio
+    asyncio.create_task(warm_report_model())
     yield
     logger.info("🦜 EcoPath API shutting down...")
 
@@ -61,10 +66,14 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 # ─── Routers ─────────────────────────────────────────────────────────────────
 app.include_router(species.router, prefix="/api/species", tags=["Species"])
 app.include_router(maps.router, prefix="/api/maps", tags=["Maps"])
-app.include_router(anomalies.router, prefix="/api/anomalies", tags=["Anomalies"])
+app.include_router(
+    anomalies.router, prefix="/api/anomalies", tags=["Anomalies"])
 app.include_router(chat.router, prefix="/api/chat", tags=["Chat"])
-app.include_router(xenocanto.router, prefix="/api/xenocanto", tags=["Xeno-Canto"])
+app.include_router(xenocanto.router, prefix="/api/xenocanto",
+                   tags=["Xeno-Canto"])
 app.include_router(movebank.router, prefix="/api/movebank", tags=["Movebank"])
+app.include_router(extinction_risk.router,
+                   prefix="/api/extinction-risk", tags=["Extinction Risk"])
 
 
 # ─── Health Check ────────────────────────────────────────────────────────────

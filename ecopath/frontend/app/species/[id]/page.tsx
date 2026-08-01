@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { COUNTRY_OPTIONS } from "@/lib/countries";
 import { useMemo, useRef, useState, useEffect } from "react";
 import type { PopulationYearSummary } from "@/lib/types";
+import { ExtinctionRiskReportPanel } from "@/components/extinction-risk/ExtinctionRiskReportPanel";
 import {
   XAxis, YAxis, Tooltip, ResponsiveContainer,
   Area, AreaChart, CartesianGrid, ReferenceLine,
@@ -62,9 +63,11 @@ function computeClientAnomalies(history: PopulationYearSummary[]) {
     else if (z_score >= 2.5) severity = "high";
     else if (z_score >= 2.0) severity = "medium";
     else severity = "low";
-    results.push({ year: cur.year, type: magnitude_pct > 0 ? "surge" : "dip",
+    results.push({
+      year: cur.year, type: magnitude_pct > 0 ? "surge" : "dip",
       magnitude_pct: Math.round(magnitude_pct * 100) / 100,
-      observed: cur.total_observations, expected: Math.round(avg), severity });
+      observed: cur.total_observations, expected: Math.round(avg), severity
+    });
   }
   return results;
 }
@@ -89,7 +92,7 @@ async function fetchGBIFMedia(gbifKey: string) {
   return img?.identifier ?? null;
 }
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 async function fetchXenoCanto(scientificName: string) {
   const tryFetch = async (query: string) => {
@@ -429,16 +432,16 @@ export default function SpeciesDetailPage() {
     enabled: !!scientificName,
   });
 
-  const commonName   = gbifSpecies?.vernacularName ?? gbifSpecies?.canonicalName ?? "Unknown";
-  const family       = gbifSpecies?.family ?? "";
-  const order        = gbifSpecies?.order ?? "";
-  const kingdom      = gbifSpecies?.kingdom ?? "";
+  const commonName = gbifSpecies?.vernacularName ?? gbifSpecies?.canonicalName ?? "Unknown";
+  const family = gbifSpecies?.family ?? "";
+  const order = gbifSpecies?.order ?? "";
+  const kingdom = gbifSpecies?.kingdom ?? "";
   const resolvedImageUrl = wikiData?.imageUrl ?? gbifMediaUrl ?? null;
 
   const populationHistory = useMemo(() => buildPopulationHistory(occurrenceData?.results ?? []), [occurrenceData]);
   const anomalies = useMemo(() => computeClientAnomalies(populationHistory), [populationHistory]);
   const anomalyYears = new Set(anomalies.map(a => a.year));
-  const anomalyMap   = new Map(anomalies.map(a => [a.year, a]));
+  const anomalyMap = new Map(anomalies.map(a => [a.year, a]));
 
   const chartData = populationHistory.map(p => ({
     year: p.year,
@@ -704,7 +707,7 @@ export default function SpeciesDetailPage() {
               <AreaChart data={chartData} margin={{ top: 8, right: 0, left: -10, bottom: 0 }}>
                 <defs>
                   <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%"  stopColor="#5BB89A" stopOpacity={0.25} />
+                    <stop offset="5%" stopColor="#5BB89A" stopOpacity={0.25} />
                     <stop offset="95%" stopColor="#5BB89A" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
@@ -790,8 +793,8 @@ export default function SpeciesDetailPage() {
                       textTransform: "uppercase",
                       fontWeight: 500,
                       color: a.severity === "critical" ? "var(--danger)"
-                           : a.severity === "high" ? "var(--warning)"
-                           : "var(--text-tertiary)",
+                        : a.severity === "high" ? "var(--warning)"
+                          : "var(--text-tertiary)",
                     }}>
                       {a.severity}
                     </span>
@@ -826,6 +829,13 @@ export default function SpeciesDetailPage() {
 
         {/* ── Ecological Profile (Cached AI Answers) ────────────────────── */}
         <EcologyAnswers speciesId={gbifKey} commonName={commonName} scientificName={scientificName} />
+
+        <ExtinctionRiskReportPanel
+          speciesName={commonName}
+          scientificName={scientificName}
+          gbifKey={gbifKey}
+          countryCode={selectedCountry}
+        />
 
       </div>
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { GBIFSearchResult } from "./types";
 
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
+const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const GBIF = "https://api.gbif.org/v1";
 
 export const api = axios.create({
@@ -191,6 +191,60 @@ export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
 }
+
+export interface ExtinctionRiskReportRequest {
+  species_name: string;
+  gbif_key?: number;
+  country_code?: string;
+  language?: string;
+}
+
+export interface ExtinctionRiskReportEvidenceItem {
+  query: string;
+  title: string;
+  url: string;
+  snippet: string;
+  source?: string;
+  seendate?: string;
+  language?: string;
+}
+
+export interface ExtinctionRiskReportResponse {
+  species: {
+    gbif_key?: number | null;
+    common_name: string;
+    scientific_name: string;
+    family?: string | null;
+    order_name?: string | null;
+    iucn_status?: string | null;
+    population_trend?: string | null;
+    population_size?: string | null;
+    habitat: string[];
+    range_summary: string[];
+    diet?: string | null;
+    breeding_behavior?: string | null;
+    migratory_behavior?: string | null;
+    source_urls: string[];
+  };
+  current_conservation_status: string;
+  key_threats: string[];
+  survivability_assessment: string;
+  mitigation_actions: string[];
+  sources: ExtinctionRiskReportEvidenceItem[];
+  limited_evidence_reasons: string[];
+  reviewer_notes: string;
+  decision_support_draft: string;
+  model_name: string;
+  generation_mode: string;
+  model_output_status: string;
+  evidence_items_reviewed: number;
+  disclaimer: string;
+}
+
+export const createExtinctionRiskReport = (payload: ExtinctionRiskReportRequest) =>
+  api.post<ExtinctionRiskReportResponse>("/api/extinction-risk/report", payload, {
+    timeout: 360000,
+  }).then((r) => r.data);
 
 export async function* streamChat(
   messages: ChatMessage[],

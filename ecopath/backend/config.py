@@ -18,6 +18,16 @@ class Settings(BaseSettings):
     gemini_pro_model: str = "gemini-2.5-flash"
     gemini_flash_model: str = "gemini-2.5-flash"
 
+    # Local report model (Ollama)
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_report_model: str = "ecopath-extinction-risk"
+    ollama_timeout_seconds: int = 120
+
+    # Optional external evidence/search sources
+    gdelt_base_url: str = "https://api.gdeltproject.org/api/v2/doc/doc"
+    iucn_base_url: str = "https://apiv3.iucnredlist.org/api/v3"
+    iucn_api_token: str = ""
+
     # GBIF
     gbif_base_url: str = "https://api.gbif.org/v1"
     gbif_aves_taxon_key: int = 212
@@ -50,4 +60,3 @@ class Settings(BaseSettings):
 @lru_cache()
 def get_settings() -> Settings:
     return Settings()
-

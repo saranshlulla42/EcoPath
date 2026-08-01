@@ -29,6 +29,10 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 
+# ─── Generated model artifacts ────────────────────────────────────────────────
+artifacts/
+ml/extinction_risk/
+
 # ─── System ───────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

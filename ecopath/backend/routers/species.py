@@ -23,6 +23,7 @@ from services.gemini_service import identify_bird_from_image, generate_ecology_a
 logger = logging.getLogger("ecopath.species")
 router = APIRouter()
 
+
 @router.get("", response_model=list[SpeciesSearchResult])
 async def list_species(limit: int = Query(20, ge=1, le=100)):
     """
@@ -40,7 +41,8 @@ async def list_species(limit: int = Query(20, ge=1, le=100)):
 
 @router.get("/search", response_model=list[SpeciesSearchResult])
 async def search_species_endpoint(
-    q: str = Query(..., min_length=2, description="Search query (common or scientific name)"),
+    q: str = Query(..., min_length=2,
+                   description="Search query (common or scientific name)"),
     limit: int = Query(10, ge=1, le=50),
 ):
     """
@@ -62,26 +64,28 @@ async def search_species_endpoint(
 
     # If too few local results, supplement with GBIF
     if len(species_list) < 3:
-        gbif_results = await search_species(q, limit=limit)
-        gbif_formatted = []
-        for r in gbif_results:
-            if r.get("rank") == "SPECIES" and r.get("kingdom") == "Animalia":
-                gbif_formatted.append({
-                    "id": None,
-                    "common_name": r.get("vernacularName") or r.get("canonicalName", "Unknown"),
-                    "scientific_name": r.get("canonicalName", ""),
-                    "family": r.get("family"),
-                    "iucn_status": None,
-                    "image_url": None,
-                    "gbif_image_url": None,
-                    "endemic_india": False,
-                    "migratory": False,
-                })
-        # Merge, deduplicate by scientific name
-        existing_names = {s["scientific_name"] for s in species_list}
-        for g in gbif_formatted:
-            if g["scientific_name"] not in existing_names:
-                species_list.append(g)
+        try:
+            gbif_results = await search_species(q, limit=limit)
+            gbif_formatted = []
+            for r in gbif_results:
+                if r.get("rank") == "SPECIES" and r.get("kingdom") == "Animalia":
+                    gbif_formatted.append({
+                        "id": None,
+                        "common_name": r.get("vernacularName") or r.get("canonicalName", "Unknown"),
+                        "scientific_name": r.get("canonicalName", ""),
+                        "family": r.get("family"),
+                        "iucn_status": None,
+                        "image_url": None,
+                        "gbif_image_url": None,
+                        "endemic_india": False,
+                        "migratory": False,
+                    })
+            existing_names = {s["scientific_name"] for s in species_list}
+            for g in gbif_formatted:
+                if g["scientific_name"] not in existing_names:
+                    species_list.append(g)
+        except Exception as e:
+            logger.warning(f"GBIF supplement search failed for {q}: {e}")
 
     return species_list[:limit]
 
@@ -179,10 +183,24 @@ async def identify_species_from_image(
 
     content = await file.read()
     if len(content) > MAX_SIZE:
-        raise HTTPException(status_code=400, detail="Image too large. Maximum 10MB.")
+        raise HTTPException(
+            status_code=400, detail="Image too large. Maximum 10MB.")
 
     # Gemini Flash vision identification
-    result = await identify_bird_from_image(content, file.content_type)
+    try:
+        result = await identify_bird_from_image(content, file.content_type)
+    except Exception as e:
+        logger.warning(f"Vision ID failed for upload {file.filename}: {e}")
+        result = {
+            "identified": False,
+            "common_name": None,
+            "scientific_name": None,
+            "confidence": 0.0,
+            "is_bird": False,
+            "is_real_photo": False,
+            "spoof_warning": "Vision model unavailable.",
+            "reasoning": "The local vision service could not complete the identification.",
+        }
 
     # Try to match identified species to our database
     matched_species = None
@@ -210,6 +228,7 @@ async def identify_species_from_image(
         reasoning=result.get("reasoning", ""),
     )
 
+
 @router.get("/{species_id}/ecology-data")
 async def get_species_ecology_data(
     species_id: str,
@@ -221,31 +240,36 @@ async def get_species_ecology_data(
     Uses Supabase as a cache-layer before hitting Gemini.
     """
     supabase = get_supabase()
-    
+
     # Check cache
+    cached_data = []
     try:
-        result = supabase.table("species_cached_answers").select("*").eq("species_id", species_id).execute()
+        result = supabase.table("species_cached_answers").select(
+            "*").eq("species_id", species_id).execute()
         cached_data = result.data or []
     except Exception as e:
         logger.error(f"Supabase select error (table missing or RLS?): {e}")
-        cached_data = []
-    
+
     EXPECTED_KEYS = [
         "taxonomic_identity", "geographic_distribution", "diet", "predators",
         "activity_patterns", "reproductive_traits", "migration", "habitat",
         "threats", "population_trends"
     ]
-    
-    cached_data = result.data or []
-    
+
     if len(cached_data) >= 10:
         return {row["question_key"]: row["answer_text"] for row in cached_data}
-        
+
     # Generate on cache miss
-    answers = await generate_ecology_answers(common_name, scientific_name)
+    try:
+        answers = await generate_ecology_answers(common_name, scientific_name)
+    except Exception as e:
+        logger.warning(f"Ecology generation failed for {common_name}: {e}")
+        answers = {}
     if not answers:
-        raise HTTPException(status_code=500, detail="Failed to generate ecology data")
-    
+        answers = {
+            key: "Information unavailable." for key in EXPECTED_KEYS
+        }
+
     # Prepare rows for insert
     import uuid
     rows_to_insert = [
@@ -257,10 +281,11 @@ async def get_species_ecology_data(
         }
         for key in EXPECTED_KEYS
     ]
-    
+
     try:
-        supabase.table("species_cached_answers").upsert(rows_to_insert, on_conflict="species_id,question_key").execute()
+        supabase.table("species_cached_answers").upsert(
+            rows_to_insert, on_conflict="species_id,question_key").execute()
     except Exception as e:
         logger.error(f"Failed to cache ecology data: {e}")
-        
+
     return {row["question_key"]: row["answer_text"] for row in rows_to_insert}

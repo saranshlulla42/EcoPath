@@ -165,15 +165,26 @@ async def get_studies(
         # Cache for 30 minutes
         _cache[cache_key] = result
 
-        logger.info(f"[Movebank] Found {len(studies)} studies for {taxon_name}")
+        logger.info(
+            f"[Movebank] Found {len(studies)} studies for {taxon_name}")
         return result
 
     except Exception as e:
-        logger.error(f"[Movebank] Failed to fetch studies for {taxon_name}: {e}")
-        raise HTTPException(
-            status_code=503,
-            detail=f"Movebank API unavailable: {str(e)}",
-        )
+        logger.error(
+            f"[Movebank] Failed to fetch studies for {taxon_name}: {e}")
+        return {
+            "studies": [
+                {
+                    "id": 999999,
+                    "name": "Demonstration Telemetry (Fallback)",
+                    "taxonIds": taxon_name,
+                    "numberOfIndividuals": 1,
+                    "studyType": "Mock fallback",
+                    "sensorTypeIds": "gps",
+                }
+            ],
+            "count": 1,
+        }
 
 
 @router.get("/tracks")
@@ -189,7 +200,8 @@ async def get_tracks(
     Returns tracks grouped by individual animal.
     """
     if study_id == 999999:
-        logger.info("[Movebank] Returning synthetic demonstration track for mock study")
+        logger.info(
+            "[Movebank] Returning synthetic demonstration track for mock study")
         import time
         import math
 
@@ -254,7 +266,8 @@ async def get_tracks(
                 from datetime import datetime
 
                 try:
-                    parsed = int(datetime.fromisoformat(ts.replace("Z", "+00:00")).timestamp() * 1000)
+                    parsed = int(datetime.fromisoformat(
+                        ts.replace("Z", "+00:00")).timestamp() * 1000)
                 except (ValueError, AttributeError):
                     continue
             else:
@@ -289,12 +302,15 @@ async def get_tracks(
         # Cache for 30 minutes
         _cache[cache_key] = result
 
-        logger.info(f"[Movebank] Found {len(tracks)} tracks for study {study_id}")
+        logger.info(
+            f"[Movebank] Found {len(tracks)} tracks for study {study_id}")
         return result
 
     except Exception as e:
-        logger.error(f"[Movebank] Failed to fetch tracks for study {study_id}: {e}")
-        raise HTTPException(
-            status_code=503,
-            detail=f"Movebank API unavailable: {str(e)}",
-        )
+        logger.error(
+            f"[Movebank] Failed to fetch tracks for study {study_id}: {e}")
+        return {
+            "tracks": [],
+            "count": 0,
+            "message": "Movebank unavailable; no live tracks could be loaded",
+        }

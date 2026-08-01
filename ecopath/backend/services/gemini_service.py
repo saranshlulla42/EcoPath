@@ -28,6 +28,8 @@ _SAFETY = {
 }
 
 # ─── Model Instances ──────────────────────────────────────────────────────────
+
+
 def _get_pro_model():
     return genai.GenerativeModel(
         model_name=settings.gemini_pro_model,
@@ -135,8 +137,10 @@ async def stream_causal_reasoning(
     context_blocks = []
 
     if species_context:
-        native_range = species_context.get("native_range") or species_context.get("primary_range") or []
-        habitat = species_context.get("habitat") or species_context.get("primary_habitat") or []
+        native_range = species_context.get(
+            "native_range") or species_context.get("primary_range") or []
+        habitat = species_context.get(
+            "habitat") or species_context.get("primary_habitat") or []
         iucn = species_context.get("iucn_status", "Unknown")
         migratory = species_context.get("migratory", False)
 
@@ -267,6 +271,8 @@ Do not assume a specific country as the audience — write for a global reader i
         return f"The {common_name} ({scientific_name}) is a bird species found in {range_str}."
 
 # ─── Generate Ecology Answers ────────────────────────────────────────────────
+
+
 async def generate_ecology_answers(common_name: str, scientific_name: str) -> dict[str, str]:
     """Generate 10 structured ecological answers for a given species."""
     # Force JSON mode specifically for this endpoint
@@ -280,7 +286,7 @@ async def generate_ecology_answers(common_name: str, scientific_name: str) -> di
             response_mime_type="application/json"
         )
     )
-    
+
     prompt = f"""Provide factual, strictly ecological answers for the species {common_name} ({scientific_name}). Do not use conversational filler. Limit each answer to 4 concise sentences max.
 
 Output the response strictly as a structured JSON object containing exactly these 10 keys:
@@ -295,6 +301,22 @@ Output the response strictly as a structured JSON object containing exactly thes
 - threats
 - population_trends
 """
+
+    def _fallback_answers() -> dict[str, str]:
+        species_label = f"{common_name} ({scientific_name})"
+        return {
+            "taxonomic_identity": f"{species_label} is a bird species documented in the EcoPath species dataset.",
+            "geographic_distribution": f"{species_label} occurs within its documented native range, but the live Gemini service was unavailable during this request.",
+            "diet": f"Dietary information for {species_label} could not be retrieved from Gemini, so this entry should be verified against authoritative field guides.",
+            "predators": f"Predation pressure for {species_label} varies by habitat and life stage; the live ecological model did not return a detailed answer.",
+            "activity_patterns": f"Activity patterns for {species_label} should be confirmed from a species account because Gemini did not return a live response.",
+            "reproductive_traits": f"Reproductive traits for {species_label} were unavailable from the live service in this run.",
+            "migration": f"Migration status for {species_label} should be verified from conservation references because Gemini was unavailable.",
+            "habitat": f"{species_label} is associated with one or more habitat types in the species record, but no live Gemini explanation was available.",
+            "threats": f"Potential threats to {species_label} may include habitat change and human disturbance, depending on range; verify with species-specific sources.",
+            "population_trends": f"Population trend information for {species_label} was not returned by the live model and should be verified using conservation data.",
+        }
+
     try:
         response = await model.generate_content_async(prompt)
         raw = response.text.strip()
@@ -310,7 +332,8 @@ Output the response strictly as a structured JSON object containing exactly thes
 
         return json.loads(raw)
     except Exception as e:
-        logger.error(f"Ecology data generation failed for {common_name}. Raw info: {str(e)}")
+        logger.error(
+            f"Ecology data generation failed for {common_name}. Raw info: {str(e)}")
         import traceback
         logger.error(traceback.format_exc())
-        return {}
+        return _fallback_answers()
