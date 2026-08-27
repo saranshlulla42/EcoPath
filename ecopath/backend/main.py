@@ -2,14 +2,16 @@
 EcoPath Backend — Main FastAPI Application
 """
 
+import asyncio
 import logging
 import uvicorn
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, suppress
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
+from agent.session import cleanup_stale_sessions
 from config import get_settings
 from routers import species, maps, anomalies, chat, xenocanto, movebank, extinction_risk
 from services.extinction_risk_service import warm_report_model
@@ -33,9 +35,16 @@ async def lifespan(app: FastAPI):
     logger.info(f"  Ollama Model: {settings.ollama_report_model}")
     logger.info(f"  CORS Origins: {settings.cors_origins_list}")
     # Warm up the report model in background without blocking startup
-    import asyncio
     asyncio.create_task(warm_report_model())
+
+    cleanup_task = asyncio.create_task(cleanup_stale_sessions())
+    logger.info("  Research session cleanup task started.")
+
     yield
+
+    cleanup_task.cancel()
+    with suppress(asyncio.CancelledError):
+        await cleanup_task
     logger.info("🦜 EcoPath API shutting down...")
 
 

@@ -28,6 +28,16 @@ class Settings(BaseSettings):
     iucn_base_url: str = "https://apiv3.iucnredlist.org/api/v3"
     iucn_api_token: str = ""
 
+    # Groq (chat agent)
+    groq_api_key: str
+
+    # Agent Settings
+    agent_model: str = "openai/gpt-oss-120b"
+    agent_temperature: float = 0.3
+    agent_max_tool_rounds: int = 5
+    # Research session lifetime. Lower it (e.g. 0.17 ≈ 10s) to exercise expiry handling.
+    agent_session_ttl_minutes: float = 30.0
+
     # GBIF
     gbif_base_url: str = "https://api.gbif.org/v1"
     gbif_aves_taxon_key: int = 212

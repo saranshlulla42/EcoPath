@@ -567,3 +567,208 @@ input:focus, textarea:focus, select:focus {
   to   { opacity: 1; }
 }
 .narrative-fade { animation: narrative-fade 300ms ease-out both; }
+
+/* ─── Chat maps ──────────────────────────────────────────────────────────────── */
+/* Two colour worlds here. The frame chrome (title, caption, border) sits on the
+   light page background and uses the normal text tokens. Anything drawn *over*
+   the MapLibre canvas — region labels, stopover labels, tooltips — sits on dark
+   tiles, so it uses the --map-chrome-* tokens instead. */
+
+.map-block-container {
+  margin-top: 16px;
+}
+
+.map-block-title {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  margin-left: 4px;
+}
+
+/* overflow:hidden clips MapLibre's rectangular canvas to the rounded frame */
+.map-block-frame {
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  background: var(--surface);
+}
+
+/* the positioning context for tooltips and notices drawn over the map */
+.map-block-canvas {
+  position: relative;
+  width: 100%;
+}
+
+.map-block-caption {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 10px 14px;
+  border-top: 1px solid var(--border-subtle);
+  line-height: 1.5;
+  background: var(--surface-raised);
+}
+
+.map-skeleton {
+  width: 100%;
+  background: var(--surface);
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+/* ─── Region labels (over the dark map canvas) ───────────────────────────────── */
+.region-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;   /* never intercept the hover meant for the fill layer */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+
+.region-label-name {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--map-chrome-text);
+  white-space: nowrap;
+}
+
+.region-label-value {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--map-chrome-text-2);
+  white-space: nowrap;
+}
+
+/* ─── Map tooltip ────────────────────────────────────────────────────────────── */
+.map-tooltip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--map-chrome-soft);
+  border: 1px solid var(--map-chrome-border);
+  border-radius: var(--r-md);
+  padding: 8px 12px;
+  max-width: 200px;
+  pointer-events: none;
+  z-index: 10;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--map-chrome-text-2);
+}
+
+.map-tooltip strong {
+  color: var(--map-chrome-text);
+  font-weight: 600;
+}
+
+.map-notice {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  background: var(--map-chrome-soft);
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--map-chrome-text-3);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ─── Stopover markers ───────────────────────────────────────────────────────── */
+.stopover-marker {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+.stopover-dot {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--warning);   /* amber, so stops read against the routes */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.stopover-ping {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--warning-soft);
+  animation: stopover-pulse 2s ease-out infinite;
+}
+
+@keyframes stopover-pulse {
+  0%   { transform: scale(1);   opacity: 0.9; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.stopover-label {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--map-chrome-text);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+
+.stopover-tooltip {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--map-chrome-soft);
+  border: 1px solid var(--map-chrome-border);
+  border-radius: var(--r-md);
+  padding: 8px 12px;
+  width: max-content;
+  max-width: 220px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.stopover-tooltip strong {
+  font-size: 12px;
+  color: var(--map-chrome-text);
+  display: block;
+  font-family: var(--font-sans);
+}
+
+.stopover-tooltip p {
+  font-size: 11px;
+  color: var(--map-chrome-text-2);
+  margin-top: 4px;
+  line-height: 1.4;
+  font-family: var(--font-sans);
+}
+
+/* staggered entrance for stopovers, ordered along the route */
+@keyframes stopover-enter {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.stopover-enter { animation: stopover-enter 400ms ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stopover-ping { animation: none; }
+  .stopover-enter { animation-duration: 1ms; }
+  .map-skeleton { animation: none; }
+}

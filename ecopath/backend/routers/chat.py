@@ -1,163 +1,78 @@
-"""
-EcoPath — Chat Router (RAG-powered Causal Reasoning Agent)
-Implements Server-Sent Events (SSE) streaming with Gemini 2.5 Flash.
-
-Species context is resolved via GBIF (not Supabase) to match
-the frontend's direct-GBIF architecture.
-"""
-
 import json
 import logging
-from typing import Optional
-
-import httpx
-from fastapi import APIRouter, HTTPException
+import asyncio
+from fastapi import APIRouter, HTTPException, Request, Header
 from fastapi.responses import StreamingResponse
 
 from models.schemas import ChatRequest
-from services.gemini_service import stream_causal_reasoning
-from services.weather_service import get_historical_weather
+from agent.agent_loop import run_agent_turn
+from agent.session import delete_session, peek_session
 
 logger = logging.getLogger("ecopath.chat")
 router = APIRouter()
 
-GBIF_BASE = "https://api.gbif.org/v1"
 
-
-async def _fetch_gbif_species(gbif_key_or_name: str) -> Optional[dict]:
-    """
-    Resolve a species from GBIF, either by numeric key or by name match.
-    Returns a simplified species context dict.
-    """
-    try:
-        async with httpx.AsyncClient(timeout=10.0) as client:
-            # Try as numeric GBIF key first
-            if gbif_key_or_name.isdigit():
-                resp = await client.get(f"{GBIF_BASE}/species/{gbif_key_or_name}")
-                if resp.status_code == 200:
-                    data = resp.json()
-                    return {
-                        "common_name": data.get("vernacularName") or data.get("canonicalName") or data.get("scientificName", "Unknown"),
-                        "scientific_name": data.get("canonicalName") or data.get("scientificName", ""),
-                        "iucn_status": data.get("threatStatus", "Unknown"),
-                        "primary_habitat": [],
-                        "primary_range": [],
-                        "migratory": False,
-                        "endemic_india": False,
-                        "description": None,
-                        "family": data.get("family", ""),
-                        "order": data.get("order", ""),
-                        "kingdom": data.get("kingdom", ""),
-                    }
-
-            # Fallback: try name-based match
-            resp = await client.get(
-                f"{GBIF_BASE}/species/match",
-                params={"name": gbif_key_or_name, "kingdom": "Animalia"},
-            )
-            if resp.status_code == 200:
-                data = resp.json()
-                if data.get("usageKey"):
-                    return {
-                        "common_name": data.get("canonicalName") or data.get("scientificName", "Unknown"),
-                        "scientific_name": data.get("canonicalName") or data.get("scientificName", ""),
-                        "iucn_status": "Unknown",
-                        "primary_habitat": [],
-                        "primary_range": [],
-                        "migratory": False,
-                        "endemic_india": False,
-                        "description": None,
-                        "family": data.get("family", ""),
-                        "order": data.get("order", ""),
-                    }
-    except Exception as e:
-        logger.warning(f"Failed to fetch GBIF species context for '{gbif_key_or_name}': {e}")
-
-    return None
-
-
-async def _build_rag_context(
-    species_context_str: Optional[str],
-    year_context: Optional[int],
-) -> dict:
-    """
-    Build RAG context for the chat agent.
-    Fetches species info from GBIF and weather data from Open-Meteo.
-    """
-    species_ctx = None
-    weather_ctx = None
-
-    if species_context_str:
-        species_ctx = await _fetch_gbif_species(species_context_str)
-
-        if species_ctx and year_context:
-            # Fetch weather for India's central coordinates for that year
-            try:
-                weather_ctx = await get_historical_weather(
-                    lat=22.0,
-                    lng=78.5,
-                    year=year_context,
-                )
-            except Exception:
-                pass
-
-    return {
-        "species": species_ctx,
-        "anomaly": None,  # Client-side anomaly detection — no Supabase dependency
-        "weather": weather_ctx,
-    }
+def _sse(event: str, data) -> str:
+    return f"event: {event}\ndata: {json.dumps(data)}\n\n"
 
 
 @router.post("/stream")
-async def chat_stream(request: ChatRequest):
+async def chat_stream(request: Request, body: ChatRequest, x_session_id: str = Header(default="default-session")):
     """
-    Streaming SSE endpoint for the EcoPath Causal Reasoning Agent.
-    Returns Server-Sent Events that the frontend reads incrementally.
-
-    The agent:
-    1. Retrieves species context from GBIF (RAG)
-    2. Fetches weather data for the context year (if applicable)
-    3. Streams a Gemini 2.5 Flash causal hypothesis token-by-token
+    Streaming SSE endpoint for the EcoPath Agent.
     """
-    if not request.messages:
+    if not body.messages:
         raise HTTPException(status_code=400, detail="No messages provided")
+    
+    # We take the last user message to feed into the agent loop
+    user_message = body.messages[-1].content
 
     async def event_generator():
         try:
-            # Tell the client that we established connection and are retrieving data
-            if request.species_context or request.year_context:
-                yield f"data: {json.dumps({'delta': '⏳ *Retrieving ecological context...*\n\n', 'done': False})}\n\n"
+            result = await run_agent_turn(user_message, x_session_id)
 
-            # Build RAG context (GBIF-based, no Supabase) - moved inside generator so headers are sent immediately
-            ctx = await _build_rag_context(
-                request.species_context,
-                request.year_context,
-            )
+            # Tell the client its session had timed out before this turn ran, so it
+            # can say so inline rather than silently losing the thread.
+            if result.session_expired:
+                yield _sse("session_expired", {"session_id": x_session_id})
 
-            if request.species_context or request.year_context:
-                yield f"data: {json.dumps({'delta': '🧠 *Analyzing data with Gemini 2.5...*\n\n---\n\n', 'done': False})}\n\n"
+            for block in result.blocks:
+                block_type = block.get("type")
+                
+                if block_type == "narrative":
+                    yield _sse("block_start", {"type": "narrative"})
+                    content = block.get("content", "")
+                    
+                    # Split into chunks of 3-5 words
+                    words = content.split(' ')
+                    chunk_size = 4
+                    for i in range(0, len(words), chunk_size):
+                        chunk = " ".join(words[i:i+chunk_size])
+                        if i + chunk_size < len(words):
+                            chunk += " "
+                        
+                        yield _sse("text_delta", {"content": chunk})
+                        await asyncio.sleep(0.04) # Simulate typing 40ms delay
+                        
+                    yield _sse("block_end", {"type": "narrative"})
+                
+                else:
+                    yield _sse("block", block)
 
-            async for token in stream_causal_reasoning(
-                messages=[{"role": m.role, "content": m.content} for m in request.messages],
-                species_context=ctx["species"],
-                anomaly_context=ctx["anomaly"],
-                weather_context=ctx["weather"],
-            ):
-                # SSE format: data: {json}\n\n
-                payload = json.dumps({"delta": token, "done": False})
-                yield f"data: {payload}\n\n"
+            # Current research focus, emitted once at the end of the response.
+            yield _sse("session_state", result.session_state)
 
             # Send done signal
-            done_payload = json.dumps({"delta": "", "done": True})
-            yield f"data: {done_payload}\n\n"
+            yield _sse("done", {})
 
         except Exception as e:
             logger.error(f"Chat stream error: {e}")
-            error_payload = json.dumps({
-                "delta": f"\n\n⚠️ An error occurred: {str(e)}",
-                "done": True,
-            })
-            yield f"data: {error_payload}\n\n"
+            error_block = {
+                "type": "narrative",
+                "content": f"\n\n⚠️ An error occurred: {str(e)}"
+            }
+            yield _sse("block", error_block)
+            yield _sse("done", {})
 
     return StreamingResponse(
         event_generator(),
@@ -169,28 +84,30 @@ async def chat_stream(request: ChatRequest):
         },
     )
 
-
 @router.post("/")
-async def chat_non_streaming(request: ChatRequest):
+async def chat_non_streaming(body: ChatRequest, x_session_id: str = Header(default="default-session")):
     """
     Non-streaming fallback chat endpoint.
-    Collects the full Gemini response and returns at once.
     """
-    ctx = await _build_rag_context(
-        request.species_context,
-        request.year_context,
-    )
+    if not body.messages:
+        raise HTTPException(status_code=400, detail="No messages provided")
+        
+    user_message = body.messages[-1].content
+    return (await run_agent_turn(user_message, x_session_id)).blocks
 
-    full_response = []
-    async for token in stream_causal_reasoning(
-        messages=[{"role": m.role, "content": m.content} for m in request.messages],
-        species_context=ctx["species"],
-        anomaly_context=ctx["anomaly"],
-        weather_context=ctx["weather"],
-    ):
-        full_response.append(token)
 
-    return {
-        "role": "assistant",
-        "content": "".join(full_response),
-    }
+@router.post("/reset")
+async def reset_session(x_session_id: str = Header(default="default-session")):
+    """Clear a research session. The client generates a fresh session id afterwards."""
+    existed = delete_session(x_session_id)
+    logger.info(f"Reset session {x_session_id} (existed={existed})")
+    return {"status": "ok", "message": "Session reset", "existed": existed}
+
+
+@router.get("/session/{session_id}")
+async def get_session_debug(session_id: str):
+    """Inspect a live session's state. Debug aid for verifying context tracking."""
+    session = peek_session(session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="No active session with that id")
+    return session.to_debug_dict()
