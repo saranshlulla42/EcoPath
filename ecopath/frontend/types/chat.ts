@@ -31,11 +31,15 @@ export interface LineChartBlock {
   title: string;
   x_label: string;
   y_label: string;
-  series: {
+  // Either the points are inline, or `series_ref` names a server-side spec the
+  // frontend resolves. Refs keep bulk data out of the model's context in both
+  // directions; inline series stay supported for older sessions.
+  series?: {
     name: string;
     data: { x: string; y: number }[];
     color?: string;
   }[];
+  series_ref?: string;
   annotations?: { x: string; label: string }[];
 }
 
@@ -44,11 +48,12 @@ export interface BarChartBlock {
   title: string;
   x_label: string;
   y_label: string;
-  series: {
+  series?: {
     name: string;
     data: { x: string; y: number }[];
     color?: string;
   }[];
+  series_ref?: string;
 }
 
 export interface StatCardBlock {

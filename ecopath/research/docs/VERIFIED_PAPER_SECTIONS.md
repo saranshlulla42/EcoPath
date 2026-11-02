@@ -1,0 +1,39 @@
+# Verified replacement sections — investigator review required
+
+## Proposed title and abstract
+
+**Evaluating evidence-constrained conservation report drafting in EcoPath**
+
+EcoPath combines bird-information interfaces, data-source adapters and a local conservation-report drafting service. We audited a saved QLoRA experiment using Qwen2.5-7B-Instruct and 100 teacher-written examples. The dataset contains taxonomy-only GBIF evidence; all recorded ecological fields are absent. Its saved species split contains 85 training and 15 evaluation examples, with two genera shared between splits. Re-analysis reproduces valid JSON in 0/15 base responses and 15/15 adapted responses under the original weak prompting condition. The original key-presence metric does not establish full schema compliance, semantic evidence fidelity or superiority over stronger baselines. We implement a separate evaluation protocol comparing original instructions, engineered prompting, constrained decoding, adaptation and a deterministic template using identical evidence, explicit abstention, source associations, species-grouped uncertainty and human annotation. New ecological pilot and final model comparisons remain pending. Reports are drafts for human review and do not assign official conservation categories from sparse evidence.
+
+## Implemented and evaluated scope
+
+The application uses a Next.js/React frontend and FastAPI backend. The live drafting service combines species resolution, external context, heuristic extraction, local Ollama generation, JSON recovery and deterministic assembly. These components can affect final output independently of the language-model adapter. The archived HF experiment instead injects saved evidence into prompts and performs no runtime retrieval; we describe it as fixed-evidence prompting. Platform-connected sources must not be described as experimental sources unless their records actually appear in the model input.
+
+The audit located a 100-record dataset, preserved splits, training/evaluation/grading code, final adapter and checkpoints, raw outputs, judge reports and training state. It did not locate the dataset builder, original selection frame, exact teacher record, original full software/hardware record, immutable training-model revision or an editable source for a separate QLoRA paper. These absences limit reconstruction.
+
+## Original data, training and inference
+
+The saved dataset has 100 unique species, 31 families and 16 orders. Every evidence item is a GBIF taxonomy snippet. Conservation category, population size/trend, habitat, range, diet, breeding and migration values are absent for every example. GBIF URLs are retained, but source retrieval dates are missing; target creation times do not establish retrieval time. The dataset is not a verified India sampling frame. Targets include heuristic risk language absent from the supplied taxonomy and require review before reuse as reference answers.
+
+The original split uses 85 training and 15 evaluation species, with no species overlap but shared Larus/Turdus genera. No separate validation set is recorded. LoRA configuration records rank 16, alpha 32, dropout .05 and attention/feed-forward projection targets. Saved TrainingArguments scalars record batch size 1, accumulation 8, learning rate .0002, three epochs, seed 42 and fp16. The script specifies 4-bit NF4 with double quantisation. Max sequence length is a code default rather than an observed run record. Training-loss observations are available; validation loss, training duration, GPU model/hours and peak memory are unavailable.
+
+Training manually serializes role markers that are not registered special tokens in the saved Qwen tokenizer. The evaluation code uses the native tokenizer chat template for both methods. This mismatch is a documented implementation inconsistency, not a measured causal explanation. The shared original prompt lacks an explicit JSON schema and demonstrations. Defaults are 1024 new tokens and sampling temperature .1; effective CLI settings and finish reasons were not logged. New CPU tokenizer checks do not reconstruct unknown original tokenizer revisions or generation timing.
+
+## Evaluation and new protocol
+
+The original parser/key check is retained as an archival metric. Strict re-parsing confirms the saved JSON counts. Supplementary judge scores are not human assessments; the judge received a truncated prompt prefix that generally omitted search results. Exact effective judge identity, teacher overlap and validation are unresolved. We therefore do not use those ratings to establish evidence fidelity.
+
+The new protocol first curates approximately 30 India-frame pilot species with legitimate ecological sources, explicit missingness and reviewed field extractions. It splits species/genera before constructing complete, partial and minimal evidence variants, excluding pilot examples from the final untouched test pool. Canonical model payloads omit hidden references, raw summaries and masking metadata. Targets copy supplied values with source IDs and use explicit null abstention for missing or conflicting fields. Official IUCN categories may only be quoted when sourced.
+
+Primary methods are the original instruction baseline on shared v2 inputs, engineered schema/abstention prompting with validation demonstrations, the same prompt under schema constraints, QLoRA with comparable prompt/constraints if justified, and a deterministic template. New adapted runs use independently recorded seeds and validation checkpoint selection. A protocol hash freezes code, data, schema, model/tokenizer revisions, demonstrations, adapter provenance and decoding. This pipeline is implemented; ecological runs and human annotations remain pending.
+
+Metrics record strict JSON, full schema, available-field accuracy, correct/false abstention, unsupported structured assertions and citation existence/validity/support. End-to-end metrics retain structural failures; assessable-content results are reported alongside them. Zero denominators remain undefined. Deterministic checks measure agreement with reviewed structured assertions, not semantic entailment of unrestricted prose. Blinded human annotation and adjudication assess free-text factual claims and embedded assertions in suggestions. Statistical comparisons resample species while retaining evidence variants and accounting for entire training-seed runs. Computational measurements retain timing, token, warmup, batching, memory and hardware scope.
+
+## Results and limitations
+
+The only established adapted-versus-base result is 0/15 versus 15/15 valid JSON under the original weak prompt and taxonomy-only evidence. Required-key presence follows the same counts. No improvement in available ecological evidence use, category accuracy, citation entailment, human usefulness, cost or Indian-bird generalisation is established. New baseline, adapted, per-evidence-level, three-seed and human results are **PENDING**. Offline software tests and deterministic fixture diagnostics are reported separately and do not substitute for live model experiments.
+
+## AI use, reproducibility and data access
+
+Teacher-generated targets and supplementary automated judging were used in the original experiment; exact historical teacher/model records are incomplete. Coding and analysis assistance supported this audit and pipeline. Investigators must inspect the evidence, review manuscript wording, complete annotations and approve the final AI-use declaration. SHA-256 manifests reference original artifacts without copying large weights. Raw outputs, source excerpts and missing metadata are preserved. Future data release must follow source/publisher terms, attribution requirements and access restrictions; no restricted ecological records are manufactured or redistributed by this revision.

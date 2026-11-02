@@ -1,0 +1,19 @@
+{
+  "state": "complete_and_verified",
+  "updated_at_utc": "2026-10-29T19:44:46.175487+00:00",
+  "pid": 2,
+  "counts": {
+    "template": 180,
+    "original": 62,
+    "qlora-42": 180,
+    "constrained": 180
+  },
+  "output": "/home/saranshlulla/Documents/Capstone/ecopath/output/pdf/EcoPath_Paper_Minimal_Revision.pdf",
+  "completed_at_utc": "2026-10-29T19:47:31.665678+00:00",
+  "verification": {
+    "total_outside_pixels": 0,
+    "pages_verified": 14,
+    "status": "pass",
+    "visual_inspection": "verified_clean"
+  }
+}

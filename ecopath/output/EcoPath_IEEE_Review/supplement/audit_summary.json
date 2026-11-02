@@ -1,0 +1,407 @@
+{
+  "created_utc": "2026-10-31T06:52:58.524491+00:00",
+  "source_scope": "post-hoc audit of saved outputs; no new model inference",
+  "dataset_sha256": "6bdbf55c81a88df0abac698a72e28da72e83bd01452b47b28c9dde289ff0f7d3",
+  "run_sha256": "35126aa9708da3caafa39d9df23474a6e81a4397b1a67c6d62d1d546e0aade9a",
+  "protocol_canonical_body_sha256": "b0fc3242e40019a55578a50c2d10f8663d4e5f0eab32a9bdc448270aea9e7d79",
+  "protocol_file_byte_sha256": "6d40b43dec36ede49e37f989c5c49f8cd860f37af7082d187cacc9c48e6e7439",
+  "code_files_changed_since_freeze": [],
+  "methods": [
+    "constrained",
+    "qlora-42"
+  ],
+  "outputs_per_method": 180,
+  "species": 120,
+  "species_per_split": {
+    "pilot": 30,
+    "validation": 30,
+    "test": 60
+  },
+  "genus_overlap": {
+    "pilot/validation": [],
+    "pilot/test": [],
+    "validation/test": []
+  },
+  "variant_availability": {
+    "complete:6": 120,
+    "partial:3": 120,
+    "minimal:0": 120
+  },
+  "mask_seeds": {
+    "9173": 360
+  },
+  "dependency_mask_counts": {
+    "0": 360
+  },
+  "prompt_comparisons": {
+    "messages_equal": 180,
+    "generation_equal": 180,
+    "payload_sha256_equal": 180,
+    "prompt_token_ids_equal": 180,
+    "constrained_constraints_requested": 180,
+    "constrained_constraint_backend": 180,
+    "qlora-42_constraints_requested": 180,
+    "qlora-42_constraint_backend": 180
+  },
+  "saved_score_differences": [],
+  "mismatch_breakdown": {
+    "terminal_period_only": 435,
+    "other_value_difference": 8
+  },
+  "strict_primary": {
+    "estimate": 0.2790123456790123,
+    "ci95": [
+      0.2716049382716049,
+      0.28950617283950614
+    ],
+    "eligible_species": 60,
+    "draws": 2000,
+    "bootstrap_seed": 42
+  },
+  "relaxed_primary": {
+    "estimate": 0.010493827160493827,
+    "ci95": [
+      0.0,
+      0.025308641975308643
+    ],
+    "eligible_species": 60,
+    "draws": 2000,
+    "bootstrap_seed": 42
+  },
+  "strict_metrics": {
+    "constrained": {
+      "json_validity": {
+        "numerator": 179,
+        "denominator": 180,
+        "value": 0.9944444444444445
+      },
+      "schema_compliance": {
+        "numerator": 179,
+        "denominator": 180,
+        "value": 0.9944444444444445
+      },
+      "assessable_output": {
+        "numerator": 179,
+        "denominator": 180,
+        "value": 0.9944444444444445
+      },
+      "structured_claims_supported": {
+        "numerator": 94,
+        "denominator": 537,
+        "value": 0.1750465549348231
+      },
+      "unsupported_structured_claims": {
+        "numerator": 443,
+        "denominator": 537,
+        "value": 0.8249534450651769
+      },
+      "citation_existence": {
+        "numerator": 537,
+        "denominator": 537,
+        "value": 1.0
+      },
+      "citation_validity": {
+        "numerator": 537,
+        "denominator": 537,
+        "value": 1.0
+      },
+      "citation_structured_support": {
+        "numerator": 94,
+        "denominator": 537,
+        "value": 0.1750465549348231
+      },
+      "available_reporting_e2e": {
+        "numerator": 94,
+        "denominator": 540,
+        "value": 0.17407407407407408
+      },
+      "correct_abstention_e2e": {
+        "numerator": 1074,
+        "denominator": 1080,
+        "value": 0.9944444444444445
+      },
+      "structured_field_success_e2e": {
+        "numerator": 1168,
+        "denominator": 1620,
+        "value": 0.7209876543209877
+      },
+      "available_reporting_assessable": {
+        "numerator": 94,
+        "denominator": 537,
+        "value": 0.1750465549348231
+      },
+      "correct_abstention_assessable": {
+        "numerator": 1074,
+        "denominator": 1074,
+        "value": 1.0
+      },
+      "false_abstention_assessable": {
+        "numerator": 0,
+        "denominator": 537,
+        "value": 0.0
+      },
+      "prose_citation_validity": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      }
+    },
+    "qlora-42": {
+      "json_validity": {
+        "numerator": 180,
+        "denominator": 180,
+        "value": 1.0
+      },
+      "schema_compliance": {
+        "numerator": 180,
+        "denominator": 180,
+        "value": 1.0
+      },
+      "assessable_output": {
+        "numerator": 180,
+        "denominator": 180,
+        "value": 1.0
+      },
+      "structured_claims_supported": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "unsupported_structured_claims": {
+        "numerator": 0,
+        "denominator": 540,
+        "value": 0.0
+      },
+      "citation_existence": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "citation_validity": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "citation_structured_support": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "available_reporting_e2e": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "correct_abstention_e2e": {
+        "numerator": 1080,
+        "denominator": 1080,
+        "value": 1.0
+      },
+      "structured_field_success_e2e": {
+        "numerator": 1620,
+        "denominator": 1620,
+        "value": 1.0
+      },
+      "available_reporting_assessable": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "correct_abstention_assessable": {
+        "numerator": 1080,
+        "denominator": 1080,
+        "value": 1.0
+      },
+      "false_abstention_assessable": {
+        "numerator": 0,
+        "denominator": 540,
+        "value": 0.0
+      },
+      "prose_citation_validity": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      }
+    }
+  },
+  "relaxed_metrics": {
+    "constrained": {
+      "json_validity": {
+        "numerator": 179,
+        "denominator": 180,
+        "value": 0.9944444444444445
+      },
+      "schema_compliance": {
+        "numerator": 179,
+        "denominator": 180,
+        "value": 0.9944444444444445
+      },
+      "assessable_output": {
+        "numerator": 179,
+        "denominator": 180,
+        "value": 0.9944444444444445
+      },
+      "structured_claims_supported": {
+        "numerator": 529,
+        "denominator": 537,
+        "value": 0.9851024208566108
+      },
+      "unsupported_structured_claims": {
+        "numerator": 8,
+        "denominator": 537,
+        "value": 0.0148975791433892
+      },
+      "citation_existence": {
+        "numerator": 537,
+        "denominator": 537,
+        "value": 1.0
+      },
+      "citation_validity": {
+        "numerator": 537,
+        "denominator": 537,
+        "value": 1.0
+      },
+      "citation_structured_support": {
+        "numerator": 529,
+        "denominator": 537,
+        "value": 0.9851024208566108
+      },
+      "available_reporting_e2e": {
+        "numerator": 529,
+        "denominator": 540,
+        "value": 0.9796296296296296
+      },
+      "correct_abstention_e2e": {
+        "numerator": 1074,
+        "denominator": 1080,
+        "value": 0.9944444444444445
+      },
+      "structured_field_success_e2e": {
+        "numerator": 1603,
+        "denominator": 1620,
+        "value": 0.9895061728395061
+      },
+      "available_reporting_assessable": {
+        "numerator": 529,
+        "denominator": 537,
+        "value": 0.9851024208566108
+      },
+      "correct_abstention_assessable": {
+        "numerator": 1074,
+        "denominator": 1074,
+        "value": 1.0
+      },
+      "false_abstention_assessable": {
+        "numerator": 0,
+        "denominator": 537,
+        "value": 0.0
+      },
+      "prose_citation_validity": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      }
+    },
+    "qlora-42": {
+      "json_validity": {
+        "numerator": 180,
+        "denominator": 180,
+        "value": 1.0
+      },
+      "schema_compliance": {
+        "numerator": 180,
+        "denominator": 180,
+        "value": 1.0
+      },
+      "assessable_output": {
+        "numerator": 180,
+        "denominator": 180,
+        "value": 1.0
+      },
+      "structured_claims_supported": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "unsupported_structured_claims": {
+        "numerator": 0,
+        "denominator": 540,
+        "value": 0.0
+      },
+      "citation_existence": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "citation_validity": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "citation_structured_support": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "available_reporting_e2e": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "correct_abstention_e2e": {
+        "numerator": 1080,
+        "denominator": 1080,
+        "value": 1.0
+      },
+      "structured_field_success_e2e": {
+        "numerator": 1620,
+        "denominator": 1620,
+        "value": 1.0
+      },
+      "available_reporting_assessable": {
+        "numerator": 540,
+        "denominator": 540,
+        "value": 1.0
+      },
+      "correct_abstention_assessable": {
+        "numerator": 1080,
+        "denominator": 1080,
+        "value": 1.0
+      },
+      "false_abstention_assessable": {
+        "numerator": 0,
+        "denominator": 540,
+        "value": 0.0
+      },
+      "prose_citation_validity": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      }
+    }
+  },
+  "runtime": {
+    "constrained": {
+      "reports": 180,
+      "mean_wall_seconds": 25.46004908663284,
+      "median_wall_seconds": 24.974896420502773,
+      "total_wall_seconds": 4582.808835593911,
+      "load_seconds_recorded": 12.025128616995062,
+      "warmup_records_on_first_example": 1,
+      "truncated": 1,
+      "execution_errors": 0,
+      "output_tokens_total": 80726
+    },
+    "qlora-42": {
+      "reports": 180,
+      "mean_wall_seconds": 29.363850442227864,
+      "median_wall_seconds": 28.57841721850491,
+      "total_wall_seconds": 5285.493079601016,
+      "load_seconds_recorded": 13.928281422005966,
+      "warmup_records_on_first_example": 1,
+      "truncated": 0,
+      "execution_errors": 0,
+      "output_tokens_total": 57059
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "records_schema_valid": 30,
+  "variants_valid": 90,
+  "source_rows_match": 30,
+  "source_assertions": 150,
+  "review_flags_preserved": true,
+  "payload_private_metadata_absent": true,
+  "human_review_completed": false,
+  "model_generation_executed": false
+}

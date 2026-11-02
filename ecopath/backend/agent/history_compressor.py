@@ -59,6 +59,17 @@ def summarize_tool_result(result: dict) -> str:
         parts.append(f"status {result['conservation_status']}")
     if "total_records" in result:
         parts.append(f"{result['total_records']} total records")
+    # Tools now hand back summaries rather than raw arrays; read those keys too.
+    # The older ones are kept because history stored before the change still
+    # carries them.
+    if "total_observations" in result:
+        parts.append(f"{result['total_observations']} total observations")
+    if "regions_with_data" in result:
+        parts.append(f"{result['regions_with_data']} region(s) with data")
+    if "total_matching" in result:
+        parts.append(f"{result['total_matching']} species matched")
+    if "row_count" in result:
+        parts.append(f"{result['row_count']} row(s)")
     if "total_anomalies" in result:
         parts.append(f"{result['total_anomalies']} anomalies found")
     if "is_migratory" in result:
@@ -86,6 +97,23 @@ def summarize_tool_result(result: dict) -> str:
     if isinstance(yearly, list) and yearly:
         years = [str(d.get("year", "?")) for d in yearly if isinstance(d, dict)]
         parts.append(f"years {years[0]}-{years[-1]}")
+
+    # Summarised series carry their own year range and endpoints.
+    for key in ("national_observations", "observations"):
+        stats = result.get(key)
+        if isinstance(stats, dict) and stats.get("year_range"):
+            lo, hi = stats["year_range"]
+            change = stats.get("change_pct_first_to_last")
+            piece = f"{key.replace('_', ' ')} {lo}-{hi}"
+            if change is not None:
+                piece += f", {change:+.1f}% first-to-last"
+            parts.append(piece)
+
+    top = result.get("top_regions")
+    if isinstance(top, list) and top:
+        names = [str(r.get("region_name")) for r in top if isinstance(r, dict) and r.get("region_name")]
+        if names:
+            parts.append(f"top regions: {', '.join(names[:5])}")
 
     for key in ("species_a", "species_b"):
         value = result.get(key)

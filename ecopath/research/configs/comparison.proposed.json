@@ -1,0 +1,25 @@
+{
+  "phase": "pilot",
+  "split": "pilot",
+  "group_genus": true,
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": null,
+    "tokenizer_revision": null,
+    "load_in_4bit": true,
+    "compute_dtype": "float16",
+    "device_map": "auto"
+  },
+  "methods": [
+    {"id": "original", "method": "original", "training_seed": null},
+    {"id": "engineered", "method": "engineered", "training_seed": null},
+    {"id": "constrained", "method": "constrained", "training_seed": null},
+    {"id": "template", "method": "template", "training_seed": null},
+    {"id": "qlora-42", "method": "qlora", "training_seed": 42, "adapter_dir": "research/training/seed-42/selected_adapter"},
+    {"id": "qlora-43", "method": "qlora", "training_seed": 43, "adapter_dir": "research/training/seed-43/selected_adapter"},
+    {"id": "qlora-44", "method": "qlora", "training_seed": 44, "adapter_dir": "research/training/seed-44/selected_adapter"}
+  ],
+  "generation": {"max_new_tokens": 1400, "max_input_tokens": 4096, "temperature": 0.0, "seed": 42},
+  "demo_ids": [],
+  "warmup_examples": 1
+}

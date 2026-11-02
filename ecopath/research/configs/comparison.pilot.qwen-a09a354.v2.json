@@ -1,0 +1,46 @@
+{
+  "phase": "pilot",
+  "split": "pilot",
+  "group_genus": true,
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "tokenizer_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "load_in_4bit": true,
+    "compute_dtype": "float16",
+    "device_map": "auto"
+  },
+  "methods": [
+    {
+      "id": "original",
+      "method": "original",
+      "training_seed": null
+    },
+    {
+      "id": "engineered",
+      "method": "engineered",
+      "training_seed": null
+    },
+    {
+      "id": "constrained",
+      "method": "constrained",
+      "training_seed": null
+    },
+    {
+      "id": "template",
+      "method": "template",
+      "training_seed": null
+    }
+  ],
+  "generation": {
+    "max_new_tokens": 1400,
+    "max_input_tokens": 4096,
+    "temperature": 0.0,
+    "seed": 42
+  },
+  "demo_ids": [
+    "soib2023:Oenanthe_fusca:partial",
+    "soib2023:Ficedula_subrubra:minimal"
+  ],
+  "warmup_examples": 1
+}

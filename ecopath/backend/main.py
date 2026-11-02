@@ -13,7 +13,17 @@ from fastapi.middleware.gzip import GZipMiddleware
 
 from agent.session import cleanup_stale_sessions
 from config import get_settings
-from routers import species, maps, anomalies, chat, xenocanto, movebank, extinction_risk
+from data.http import aclose_all
+from routers import (
+    anomalies, charts, chat, data, extinction_risk, maps, movebank,
+    species, xenocanto,
+)
+try:
+    from routers import precompute
+except ImportError as exc:  # duckdb / h3 absent
+    precompute = None
+    logging.getLogger("ecopath").warning("precompute router not importable: %s", exc)
+
 from services.extinction_risk_service import warm_report_model
 
 # ─── Logging ─────────────────────────────────────────────────────────────────
@@ -45,6 +55,9 @@ async def lifespan(app: FastAPI):
     cleanup_task.cancel()
     with suppress(asyncio.CancelledError):
         await cleanup_task
+    # Pooled HTTP clients are shared across requests, so they are closed here
+    # rather than per-call.
+    await aclose_all()
     logger.info("🦜 EcoPath API shutting down...")
 
 
@@ -83,6 +96,20 @@ app.include_router(xenocanto.router, prefix="/api/xenocanto",
 app.include_router(movebank.router, prefix="/api/movebank", tags=["Movebank"])
 app.include_router(extinction_risk.router,
                    prefix="/api/extinction-risk", tags=["Extinction Risk"])
+# Unified retrieval surface. The frontend should reach every external source
+# through here rather than calling GBIF/eBird from the browser.
+app.include_router(data.router, prefix="/api/data", tags=["Data"])
+app.include_router(charts.router, prefix="/api/chart", tags=["Charts"])
+# Registered defensively: the precompute router pulls in duckdb and h3, which
+# are only needed for the offline migration analysis. A missing optional
+# dependency must degrade that one feature, not take the whole API down — which
+# is exactly what happened when these were installed in one virtualenv and the
+# server was running from another.
+if precompute is not None:
+  try:
+    app.include_router(precompute.router, prefix="/api/precompute", tags=["Precompute"])
+  except Exception as exc:  # pragma: no cover - startup-path guard
+    logger.warning("precompute routes unavailable: %s", exc)
 
 
 # ─── Health Check ────────────────────────────────────────────────────────────

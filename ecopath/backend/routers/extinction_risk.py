@@ -14,10 +14,19 @@ from fastapi import APIRouter, HTTPException
 
 from models.schemas import ExtinctionRiskReportRequest, ExtinctionRiskReportResponse
 from services.extinction_risk_service import generate_extinction_risk_report
+from services.evidence_review_service import EvidencePreviewRequest, preview
 
 
 logger = logging.getLogger("ecopath.extinction_risk.router")
 router = APIRouter()
+
+
+@router.post('/evidence-preview')
+async def evidence_preview(request: EvidencePreviewRequest):
+    try:
+        return await preview(request)
+    except (ValueError, TypeError, KeyError) as exc:
+        raise HTTPException(status_code=422,detail=str(exc)) from exc
 
 
 @router.post("/report", response_model=ExtinctionRiskReportResponse)

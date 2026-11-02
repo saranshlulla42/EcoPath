@@ -1,11 +1,13 @@
 import json
 import logging
+import time
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from groq import AsyncGroq
 
 from config import get_settings
+from agent.data_coverage import get_coverage_summary
 from agent.history_compressor import maybe_compress_history
 from agent.message_builder import build_history
 from agent.response_parser import parse_agent_response
@@ -17,20 +19,29 @@ from agent.session import (
     get_session,
 )
 from agent.state_extractor import update_session_state
-from agent.system_prompt import build_system_prompt
+from agent.system_prompt import build_context_message, build_system_prompt
+from agent.token_logger import TurnMeter
 from agent.tool_declarations import agent_tools
 from agent.tools import (
     compare_species,
     correlate_weather,
+    describe_dataset,
+    list_species,
     query_anomalies,
     query_migration,
     query_population,
+    rank_regions,
+    run_sql,
 )
 
 logger = logging.getLogger("ecopath.agent.agent_loop")
 settings = get_settings()
 
 client = AsyncGroq(api_key=settings.groq_api_key)
+
+# Read once at module level: the turn meter needs the model name in
+# `run_agent_turn`, where `_execute_agent_loop`'s locals are not in scope.
+AGENT_MODEL = getattr(settings, "agent_model", "llama-3.3-70b-versatile")
 
 # We map the function names to the actual python functions
 TOOL_FUNCTIONS = {
@@ -39,6 +50,10 @@ TOOL_FUNCTIONS = {
     "query_migration": query_migration,
     "compare_species": compare_species,
     "correlate_weather": correlate_weather,
+    "describe_dataset": describe_dataset,
+    "list_species": list_species,
+    "rank_regions": rank_regions,
+    "run_sql": run_sql,
 }
 
 ERROR_BLOCKS = {
@@ -55,6 +70,8 @@ class AgentTurnResult:
     blocks: List[Dict[str, Any]]
     session_state: Dict[str, Any]
     session_expired: bool = False
+    # Groups this turn's API calls in the token metrics tables.
+    request_id: Optional[str] = None
 
 
 def _assistant_message_dict(message) -> dict:
@@ -76,6 +93,48 @@ def _error_blocks(kind: str) -> List[Dict[str, Any]]:
     return [
         {"type": "narrative", "content": ERROR_BLOCKS.get(kind, GENERIC_ERROR)},
         {"type": "follow_ups", "suggestions": ["Try asking that again"]},
+    ]
+
+
+CAP_NOTICE = (
+    "**Note:** I stopped after {rounds} rounds of data lookups, so this answer is "
+    "based only on what I had gathered by then and may be incomplete. That usually "
+    "means a tool kept failing or the question needed more steps than the limit "
+    "allows. Try asking a narrower version of it."
+)
+
+
+def _with_cap_notice(blocks: List[Dict[str, Any]], rounds: int) -> List[Dict[str, Any]]:
+    """
+    Say plainly that the round cap cut the work short.
+
+    Hitting the cap is not a silent truncation: the user gets a partial answer
+    and is told it is partial. The notice goes just before the follow-ups, so it
+    reads as a closing caveat rather than burying the analysis.
+    """
+    notice = {"type": "narrative", "content": CAP_NOTICE.format(rounds=rounds)}
+    out = list(blocks)
+    for i, block in enumerate(out):
+        if block.get("type") == "follow_ups":
+            out.insert(i, notice)
+            return out
+    out.append(notice)
+    return out
+
+
+def _cap_only_blocks(rounds: int) -> List[Dict[str, Any]]:
+    """The cap was hit and the forced summary produced nothing usable."""
+    return [
+        {
+            "type": "narrative",
+            "content": (
+                f"I wasn't able to answer that within {rounds} rounds of data lookups. "
+                "That usually means a tool kept failing or the question needs more steps "
+                "than the limit allows — no partial answer is shown because none was "
+                "produced. Try asking a narrower version of it."
+            ),
+        },
+        {"type": "follow_ups", "suggestions": ["Ask about a single species", "Ask about one region"]},
     ]
 
 
@@ -122,29 +181,55 @@ async def execute_tool_call(call: Any) -> tuple[dict, dict]:
 
 
 async def _execute_agent_loop(
-    session: ResearchSession, system_prompt: str, user_message: str
-) -> tuple[str, List[ToolCallRecord], List[dict]]:
+    session: ResearchSession,
+    system_prompt: str,
+    user_message: str,
+    meter: Optional[TurnMeter] = None,
+) -> tuple[str, List[ToolCallRecord], List[dict], bool]:
     """
     Drive the model through tool calls until it produces a final text response.
 
-    Returns the final text, the tool calls made this turn, and the full message
-    list the API ended up with (compressed-summary preamble included).
+    Returns the final text, the tool calls made this turn, the full message list
+    the API ended up with (compressed-summary preamble included), and whether the
+    round cap was hit.
+
+    `meter` is optional observation only; when present it records what each
+    round cost. It never affects control flow.
     """
     max_rounds = getattr(settings, "agent_max_tool_rounds", 5)
-    model_name = getattr(settings, "agent_model", "llama-3.3-70b-versatile")
+    model_name = AGENT_MODEL
     temperature = getattr(settings, "agent_temperature", 0.3)
 
+    history = build_history(session)
+    # Session context sits here, immediately before the question it disambiguates,
+    # rather than at the front of the system message. Groq's prompt cache matches
+    # on a prefix, so per-turn text at the front invalidated the whole prefix —
+    # tool schemas included — on every single turn.
+    context_message = build_context_message(session)
     messages: List[dict] = (
         [{"role": "system", "content": system_prompt}]
-        + build_history(session)
+        + history
+        + ([context_message] if context_message else [])
         + [{"role": "user", "content": user_message}]
     )
 
+    # Tells the meter which message is this turn's question, so input tokens can
+    # be attributed per stage. `agent_tools` is passed rather than imported there
+    # so the schema cost is measured from the exact payload sent.
+    if meter:
+        meter.set_layout(
+            user_index=len(messages) - 1,
+            tool_schemas=agent_tools,
+        )
+
     tool_calls: List[ToolCallRecord] = []
     round_count = 0
+    cap_hit = False
 
     while True:
         try:
+            if meter:
+                meter.start_round()
             response = await client.chat.completions.create(
                 model=model_name,
                 messages=messages,
@@ -158,6 +243,16 @@ async def _execute_agent_loop(
 
         message = response.choices[0].message
         calls = message.tool_calls or []
+
+        # Recorded before anything is appended, so the payload measured is the
+        # one that was actually sent.
+        if meter:
+            meter.record_call(
+                response,
+                messages,
+                tools_sent=True,
+                tool_calls=[c.function.name for c in calls],
+            )
 
         if not calls:
             messages.append(_assistant_message_dict(message))
@@ -179,12 +274,20 @@ async def _execute_agent_loop(
             logger.warning(
                 f"Session {session.session_id} hit max tool rounds ({max_rounds}). Forcing summary."
             )
+            cap_hit = True
             try:
+                if meter:
+                    meter.start_round()
                 forced = await client.chat.completions.create(
                     model=model_name,
                     messages=messages,
                     temperature=temperature,
                 )
+                # tools_sent=False: differencing this round's prompt against a
+                # tools_sent=True round on the same turn measures the tool
+                # schema cost directly, with no estimation.
+                if meter:
+                    meter.record_call(forced, messages, tools_sent=False)
                 final_message = forced.choices[0].message
                 messages.append(_assistant_message_dict(final_message))
                 final_text = final_message.content or ""
@@ -196,8 +299,12 @@ async def _execute_agent_loop(
         round_count += 1
         messages.append(_assistant_message_dict(message))
         for call in calls:
+            tool_t0 = time.perf_counter()
             args, result = await execute_tool_call(call)
+            tool_ms = int((time.perf_counter() - tool_t0) * 1000)
             tool_calls.append(ToolCallRecord(name=call.function.name, args=args, result=result))
+            if meter:
+                meter.record_tool_result(call.function.name, result, latency_ms=tool_ms)
             messages.append(
                 {
                     "role": "tool",
@@ -207,7 +314,7 @@ async def _execute_agent_loop(
                 }
             )
 
-    return final_text, tool_calls, messages
+    return final_text, tool_calls, messages, cap_hit
 
 
 def _turn_history(session: ResearchSession, messages: List[dict]) -> List[dict]:
@@ -216,43 +323,83 @@ def _turn_history(session: ResearchSession, messages: List[dict]) -> List[dict]:
     off the message list, so only real turns are stored. The system message and
     summary are rebuilt fresh on the next turn.
     """
-    history = messages[1:]  # drop the leading system message
+    # Drop every system message: the leading cached head, and the per-turn
+    # session context injected before the user's question. Both are rebuilt from
+    # live state next turn; persisting them would freeze stale context into
+    # history and break the cacheable prefix.
+    history = [m for m in messages if m.get("role") != "system"]
     if session.compressed_history:
         history = history[2:]  # drop the two synthetic summary messages
     return history
 
 
-async def run_agent_turn(user_message: str, session_id: str) -> AgentTurnResult:
+async def run_agent_turn(
+    user_message: str,
+    session_id: str,
+    label: Optional[str] = None,
+) -> AgentTurnResult:
     """
     Run one full agent turn against the session's memory: build the contextual
     prompt, call the model, then fold what happened back into session state.
+
+    `label` is recorded alongside the token metrics only (the replay harness
+    tags scenarios with it) and has no effect on the turn.
     """
     session, expired = get_session(session_id)
 
-    system_prompt = build_system_prompt(session)
+    coverage = await get_coverage_summary()
+    system_prompt = build_system_prompt(session, coverage)
 
+    meter = TurnMeter(
+        session_id=session.session_id,
+        model=AGENT_MODEL,
+        user_message=user_message,
+        label=label,
+    )
+    # Coverage is the stable tail of the cached head; measuring it apart from
+    # the static contract shows how much of the prefix is actually fixed.
+    meter.set_layout(coverage=coverage)
+
+    turn_error: Optional[str] = None
     try:
-        final_text, tool_calls, messages = await _execute_agent_loop(
-            session, system_prompt, user_message
+        final_text, tool_calls, messages, cap_hit = await _execute_agent_loop(
+            session, system_prompt, user_message, meter
         )
     except RuntimeError as e:
         # The model failed. Leave the session untouched rather than recording a
         # turn that never happened.
+        turn_error = str(e)
         return AgentTurnResult(
             blocks=_error_blocks(str(e)),
             session_state=session.state_summary(),
             session_expired=expired,
+            request_id=meter.request_id,
         )
+    finally:
+        # Emitted on every path, including a failed turn, so a turn that burned
+        # tokens and then errored still reports what it cost.
+        meter.emit(error=turn_error)
 
     if not final_text.strip():
         logger.error(f"Session {session_id}: model returned no final text.")
+        # If the round cap is why we are here, say that rather than showing a
+        # generic failure: the user should always learn that the work was cut
+        # short, never just that something went wrong.
+        blocks = (
+            _cap_only_blocks(settings.agent_max_tool_rounds)
+            if cap_hit
+            else _error_blocks("model")
+        )
         return AgentTurnResult(
-            blocks=_error_blocks("model"),
+            blocks=blocks,
             session_state=session.state_summary(),
             session_expired=expired,
+            request_id=meter.request_id,
         )
 
     blocks = parse_agent_response(final_text)
+    if cap_hit:
+        blocks = _with_cap_notice(blocks, settings.agent_max_tool_rounds)
 
     turn_data = TurnData(
         user_message=user_message,
@@ -275,6 +422,7 @@ async def run_agent_turn(user_message: str, session_id: str) -> AgentTurnResult:
         blocks=blocks,
         session_state=session.state_summary(),
         session_expired=expired,
+        request_id=meter.request_id,
     )
 
 

@@ -1,0 +1,65 @@
+{
+  "phase": "final",
+  "split": "test",
+  "group_genus": true,
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "tokenizer_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "load_in_4bit": true,
+    "compute_dtype": "float16",
+    "device_map": {
+      "": "cuda:0"
+    }
+  },
+  "methods": [
+    {
+      "id": "original",
+      "method": "original",
+      "training_seed": null
+    },
+    {
+      "id": "engineered",
+      "method": "engineered",
+      "training_seed": null
+    },
+    {
+      "id": "constrained",
+      "method": "constrained",
+      "training_seed": null
+    },
+    {
+      "id": "template",
+      "method": "template",
+      "training_seed": null
+    },
+    {
+      "id": "qlora-42",
+      "method": "qlora",
+      "training_seed": 42,
+      "adapter_dir": "research/artifacts/training.qwen-a09a354-v4/seed-42/selected_adapter"
+    },
+    {
+      "id": "qlora-43",
+      "method": "qlora",
+      "training_seed": 43,
+      "adapter_dir": "research/artifacts/training.qwen-a09a354-seed43/seed-43/selected_adapter"
+    },
+    {
+      "id": "qlora-44",
+      "method": "qlora",
+      "training_seed": 44,
+      "adapter_dir": "research/artifacts/training.qwen-a09a354-seed44/seed-44/selected_adapter"
+    }
+  ],
+  "generation": {
+    "max_new_tokens": 768,
+    "max_input_tokens": 4096,
+    "temperature": 0.0,
+    "seed": 42
+  },
+  "demo_ids": [
+    "soib2023:Oenanthe_fusca:partial"
+  ],
+  "warmup_examples": 1
+}

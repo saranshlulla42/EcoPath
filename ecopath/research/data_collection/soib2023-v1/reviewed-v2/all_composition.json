@@ -1,0 +1,167 @@
+{
+  "species": 120,
+  "genera": 120,
+  "split_species_counts": {
+    "pilot": 30,
+    "validation": 30,
+    "test": 60
+  },
+  "families": {
+    "Prunellidae (Accentors)": 1,
+    "Cisticolidae (Cisticolas and Allies)": 2,
+    "Laridae (Gulls, Terns, and Skimmers)": 3,
+    "Scolopacidae (Sandpipers and Allies)": 5,
+    "Muscicapidae (Old World Flycatchers)": 10,
+    "Picidae (Woodpeckers)": 4,
+    "Timaliidae (Tree-Babblers, Scimitar-Babblers, and Allies)": 3,
+    "Cuculidae (Cuckoos)": 6,
+    "Artamidae (Woodswallows, Bellmagpies, and Allies)": 1,
+    "Alaudidae (Larks)": 2,
+    "Motacillidae (Wagtails and Pipits)": 2,
+    "Podicipedidae (Grebes)": 1,
+    "Columbidae (Pigeons and Doves)": 6,
+    "Apodidae (Swifts)": 1,
+    "Trogonidae (Trogons)": 1,
+    "Dicruridae (Drongos)": 1,
+    "Pellorneidae (Ground Babblers and Allies)": 1,
+    "Strigidae (Owls)": 2,
+    "Meropidae (Bee-eaters)": 1,
+    "Psittaculidae (Old World Parrots)": 2,
+    "Phylloscopidae (Leaf Warblers)": 1,
+    "Corvidae (Crows, Jays, and Magpies)": 1,
+    "Rhipiduridae (Fantails)": 1,
+    "Nectariniidae (Sunbirds and Spiderhunters)": 2,
+    "Cinclidae (Dippers)": 1,
+    "Pycnonotidae (Bulbuls)": 2,
+    "Phasianidae (Pheasants, Grouse, and Allies)": 3,
+    "Charadriidae (Plovers and Lapwings)": 3,
+    "Leiothrichidae (Laughingthrushes and Allies)": 4,
+    "Accipitridae (Hawks, Eagles, and Kites)": 10,
+    "Bucerotidae (Hornbills)": 1,
+    "Emberizidae (Old World Buntings)": 1,
+    "Coraciidae (Rollers)": 1,
+    "Aegithinidae (Ioras)": 1,
+    "Falconidae (Falcons and Caracaras)": 1,
+    "Paridae (Tits, Chickadees, and Titmice)": 1,
+    "Phoenicopteridae (Flamingos)": 1,
+    "Sittidae (Nuthatches)": 1,
+    "Fringillidae (Finches, Euphonias, and Allies)": 3,
+    "Vangidae (Vangas, Helmetshrikes, and Allies)": 1,
+    "Dicaeidae (Flowerpeckers)": 1,
+    "Sturnidae (Starlings)": 2,
+    "Burhinidae (Thick-knees)": 2,
+    "Alcedinidae (Kingfishers)": 3,
+    "Pelecanidae (Pelicans)": 1,
+    "Campephagidae (Cuckooshrikes)": 2,
+    "Estrildidae (Waxbills and Allies)": 1,
+    "Hirundinidae (Swallows)": 1,
+    "Chloropseidae (Leafbirds)": 1,
+    "Anatidae (Ducks, Geese, and Waterfowl)": 2,
+    "Acrocephalidae (Reed Warblers and Allies)": 1,
+    "Turdidae (Thrushes and Allies)": 1,
+    "Phalacrocoracidae (Cormorants and Shags)": 1,
+    "Sylviidae (Sylviid Warblers, Parrotbills, and Allies)": 1,
+    "Jacanidae (Jacanas)": 1,
+    "Rallidae (Rails, Gallinules, and Coots)": 2,
+    "Ardeidae (Herons, Egrets, and Bitterns)": 1,
+    "Glareolidae (Pratincoles and Coursers)": 1
+  },
+  "orders": {
+    "Passeriformes": 54,
+    "Charadriiformes": 15,
+    "Piciformes": 4,
+    "Cuculiformes": 6,
+    "Podicipediformes": 1,
+    "Columbiformes": 6,
+    "Caprimulgiformes": 1,
+    "Trogoniformes": 1,
+    "Strigiformes": 2,
+    "Coraciiformes": 5,
+    "Psittaciformes": 2,
+    "Galliformes": 3,
+    "Accipitriformes": 10,
+    "Bucerotiformes": 1,
+    "Falconiformes": 1,
+    "Phoenicopteriformes": 1,
+    "Pelecaniformes": 2,
+    "Anseriformes": 2,
+    "Suliformes": 1,
+    "Gruiformes": 2
+  },
+  "collected_availability": {
+    "breeding_behavior": {
+      "missing": 120
+    },
+    "diet": {
+      "available": 120
+    },
+    "habitat": {
+      "available": 120
+    },
+    "iucn_status": {
+      "missing": 120
+    },
+    "key_threats": {
+      "missing": 120
+    },
+    "migratory_behavior": {
+      "available": 120
+    },
+    "population_size": {
+      "missing": 120
+    },
+    "population_trend": {
+      "available": 120
+    },
+    "range_summary": {
+      "available": 120
+    }
+  },
+  "by_level": {
+    "complete": {
+      "examples": 120,
+      "available_fields": {
+        "breeding_behavior": 0,
+        "diet": 120,
+        "habitat": 120,
+        "iucn_status": 0,
+        "key_threats": 0,
+        "migratory_behavior": 120,
+        "population_size": 0,
+        "population_trend": 120,
+        "range_summary": 120
+      }
+    },
+    "partial": {
+      "examples": 120,
+      "available_fields": {
+        "breeding_behavior": 0,
+        "diet": 68,
+        "habitat": 66,
+        "iucn_status": 0,
+        "key_threats": 0,
+        "migratory_behavior": 70,
+        "population_size": 0,
+        "population_trend": 80,
+        "range_summary": 76
+      }
+    },
+    "minimal": {
+      "examples": 120,
+      "available_fields": {
+        "breeding_behavior": 0,
+        "diet": 0,
+        "habitat": 0,
+        "iucn_status": 0,
+        "key_threats": 0,
+        "migratory_behavior": 0,
+        "population_size": 0,
+        "population_trend": 0,
+        "range_summary": 0
+      }
+    }
+  },
+  "partial_equals_minimal_species": 0,
+  "source_assertions": 600,
+  "source_missing_retrieval_dates": 0
+}

@@ -1,8 +1,14 @@
 import axios from "axios";
 import type { GBIFSearchResult } from "./types";
+import {
+  getOccurrencePoints,
+  getOccurrenceTimeline,
+  getSpeciesDetail,
+  getSpeciesMedia,
+  searchSpeciesUnified,
+} from "./dataClient";
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const GBIF = "https://api.gbif.org/v1";
 
 export const api = axios.create({
   baseURL: BASE,
@@ -10,103 +16,91 @@ export const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// ── Species Search (live GBIF) ─────────────────────────────────────────────
-export const searchSpecies = (q: string): Promise<GBIFSearchResult[]> =>
-  axios
-    .get(`${GBIF}/species/search`, {
-      params: { q, rank: "SPECIES", higherTaxonKey: 212, limit: 10 },
-    })
-    .then((r) =>
-      (r.data.results ?? [])
-        .filter((s: any) => s.kingdom === "Animalia" && s.key)
-        .map((s: any) => ({
-          gbif_key: s.key,
-          common_name:
-            s.vernacularNames?.[0]?.vernacularName ??
-            s.canonicalName ??
-            s.scientificName ??
-            "Unknown",
-          scientific_name: s.canonicalName ?? s.scientificName ?? "",
-          family: s.family ?? undefined,
-        }))
-    );
+// ── Species ────────────────────────────────────────────────────────────────
+// These used to hit https://api.gbif.org/v1 straight from the browser. They now
+// go through the backend's unified data layer, which caches across users and
+// keeps upstream credentials and rate limits server-side.
 
-// ── Species Detail (live GBIF) ─────────────────────────────────────────────
-export const getGBIFSpeciesDetail = (gbifKey: string) =>
-  axios.get(`${GBIF}/species/${gbifKey}`).then((r) => r.data);
+export const searchSpecies = async (q: string): Promise<GBIFSearchResult[]> => {
+  const rows = await searchSpeciesUnified(q, 10);
+  return rows.map((s: any) => ({
+    gbif_key: s.gbif_key ?? s.key,
+    common_name: s.common_name ?? s.scientific_name ?? "Unknown",
+    scientific_name: s.scientific_name ?? "",
+    family: s.family ?? undefined,
+  }));
+};
 
-export const getGBIFSpeciesMedia = (gbifKey: string) =>
-  axios
-    .get(`${GBIF}/species/${gbifKey}/media`, { params: { limit: 5 } })
-    .then((r) => r.data.results ?? []);
+export const getGBIFSpeciesDetail = (gbifKey: string) => getSpeciesDetail(gbifKey);
 
-export const getGBIFOccurrences = (
+export const getGBIFSpeciesMedia = (gbifKey: string) => getSpeciesMedia(gbifKey, 5);
+
+export const getGBIFOccurrences = async (
   gbifKey: string,
   country: string = "IN",
   params: Record<string, string | number | boolean> = {}
 ) => {
-  const queryParams: Record<string, string | number | boolean> = {
-    taxonKey: gbifKey,
-    hasCoordinate: true,
-    limit: 300,
-    ...params,
+  const year = typeof params.year === "number" ? params.year : new Date().getFullYear();
+  const limit = typeof params.limit === "number" ? params.limit : 300;
+  const points = await getOccurrencePoints(gbifKey, year, limit);
+  // Shaped like the GBIF occurrence/search payload the callers expect.
+  return {
+    results: points.map((p) => ({
+      decimalLatitude: p.lat,
+      decimalLongitude: p.lng,
+      year: p.year,
+      month: p.month,
+      stateProvince: p.state,
+    })),
+    count: points.length,
   };
-  if (country && country !== "GLOBAL") queryParams.country = country;
-  return axios.get(`${GBIF}/occurrence/search`, { params: queryParams }).then((r) => r.data);
 };
 
-// ── Maps (direct GBIF) ─────────────────────────────────────────────────────
+// ── Maps ───────────────────────────────────────────────────────────────────
 
 /**
- * Spatial-bin occurrence points into a ~0.5° grid for density-weighted heatmap.
- * Each bin becomes a single GeoJSON point with an aggregated `count`.
+ * Spatial-bin occurrence points into a ~0.5° grid for a density-weighted heatmap.
+ * Each bin becomes one GeoJSON point carrying an aggregated `count`.
  */
 function binOccurrences(
-  results: any[],
-  resolution: number = 0.5
+  points: Array<{ lat: number; lng: number; year: number; state: string }>,
+  resolution = 0.5
 ): GeoJSON.FeatureCollection {
-  const bins = new Map<string, { lat: number; lng: number; count: number; states: Set<string>; year: number }>();
+  const bins = new Map<
+    string,
+    { lat: number; lng: number; count: number; states: Set<string>; year: number }
+  >();
 
-  for (const occ of results) {
-    const lat = occ.decimalLatitude;
-    const lng = occ.decimalLongitude;
-    if (lat == null || lng == null) continue;
-
-    // Snap to grid cell center
-    const binLat = Math.round(lat / resolution) * resolution;
-    const binLng = Math.round(lng / resolution) * resolution;
+  for (const p of points) {
+    if (typeof p.lat !== "number" || typeof p.lng !== "number") continue;
+    const binLat = Math.round(p.lat / resolution) * resolution;
+    const binLng = Math.round(p.lng / resolution) * resolution;
     const key = `${binLat},${binLng}`;
 
     const existing = bins.get(key);
     if (existing) {
-      existing.count++;
-      if (occ.stateProvince) existing.states.add(occ.stateProvince);
+      existing.count += 1;
+      if (p.state) existing.states.add(p.state);
     } else {
       const states = new Set<string>();
-      if (occ.stateProvince) states.add(occ.stateProvince);
-      bins.set(key, { lat: binLat, lng: binLng, count: 1, states, year: occ.year ?? 0 });
+      if (p.state) states.add(p.state);
+      bins.set(key, { lat: binLat, lng: binLng, count: 1, states, year: p.year });
     }
   }
 
   const features: GeoJSON.Feature[] = Array.from(bins.values()).map((b) => ({
-    type: "Feature" as const,
-    geometry: { type: "Point" as const, coordinates: [b.lng, b.lat] },
+    type: "Feature",
+    geometry: { type: "Point", coordinates: [b.lng, b.lat] },
     properties: {
       count: b.count,
-      state: [...b.states].join(", ") || "Unknown",
       year: b.year,
+      states: Array.from(b.states),
     },
   }));
 
   return { type: "FeatureCollection", features };
 }
 
-/**
- * Fetch occurrence data from GBIF for a species and build a density heatmap.
- * Returns GeoJSON FeatureCollection with aggregated bin counts.
- * Pass country as an ISO 3166-1 alpha-2 code (e.g. "IN", "US") to filter by country,
- * or omit / pass "GLOBAL" for worldwide data.
- */
 export const getGBIFHeatmapData = async (
   gbifKey: string | number,
   year?: number,
@@ -117,65 +111,31 @@ export const getGBIFHeatmapData = async (
   max_count: number;
   total_records: number;
 }> => {
-  const params: Record<string, string | number | boolean> = {
-    taxonKey: gbifKey,
-    hasCoordinate: true,
-    limit: 300,
-  };
-  if (country && country !== "GLOBAL") params.country = country;
-  if (year) params.year = year;
-
-  const resp = await axios.get(`${GBIF}/occurrence/search`, { params });
-  const results = resp.data.results ?? [];
-  const geojson = binOccurrences(results);
+  const points = await getOccurrencePoints(gbifKey, year ?? new Date().getFullYear(), 300);
+  const geojson = binOccurrences(points);
   const counts = geojson.features.map((f) => (f.properties as any)?.count ?? 1);
 
   return {
     geojson,
     total_points: geojson.features.length,
     max_count: counts.length > 0 ? Math.max(...counts) : 0,
-    total_records: resp.data.count ?? results.length,
+    total_records: points.length,
   };
 };
 
-/**
- * Fetch per-year occurrence counts using GBIF facets — single API call.
- * Returns a timeline object: { [year]: { total, states } }
- * Pass country as an ISO 3166-1 alpha-2 code (e.g. "IN", "US") to filter by country,
- * or omit / pass "GLOBAL" for worldwide data.
- */
 export const getGBIFHeatmapTimeline = async (
   gbifKey: string | number,
   country?: string
 ): Promise<{ timeline: Record<number, { total: number; states: number }> }> => {
-  const queryParams: Record<string, string | number | boolean> = {
-    taxonKey: gbifKey,
-    hasCoordinate: true,
-    limit: 0,
-    facet: "year",
-    facetLimit: 20,
-  };
-  if (country && country !== "GLOBAL") queryParams.country = country;
-  const resp = await axios.get(`${GBIF}/occurrence/search`, {
-    params: queryParams,
-  });
+  const series = await getOccurrenceTimeline(gbifKey, 2014, 2024, country ?? "IN");
 
   const timeline: Record<number, { total: number; states: number }> = {};
-  const yearFacet = (resp.data.facets ?? []).find((f: any) => f.field === "YEAR");
-  if (yearFacet) {
-    for (const item of yearFacet.counts ?? []) {
-      const yr = parseInt(item.name, 10);
-      if (!isNaN(yr)) {
-        timeline[yr] = { total: item.count, states: 0 };
-      }
-    }
+  for (const point of series) {
+    timeline[point.year] = { total: point.count, states: 0 };
   }
-
-  // Fill missing years in 2014–2024 range with 0
   for (let yr = 2014; yr <= 2024; yr++) {
     if (!timeline[yr]) timeline[yr] = { total: 0, states: 0 };
   }
-
   return { timeline };
 };
 
@@ -210,6 +170,10 @@ export interface ExtinctionRiskReportEvidenceItem {
 }
 
 export interface ExtinctionRiskReportResponse {
+  draft_for_review?: boolean;
+  validation_status?: string;
+  validation_errors?: string[];
+  missing_evidence_fields?: string[];
   species: {
     gbif_key?: number | null;
     common_name: string;

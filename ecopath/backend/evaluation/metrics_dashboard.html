@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoPath — Evaluation Metrics Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c1117;
+    --card: #151c25;
+    --card-border: #1e2a36;
+    --accent: #34d399;
+    --accent2: #60a5fa;
+    --accent3: #f472b6;
+    --accent4: #fbbf24;
+    --accent5: #a78bfa;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(96,165,250,0.08));
+    border-radius: 1.5rem;
+    border: 1px solid var(--card-border);
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  .header p { color: var(--text-muted); font-size: 1.1rem; }
+
+  /* Hero stats row */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-4px); }
+  .stat-card .number {
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .stat-card .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+  .stat-card.green .number { color: var(--accent); }
+  .stat-card.blue .number { color: var(--accent2); }
+  .stat-card.pink .number { color: var(--accent3); }
+  .stat-card.yellow .number { color: var(--accent4); }
+  .stat-card.purple .number { color: var(--accent5); }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin: 2.5rem 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-title .icon { font-size: 1.4rem; }
+
+  /* Chart grid */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  .chart-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .chart-card canvas { max-height: 320px; }
+
+  /* Tables */
+  .metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .metrics-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: rgba(52,211,153,0.08);
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .metrics-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid rgba(30,42,54,0.5);
+    color: var(--text);
+  }
+  .metrics-table tr:hover td { background: rgba(52,211,153,0.04); }
+  .metrics-table .value { font-weight: 700; color: var(--accent); font-family: 'DM Sans'; }
+  .metrics-table .value.blue { color: var(--accent2); }
+  .metrics-table .value.pink { color: var(--accent3); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .tag.green { background: rgba(52,211,153,0.15); color: var(--accent); }
+  .tag.blue { background: rgba(96,165,250,0.15); color: var(--accent2); }
+  .tag.yellow { background: rgba(251,191,36,0.15); color: var(--accent4); }
+  .tag.pink { background: rgba(244,114,182,0.15); color: var(--accent3); }
+
+  /* Anomaly feature list */
+  .feature-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .feature-list li {
+    padding: 0.75rem 1rem;
+    background: rgba(52,211,153,0.06);
+    border: 1px solid rgba(52,211,153,0.15);
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .feature-list li .check { color: var(--accent); font-size: 1.1rem; }
+
+  /* API integration cards */
+  .api-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .api-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .api-card .num {
+    width: 2.2rem; height: 2.2rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .api-card:nth-child(odd) .num { background: rgba(52,211,153,0.15); color: var(--accent); }
+  .api-card:nth-child(even) .num { background: rgba(96,165,250,0.15); color: var(--accent2); }
+  .api-card .api-name { font-weight: 600; font-size: 0.95rem; }
+  .api-card .api-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+  .full-width { grid-column: 1 / -1; }
+
+  .footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 1rem; }
+    .chart-grid { grid-template-columns: 1fr; }
+    .feature-list { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🦜 EcoPath — Evaluation Metrics</h1>
+  <p>Diagnostic Ecological Intelligence Dashboard for Indian Bird Biodiversity</p>
+</div>
+
+<!-- ════════════ HERO STATS ════════════ -->
+<div class="hero-stats">
+  <div class="stat-card green">
+    <div class="number">69</div>
+    <div class="label">Species Catalogued</div>
+  </div>
+  <div class="stat-card blue">
+    <div class="number">36,000</div>
+    <div class="label">Population Records</div>
+  </div>
+  <div class="stat-card pink">
+    <div class="number">44</div>
+    <div class="label">States / Regions</div>
+  </div>
+  <div class="stat-card yellow">
+    <div class="number">10</div>
+    <div class="label">Years (2015–2024)</div>
+  </div>
+  <div class="stat-card purple">
+    <div class="number">9</div>
+    <div class="label">APIs Integrated</div>
+  </div>
+  <div class="stat-card green">
+    <div class="number">150</div>
+    <div class="label">Cached RAG Answers</div>
+  </div>
+</div>
+
+<!-- ════════════ SECTION 1: DATA PIPELINE ════════════ -->
+<div class="section-title"><span class="icon">📊</span> Data Ingestion Pipeline</div>
+
+<div class="chart-grid">
+  <!-- State distribution bar chart -->
+  <div class="chart-card">
+    <h3>Population Records by State (Top 20)</h3>
+    <canvas id="stateChart"></canvas>
+  </div>
+
+  <!-- IUCN distribution donut -->
+  <div class="chart-card">
+    <h3>IUCN Conservation Status Distribution</h3>
+    <canvas id="iucnChart"></canvas>
+  </div>
+
+  <!-- Temporal coverage -->
+  <div class="chart-card">
+    <h3>Records by Year</h3>
+    <canvas id="yearChart"></canvas>
+  </div>
+
+  <!-- Species classification -->
+  <div class="chart-card">
+    <h3>Species Classification</h3>
+    <canvas id="speciesClassChart"></canvas>
+  </div>
+</div>
+
+<!-- Pipeline summary table -->
+<div class="chart-card" style="margin-bottom:1.5rem">
+  <h3>Pipeline Summary</h3>
+  <table class="metrics-table">
+    <tr><td>Total species in database</td><td class="value">69</td></tr>
+    <tr><td>Species with GBIF population data</td><td class="value">18 / 69 (26%)</td></tr>
+    <tr><td>Temporal completeness (all 10 years)</td><td class="value green">18 / 18 (100%)</td></tr>
+    <tr><td>Average years per species</td><td class="value green">10.0 / 10</td></tr>
+    <tr><td>Geographic coverage</td><td class="value">44 states/regions</td></tr>
+    <tr><td>Data source</td><td class="value blue">GBIF — 36,000 records</td></tr>
+    <tr><td>Deduplication</td><td><span class="tag green">✓ Composite unique key (species + year + state)</span></td></tr>
+    <tr><td>Year range</td><td class="value">2015 – 2024</td></tr>
+  </table>
+</div>
+
+<!-- ════════════ SECTION 2: MIGRATION ════════════ -->
+<div class="section-title"><span class="icon">🗺️</span> Migration Route Coverage</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>Routes by Flyway</h3>
+    <canvas id="flywayChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Migration Route Statistics</h3>
+    <table class="metrics-table">
+      <tr><td>Total migration routes</td><td class="value">4</td></tr>
+      <tr><td>Species with migration data</td><td class="value">4</td></tr>
+      <tr><td>Data source</td><td class="value blue">BirdLife International</td></tr>
+      <tr><td>Shortest route</td><td class="value">3,200 km</td></tr>
+      <tr><td>Longest route</td><td class="value pink">22,000 km</td></tr>
+      <tr><td>Average distance</td><td class="value">8,375 km</td></tr>
+      <tr><td>Total waypoints</td><td class="value">30</td></tr>
+      <tr><td>Avg waypoints per route</td><td class="value">7.5</td></tr>
+      <tr><td>Season covered</td><td><span class="tag blue">Winter migration</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════ SECTION 3: ANOMALY DETECTION ════════════ -->
+<div class="section-title"><span class="icon">⚡</span> Anomaly Detection Engine</div>
+
+<div class="chart-card" style="margin-bottom:1.5rem">
+  <h3>Algorithm Implementation Status</h3>
+  <p style="color: var(--accent4); margin-bottom: 1rem; font-size: 0.9rem;">
+    ⚠️ Anomaly detection engine is implemented but results not yet persisted to database. 
+    The algorithm runs as a PostgreSQL RPC function (<code>run_anomaly_detection</code>).
+  </p>
+  <ul class="feature-list">
+    <li><span class="check">✅</span> Z-score calculation with 5-year rolling baseline</li>
+    <li><span class="check">✅</span> 4 anomaly types: surge, dip, extinction, recolonization</li>
+    <li><span class="check">✅</span> 4 severity levels: low (≥1.5σ) → critical (≥3.0σ)</li>
+    <li><span class="check">✅</span> Weather context enrichment via Open-Meteo API</li>
+    <li><span class="check">✅</span> PostgreSQL RPC function: <code>run_anomaly_detection</code></li>
+    <li><span class="check">✅</span> REST API endpoint: <code>POST /api/anomalies/detect</code></li>
+    <li><span class="check">✅</span> Anomaly ticker component on map pages</li>
+    <li><span class="check">✅</span> Clickable anomaly cards with weather context</li>
+  </ul>
+</div>
+
+<!-- Anomaly algorithm diagram -->
+<div class="chart-card" style="margin-bottom:1.5rem">
+  <h3>Anomaly Detection Algorithm Flow</h3>
+  <canvas id="anomalyFlowChart" height="100"></canvas>
+</div>
+
+<!-- ════════════ SECTION 4: RAG PIPELINE ════════════ -->
+<div class="section-title"><span class="icon">🧠</span> RAG Context Pipeline</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>Cached Question Templates (10 per species)</h3>
+    <canvas id="ragChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>RAG Pipeline Metrics</h3>
+    <table class="metrics-table">
+      <tr><td>Total cached ecological answers</td><td class="value">150</td></tr>
+      <tr><td>Species with full cache</td><td class="value">15 / 69 (22%)</td></tr>
+      <tr><td>Question templates per species</td><td class="value green">10</td></tr>
+      <tr><td>Streaming protocol</td><td><span class="tag blue">Server-Sent Events (SSE)</span></td></tr>
+      <tr><td>Context sources</td><td><span class="tag green">GBIF</span> <span class="tag blue">Open-Meteo</span> <span class="tag yellow">Supabase</span></td></tr>
+      <tr><td>LLM backend</td><td class="value blue">Gemini 2.5 Flash</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════ SECTION 5: TAXONOMY ════════════ -->
+<div class="section-title"><span class="icon">🔬</span> Taxonomic Coverage</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>Species by Taxonomic Order</h3>
+    <canvas id="orderChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>Top 10 Families</h3>
+    <canvas id="familyChart"></canvas>
+  </div>
+</div>
+
+<!-- ════════════ SECTION 6: INTEGRATION ════════════ -->
+<div class="section-title"><span class="icon">🔗</span> System Integration (9 APIs)</div>
+
+<div class="api-grid">
+  <div class="api-card">
+    <div class="num">1</div>
+    <div><div class="api-name">GBIF</div><div class="api-desc">Population occurrence data — 36K+ records ingested</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">2</div>
+    <div><div class="api-name">Supabase + PostGIS</div><div class="api-desc">Database, spatial queries, auth, storage</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">3</div>
+    <div><div class="api-name">Gemini 2.5 Flash</div><div class="api-desc">Vision-based species ID + RAG causal chatbot</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">4</div>
+    <div><div class="api-name">Xeno-canto</div><div class="api-desc">Live bird audio recordings (filtered A/B quality)</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">5</div>
+    <div><div class="api-name">Wikimedia Commons</div><div class="api-desc">Species image gallery via MediaWiki API</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">6</div>
+    <div><div class="api-name">Open-Meteo</div><div class="api-desc">Historical weather context for anomaly enrichment</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">7</div>
+    <div><div class="api-name">Movebank</div><div class="api-desc">Bird GPS telemetry for migration routes</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">8</div>
+    <div><div class="api-name">eBird</div><div class="api-desc">Recent observations + migration stop data</div></div>
+  </div>
+  <div class="api-card">
+    <div class="num">9</div>
+    <div><div class="api-name">MapLibre GL JS</div><div class="api-desc">Interactive geospatial heatmap + route rendering</div></div>
+  </div>
+</div>
+
+<!-- ════════════ SECTION 7: GAP ANALYSIS ════════════ -->
+<div class="section-title"><span class="icon">📋</span> Gap Analysis vs. Existing Platforms</div>
+
+<div class="chart-card" style="margin-bottom: 1.5rem;">
+  <h3>Feature Comparison Matrix</h3>
+  <table class="metrics-table" id="gapTable">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>eBird</th>
+        <th>GBIF</th>
+        <th>Merlin</th>
+        <th>India Bio Portal</th>
+        <th>BirdLife</th>
+        <th style="color: var(--accent)">EcoPath</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>India-Focused Scope</td><td>Partial</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td><td style="color:var(--accent);font-weight:700">✅</td></tr>
+      <tr><td>AI Image Identification</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td style="color:var(--accent);font-weight:700">✅</td></tr>
+      <tr><td>Full Species Encyclopedia</td><td>Basic</td><td>❌</td><td>Basic</td><td>Partial</td><td>Partial</td><td style="color:var(--accent);font-weight:700">✅ Full</td></tr>
+      <tr><td>Population Heatmap</td><td>Basic</td><td>✅</td><td>❌</td><td>❌</td><td>Range</td><td style="color:var(--accent);font-weight:700">✅</td></tr>
+      <tr><td>Temporal Slider (10yr)</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td style="color:var(--accent);font-weight:700">✅ Unique</td></tr>
+      <tr><td>Animated Migration</td><td>Seasonal</td><td>❌</td><td>❌</td><td>❌</td><td>Basic</td><td style="color:var(--accent);font-weight:700">✅ Animated</td></tr>
+      <tr><td>Anomaly Detection</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td style="color:var(--accent);font-weight:700">✅ Unique</td></tr>
+      <tr><td>Causal Reasoning Chatbot</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td style="color:var(--accent);font-weight:700">✅ Unique</td></tr>
+      <tr><td>Bird Audio Player</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td style="color:var(--accent);font-weight:700">✅ Unique</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  EcoPath — Capstone Project · VESIT · Semester VI · April 2026<br>
+  Atharva Girkar · Taneesh Hinduja · Saransh Lulla · Ved Sarode
+</div>
+
+<script>
+  // Chart.js defaults
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = 'rgba(30,42,54,0.8)';
+  Chart.defaults.font.family = "'DM Sans', sans-serif";
+
+  // ── State Distribution ──
+  const stateData = {
+    "Kerala": 6990, "Karnataka": 6715, "Tamil Nadu": 5816, "Maharashtra": 3785,
+    "West Bengal": 1781, "Telangana": 1465, "Gujarat": 1458, "Madhya Pradesh": 990,
+    "Uttarakhand": 838, "Goa": 824, "Rajasthan": 732, "Assam": 672,
+    "Andhra Pradesh": 559, "Delhi": 476, "Haryana": 419, "Uttar Pradesh": 415,
+    "Odisha": 386, "Chhattisgarh": 363, "Punjab": 258, "Puducherry": 173
+  };
+  new Chart(document.getElementById('stateChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(stateData),
+      datasets: [{
+        data: Object.values(stateData),
+        backgroundColor: Object.values(stateData).map((v, i) =>
+          `hsla(${160 + i * 5}, 70%, ${50 - i}%, 0.75)`
+        ),
+        borderRadius: 4,
+        barThickness: 14,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(30,42,54,0.5)' }, title: { display: true, text: 'Records' }},
+        y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+      },
+      maintainAspectRatio: false
+    }
+  });
+
+  // ── IUCN Distribution ──
+  const iucnData = { "Least Concern": 47, "Vulnerable": 7, "Critically Endangered": 6, "Near Threatened": 5, "Endangered": 4 };
+  new Chart(document.getElementById('iucnChart'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(iucnData),
+      datasets: [{
+        data: Object.values(iucnData),
+        backgroundColor: ['#34d399', '#fbbf24', '#ef4444', '#60a5fa', '#f472b6'],
+        borderWidth: 2,
+        borderColor: '#151c25',
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, font: { size: 12 } } }
+      },
+      cutout: '60%'
+    }
+  });
+
+  // ── Records by Year ──
+  new Chart(document.getElementById('yearChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+      datasets: [{
+        label: 'Records',
+        data: [3600,3600,3600,3600,3600,3600,3600,3600,3600,3600],
+        backgroundColor: 'rgba(96,165,250,0.6)',
+        borderColor: '#60a5fa',
+        borderWidth: 1,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: 'rgba(30,42,54,0.5)' }, title: { display: true, text: 'Records' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ── Species Classification ──
+  new Chart(document.getElementById('speciesClassChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Resident', 'Migratory', 'Endemic to India'],
+      datasets: [{
+        data: [48, 11, 10],
+        backgroundColor: ['#60a5fa', '#f472b6', '#34d399'],
+        borderWidth: 2,
+        borderColor: '#151c25',
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } }
+      },
+      cutout: '55%'
+    }
+  });
+
+  // ── Flyway Distribution ──
+  new Chart(document.getElementById('flywayChart'), {
+    type: 'polarArea',
+    data: {
+      labels: ['Central Asian Flyway', 'East Asian-Australasian Flyway'],
+      datasets: [{
+        data: [3, 1],
+        backgroundColor: ['rgba(52,211,153,0.6)', 'rgba(96,165,250,0.6)'],
+        borderColor: ['#34d399', '#60a5fa'],
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } } },
+      scales: { r: { grid: { color: 'rgba(30,42,54,0.5)' }, ticks: { display: false } } }
+    }
+  });
+
+  // ── RAG Question Templates ──
+  const ragLabels = ['Taxonomic Identity', 'Geographic Distribution', 'Diet', 'Predators',
+    'Activity Patterns', 'Reproductive Traits', 'Migration', 'Habitat', 'Threats', 'Population Trends'];
+  new Chart(document.getElementById('ragChart'), {
+    type: 'radar',
+    data: {
+      labels: ragLabels,
+      datasets: [{
+        label: 'Cached Answers',
+        data: [15,15,15,15,15,15,15,15,15,15],
+        backgroundColor: 'rgba(52,211,153,0.15)',
+        borderColor: '#34d399',
+        borderWidth: 2,
+        pointBackgroundColor: '#34d399',
+        pointRadius: 4,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { r: {
+        grid: { color: 'rgba(30,42,54,0.5)' },
+        angleLines: { color: 'rgba(30,42,54,0.5)' },
+        ticks: { display: false },
+        suggestedMin: 0, suggestedMax: 20,
+        pointLabels: { font: { size: 11 } }
+      }}
+    }
+  });
+
+  // ── Taxonomic Orders ──
+  const orderData = {
+    "Passeriformes": 19, "Charadriiformes": 9, "Accipitriformes": 6, "Galliformes": 4,
+    "Coraciiformes": 3, "Gruiformes": 3, "Ciconiiformes": 3, "Pelecaniformes": 3,
+    "Anseriformes": 3, "Otidiformes": 2, "Falconiformes": 2, "Others": 12
+  };
+  new Chart(document.getElementById('orderChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(orderData),
+      datasets: [{
+        data: Object.values(orderData),
+        backgroundColor: Object.keys(orderData).map((_, i) =>
+          `hsla(${200 + i * 15}, 70%, 55%, 0.7)`
+        ),
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: 'rgba(30,42,54,0.5)' }, ticks: { stepSize: 5 } },
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } }
+      }
+    }
+  });
+
+  // ── Families ──
+  const famData = {
+    "Accipitridae": 6, "Phasianidae": 4, "Laridae": 4, "Ciconiidae": 3,
+    "Anatidae": 3, "Muscicapidae": 3, "Gruidae": 2, "Otididae": 2,
+    "Falconidae": 2, "Phoenicopteridae": 2
+  };
+  new Chart(document.getElementById('familyChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(famData),
+      datasets: [{
+        data: Object.values(famData),
+        backgroundColor: Object.keys(famData).map((_, i) =>
+          `hsla(${320 + i * 12}, 60%, 55%, 0.7)`
+        ),
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: 'rgba(30,42,54,0.5)' }, ticks: { stepSize: 1 } },
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } }
+      }
+    }
+  });
+
+  // ── Anomaly Flow (simple visual) ──
+  const flowCtx = document.getElementById('anomalyFlowChart').getContext('2d');
+  const steps = [
+    { x: 60, text: 'Query 5yr\nhistory', color: '#60a5fa' },
+    { x: 200, text: 'Compute\nμ and σ', color: '#a78bfa' },
+    { x: 340, text: 'Z = (curr−μ)/σ', color: '#f472b6' },
+    { x: 480, text: 'Classify\ntype', color: '#fbbf24' },
+    { x: 620, text: 'Assign\nseverity', color: '#34d399' },
+    { x: 760, text: 'Enrich w/\nweather', color: '#60a5fa' },
+  ];
+  flowCtx.clearRect(0, 0, 900, 100);
+  steps.forEach((s, i) => {
+    // Arrow
+    if (i > 0) {
+      flowCtx.beginPath();
+      flowCtx.strokeStyle = '#334155';
+      flowCtx.lineWidth = 2;
+      flowCtx.moveTo(steps[i-1].x + 55, 50);
+      flowCtx.lineTo(s.x - 55, 50);
+      flowCtx.stroke();
+      // Arrowhead
+      flowCtx.beginPath();
+      flowCtx.fillStyle = '#334155';
+      flowCtx.moveTo(s.x - 55, 44);
+      flowCtx.lineTo(s.x - 45, 50);
+      flowCtx.lineTo(s.x - 55, 56);
+      flowCtx.fill();
+    }
+    // Box
+    flowCtx.fillStyle = s.color + '22';
+    flowCtx.strokeStyle = s.color;
+    flowCtx.lineWidth = 1.5;
+    flowCtx.beginPath();
+    flowCtx.roundRect(s.x - 50, 20, 100, 60, 10);
+    flowCtx.fill();
+    flowCtx.stroke();
+    // Text
+    flowCtx.fillStyle = s.color;
+    flowCtx.font = '12px DM Sans';
+    flowCtx.textAlign = 'center';
+    const lines = s.text.split('\n');
+    lines.forEach((line, j) => {
+      flowCtx.fillText(line, s.x, 48 + j * 15);
+    });
+  });
+</script>
+
+</body>
+</html>

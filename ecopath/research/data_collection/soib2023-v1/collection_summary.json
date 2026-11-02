@@ -1,0 +1,42 @@
+{
+  "phase": "source-backed-draft-collection",
+  "source_doi": "10.5281/zenodo.11124590",
+  "publication_date": "2023-08-25",
+  "zenodo_metadata_license": {
+    "id": "mit-license"
+  },
+  "raw_rows": 1357,
+  "source_selected_species": 942,
+  "eligible_after_exact_legacy_name_exclusion": 898,
+  "exclusion_counts": {
+    "exact_name_in_legacy_experiment": 44,
+    "not_selected_for_SoIB_2023": 415
+  },
+  "selected_species": 30,
+  "selected_genera": 30,
+  "seed": 42,
+  "selection": "round robin across published current annual trend categories, one species per genus",
+  "selected_strata": {
+    "Trend Inconclusive": 5,
+    "Rapid Increase": 5,
+    "Stable": 4,
+    "Rapid Decline": 4,
+    "Insufficient Data": 4,
+    "Decline": 4,
+    "Increase": 4
+  },
+  "source_assertions": 150,
+  "variants": 90,
+  "extraction_review": "pending_human",
+  "schema_and_deterministic_variant_checks": "passed",
+  "published_md5_matches": true,
+  "model_generation_executed": false,
+  "ready_for_frozen_pilot": false,
+  "limits": [
+    "single published source; 2023 snapshot, not current 2026 ecology",
+    "non-representative category-balanced sample; exact name matching does not resolve synonyms",
+    "source taxonomy and classifications quoted without independent field verification",
+    "global IUCN category, total population size, breeding behavior and species threats left missing",
+    "human extraction/sampling review and independent validation species still required"
+  ]
+}

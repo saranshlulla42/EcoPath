@@ -123,6 +123,10 @@ export interface ExtinctionRiskReportEvidenceItem {
 }
 
 export interface ExtinctionRiskReportResult {
+  draft_for_review?: boolean;
+  validation_status?: string;
+  validation_errors?: string[];
+  missing_evidence_fields?: string[];
   species: {
     gbif_key?: number | null;
     common_name: string;

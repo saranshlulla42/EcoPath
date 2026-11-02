@@ -1,3 +1,5 @@
+> **Research audit notice — 20 October 2026:** This is a historical platform report, not a verified account of the QLoRA experiment. Feature implementation and successful live integration are different claims. Uncorrected GBIF occurrence density is not population abundance, migration patterns need coverage evidence, and generated causal explanations are not validated causal findings. Refer to `ecopath/research/docs/AUDIT.md` and `PAPER_REVISION_MAP.md` before publication. The original source is recoverable through the saved Git revision/hash manifest.
+
 # VIVEKANAND EDUCATION SOCIETY'S INSTITUTE OF TECHNOLOGY
 *(An Autonomous Institute Affiliated to University of Mumbai — Department of Computer Engineering)*
 

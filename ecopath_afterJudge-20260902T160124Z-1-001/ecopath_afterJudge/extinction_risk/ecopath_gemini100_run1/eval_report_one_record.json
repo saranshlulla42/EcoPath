@@ -1,0 +1,60 @@
+{
+  "aggregate": {
+    "base_model": {
+      "n_samples": 1,
+      "json_valid_pct": 0.0,
+      "schema_ok_pct": 0.0,
+      "judge_format_compliance_avg": 1.0,
+      "judge_factual_accuracy_avg": 2.0,
+      "judge_completeness_avg": 4.0,
+      "judge_usefulness_avg": 2.0
+    },
+    "ft_model": {
+      "n_samples": 1,
+      "json_valid_pct": 100.0,
+      "schema_ok_pct": 100.0,
+      "judge_format_compliance_avg": 5.0,
+      "judge_factual_accuracy_avg": 5.0,
+      "judge_completeness_avg": 5.0,
+      "judge_usefulness_avg": 5.0
+    }
+  },
+  "rows": [
+    {
+      "idx": 1,
+      "species": "Herring Gull",
+      "scientific_name": "Larus argentatus",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 2,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The output failed format compliance by using Markdown instead of JSON and hallucinated ecologically implausible threats like deforestation for Herring Gulls."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Herring Gull)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The model perfectly adheres to format requirements and accurately identifies critical data gaps without hallucinating unprovided ecological information."
+      },
+      "has_ft": true
+    }
+  ]
+}

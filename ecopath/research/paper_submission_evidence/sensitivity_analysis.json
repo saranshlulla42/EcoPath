@@ -1,0 +1,1247 @@
+{
+  "scope": "post-hoc sensitivity; strips terminal full stops before the existing case/whitespace/IUCN alias normalization; not an independent semantic correctness assessment",
+  "baseline_mismatch_breakdown": {
+    "terminal_period_only": 435,
+    "other_value_difference": 8
+  },
+  "strict": {
+    "status": "computed",
+    "difference": "qlora-42 minus constrained",
+    "metric": "structured_field_success_e2e",
+    "estimate": 0.2790123456790123,
+    "ci95": [
+      0.2716049382716049,
+      0.28950617283950614
+    ],
+    "eligible_species": 60,
+    "excluded_species": [],
+    "variants_by_species": {
+      "soib2023:Acridotheres_grandis": [
+        "soib2023:Acridotheres_grandis:complete",
+        "soib2023:Acridotheres_grandis:partial",
+        "soib2023:Acridotheres_grandis:minimal"
+      ],
+      "soib2023:Actinodura_waldeni": [
+        "soib2023:Actinodura_waldeni:complete",
+        "soib2023:Actinodura_waldeni:partial",
+        "soib2023:Actinodura_waldeni:minimal"
+      ],
+      "soib2023:Actitis_hypoleucos": [
+        "soib2023:Actitis_hypoleucos:complete",
+        "soib2023:Actitis_hypoleucos:partial",
+        "soib2023:Actitis_hypoleucos:minimal"
+      ],
+      "soib2023:Aethopyga_ignicauda": [
+        "soib2023:Aethopyga_ignicauda:complete",
+        "soib2023:Aethopyga_ignicauda:partial",
+        "soib2023:Aethopyga_ignicauda:minimal"
+      ],
+      "soib2023:Anas_crecca": [
+        "soib2023:Anas_crecca:complete",
+        "soib2023:Anas_crecca:partial",
+        "soib2023:Anas_crecca:minimal"
+      ],
+      "soib2023:Aquila_rapax": [
+        "soib2023:Aquila_rapax:complete",
+        "soib2023:Aquila_rapax:partial",
+        "soib2023:Aquila_rapax:minimal"
+      ],
+      "soib2023:Argya_affinis": [
+        "soib2023:Argya_affinis:complete",
+        "soib2023:Argya_affinis:partial",
+        "soib2023:Argya_affinis:minimal"
+      ],
+      "soib2023:Arundinax_aedon": [
+        "soib2023:Arundinax_aedon:complete",
+        "soib2023:Arundinax_aedon:partial",
+        "soib2023:Arundinax_aedon:minimal"
+      ],
+      "soib2023:Burhinus_indicus": [
+        "soib2023:Burhinus_indicus:complete",
+        "soib2023:Burhinus_indicus:partial",
+        "soib2023:Burhinus_indicus:minimal"
+      ],
+      "soib2023:Buteo_rufinus": [
+        "soib2023:Buteo_rufinus:complete",
+        "soib2023:Buteo_rufinus:partial",
+        "soib2023:Buteo_rufinus:minimal"
+      ],
+      "soib2023:Cacomantis_merulinus": [
+        "soib2023:Cacomantis_merulinus:complete",
+        "soib2023:Cacomantis_merulinus:partial",
+        "soib2023:Cacomantis_merulinus:minimal"
+      ],
+      "soib2023:Ceryle_rudis": [
+        "soib2023:Ceryle_rudis:complete",
+        "soib2023:Ceryle_rudis:partial",
+        "soib2023:Ceryle_rudis:minimal"
+      ],
+      "soib2023:Charadrius_alexandrinus": [
+        "soib2023:Charadrius_alexandrinus:complete",
+        "soib2023:Charadrius_alexandrinus:partial",
+        "soib2023:Charadrius_alexandrinus:minimal"
+      ],
+      "soib2023:Chloris_spinoides": [
+        "soib2023:Chloris_spinoides:complete",
+        "soib2023:Chloris_spinoides:partial",
+        "soib2023:Chloris_spinoides:minimal"
+      ],
+      "soib2023:Chloropsis_hardwickii": [
+        "soib2023:Chloropsis_hardwickii:complete",
+        "soib2023:Chloropsis_hardwickii:partial",
+        "soib2023:Chloropsis_hardwickii:minimal"
+      ],
+      "soib2023:Cholornis_unicolor": [
+        "soib2023:Cholornis_unicolor:complete",
+        "soib2023:Cholornis_unicolor:partial",
+        "soib2023:Cholornis_unicolor:minimal"
+      ],
+      "soib2023:Circus_macrourus": [
+        "soib2023:Circus_macrourus:complete",
+        "soib2023:Circus_macrourus:partial",
+        "soib2023:Circus_macrourus:minimal"
+      ],
+      "soib2023:Clamator_jacobinus": [
+        "soib2023:Clamator_jacobinus:complete",
+        "soib2023:Clamator_jacobinus:partial",
+        "soib2023:Clamator_jacobinus:minimal"
+      ],
+      "soib2023:Coracina_macei": [
+        "soib2023:Coracina_macei:complete",
+        "soib2023:Coracina_macei:partial",
+        "soib2023:Coracina_macei:minimal"
+      ],
+      "soib2023:Dicaeum_ignipectus": [
+        "soib2023:Dicaeum_ignipectus:complete",
+        "soib2023:Dicaeum_ignipectus:partial",
+        "soib2023:Dicaeum_ignipectus:minimal"
+      ],
+      "soib2023:Dinopium_javanense": [
+        "soib2023:Dinopium_javanense:complete",
+        "soib2023:Dinopium_javanense:partial",
+        "soib2023:Dinopium_javanense:minimal"
+      ],
+      "soib2023:Egretta_gularis": [
+        "soib2023:Egretta_gularis:complete",
+        "soib2023:Egretta_gularis:partial",
+        "soib2023:Egretta_gularis:minimal"
+      ],
+      "soib2023:Esacus_recurvirostris": [
+        "soib2023:Esacus_recurvirostris:complete",
+        "soib2023:Esacus_recurvirostris:partial",
+        "soib2023:Esacus_recurvirostris:minimal"
+      ],
+      "soib2023:Galloperdix_lunulata": [
+        "soib2023:Galloperdix_lunulata:complete",
+        "soib2023:Galloperdix_lunulata:partial",
+        "soib2023:Galloperdix_lunulata:minimal"
+      ],
+      "soib2023:Gecinulus_grantia": [
+        "soib2023:Gecinulus_grantia:complete",
+        "soib2023:Gecinulus_grantia:partial",
+        "soib2023:Gecinulus_grantia:minimal"
+      ],
+      "soib2023:Glareola_lactea": [
+        "soib2023:Glareola_lactea:complete",
+        "soib2023:Glareola_lactea:partial",
+        "soib2023:Glareola_lactea:minimal"
+      ],
+      "soib2023:Gypaetus_barbatus": [
+        "soib2023:Gypaetus_barbatus:complete",
+        "soib2023:Gypaetus_barbatus:partial",
+        "soib2023:Gypaetus_barbatus:minimal"
+      ],
+      "soib2023:Hemipus_picatus": [
+        "soib2023:Hemipus_picatus:complete",
+        "soib2023:Hemipus_picatus:partial",
+        "soib2023:Hemipus_picatus:minimal"
+      ],
+      "soib2023:Hirundo_smithii": [
+        "soib2023:Hirundo_smithii:complete",
+        "soib2023:Hirundo_smithii:partial",
+        "soib2023:Hirundo_smithii:minimal"
+      ],
+      "soib2023:Hydrophasianus_chirurgus": [
+        "soib2023:Hydrophasianus_chirurgus:complete",
+        "soib2023:Hydrophasianus_chirurgus:partial",
+        "soib2023:Hydrophasianus_chirurgus:minimal"
+      ],
+      "soib2023:Larvivora_brunnea": [
+        "soib2023:Larvivora_brunnea:complete",
+        "soib2023:Larvivora_brunnea:partial",
+        "soib2023:Larvivora_brunnea:minimal"
+      ],
+      "soib2023:Linaria_flavirostris": [
+        "soib2023:Linaria_flavirostris:complete",
+        "soib2023:Linaria_flavirostris:partial",
+        "soib2023:Linaria_flavirostris:minimal"
+      ],
+      "soib2023:Lonchura_punctulata": [
+        "soib2023:Lonchura_punctulata:complete",
+        "soib2023:Lonchura_punctulata:partial",
+        "soib2023:Lonchura_punctulata:minimal"
+      ],
+      "soib2023:Luscinia_svecica": [
+        "soib2023:Luscinia_svecica:complete",
+        "soib2023:Luscinia_svecica:partial",
+        "soib2023:Luscinia_svecica:minimal"
+      ],
+      "soib2023:Macropygia_rufipennis": [
+        "soib2023:Macropygia_rufipennis:complete",
+        "soib2023:Macropygia_rufipennis:partial",
+        "soib2023:Macropygia_rufipennis:minimal"
+      ],
+      "soib2023:Megaceryle_lugubris": [
+        "soib2023:Megaceryle_lugubris:complete",
+        "soib2023:Megaceryle_lugubris:partial",
+        "soib2023:Megaceryle_lugubris:minimal"
+      ],
+      "soib2023:Microcarbo_niger": [
+        "soib2023:Microcarbo_niger:complete",
+        "soib2023:Microcarbo_niger:partial",
+        "soib2023:Microcarbo_niger:minimal"
+      ],
+      "soib2023:Mirafra_assamica": [
+        "soib2023:Mirafra_assamica:complete",
+        "soib2023:Mirafra_assamica:partial",
+        "soib2023:Mirafra_assamica:minimal"
+      ],
+      "soib2023:Montecincla_fairbanki": [
+        "soib2023:Montecincla_fairbanki:complete",
+        "soib2023:Montecincla_fairbanki:partial",
+        "soib2023:Montecincla_fairbanki:minimal"
+      ],
+      "soib2023:Neophron_percnopterus": [
+        "soib2023:Neophron_percnopterus:complete",
+        "soib2023:Neophron_percnopterus:partial",
+        "soib2023:Neophron_percnopterus:minimal"
+      ],
+      "soib2023:Nisaetus_cirrhatus": [
+        "soib2023:Nisaetus_cirrhatus:complete",
+        "soib2023:Nisaetus_cirrhatus:partial",
+        "soib2023:Nisaetus_cirrhatus:minimal"
+      ],
+      "soib2023:Ortygornis_pondicerianus": [
+        "soib2023:Ortygornis_pondicerianus:complete",
+        "soib2023:Ortygornis_pondicerianus:partial",
+        "soib2023:Ortygornis_pondicerianus:minimal"
+      ],
+      "soib2023:Pastor_roseus": [
+        "soib2023:Pastor_roseus:complete",
+        "soib2023:Pastor_roseus:partial",
+        "soib2023:Pastor_roseus:minimal"
+      ],
+      "soib2023:Pelargopsis_capensis": [
+        "soib2023:Pelargopsis_capensis:complete",
+        "soib2023:Pelargopsis_capensis:partial",
+        "soib2023:Pelargopsis_capensis:minimal"
+      ],
+      "soib2023:Pelecanus_philippensis": [
+        "soib2023:Pelecanus_philippensis:complete",
+        "soib2023:Pelecanus_philippensis:partial",
+        "soib2023:Pelecanus_philippensis:minimal"
+      ],
+      "soib2023:Pericrocotus_erythropygius": [
+        "soib2023:Pericrocotus_erythropygius:complete",
+        "soib2023:Pericrocotus_erythropygius:partial",
+        "soib2023:Pericrocotus_erythropygius:minimal"
+      ],
+      "soib2023:Phoenicurus_coeruleocephala": [
+        "soib2023:Phoenicurus_coeruleocephala:complete",
+        "soib2023:Phoenicurus_coeruleocephala:partial",
+        "soib2023:Phoenicurus_coeruleocephala:minimal"
+      ],
+      "soib2023:Pluvialis_squatarola": [
+        "soib2023:Pluvialis_squatarola:complete",
+        "soib2023:Pluvialis_squatarola:partial",
+        "soib2023:Pluvialis_squatarola:minimal"
+      ],
+      "soib2023:Pomatorhinus_horsfieldii": [
+        "soib2023:Pomatorhinus_horsfieldii:complete",
+        "soib2023:Pomatorhinus_horsfieldii:partial",
+        "soib2023:Pomatorhinus_horsfieldii:minimal"
+      ],
+      "soib2023:Psittacula_columboides": [
+        "soib2023:Psittacula_columboides:complete",
+        "soib2023:Psittacula_columboides:partial",
+        "soib2023:Psittacula_columboides:minimal"
+      ],
+      "soib2023:Rallina_canningi": [
+        "soib2023:Rallina_canningi:complete",
+        "soib2023:Rallina_canningi:partial",
+        "soib2023:Rallina_canningi:minimal"
+      ],
+      "soib2023:Sarcogyps_calvus": [
+        "soib2023:Sarcogyps_calvus:complete",
+        "soib2023:Sarcogyps_calvus:partial",
+        "soib2023:Sarcogyps_calvus:minimal"
+      ],
+      "soib2023:Spelaeornis_longicaudatus": [
+        "soib2023:Spelaeornis_longicaudatus:complete",
+        "soib2023:Spelaeornis_longicaudatus:partial",
+        "soib2023:Spelaeornis_longicaudatus:minimal"
+      ],
+      "soib2023:Spilopelia_chinensis": [
+        "soib2023:Spilopelia_chinensis:complete",
+        "soib2023:Spilopelia_chinensis:partial",
+        "soib2023:Spilopelia_chinensis:minimal"
+      ],
+      "soib2023:Spilornis_elgini": [
+        "soib2023:Spilornis_elgini:complete",
+        "soib2023:Spilornis_elgini:partial",
+        "soib2023:Spilornis_elgini:minimal"
+      ],
+      "soib2023:Sterna_acuticauda": [
+        "soib2023:Sterna_acuticauda:complete",
+        "soib2023:Sterna_acuticauda:partial",
+        "soib2023:Sterna_acuticauda:minimal"
+      ],
+      "soib2023:Tadorna_ferruginea": [
+        "soib2023:Tadorna_ferruginea:complete",
+        "soib2023:Tadorna_ferruginea:partial",
+        "soib2023:Tadorna_ferruginea:minimal"
+      ],
+      "soib2023:Treron_phoenicopterus": [
+        "soib2023:Treron_phoenicopterus:complete",
+        "soib2023:Treron_phoenicopterus:partial",
+        "soib2023:Treron_phoenicopterus:minimal"
+      ],
+      "soib2023:Turdus_rubrocanus": [
+        "soib2023:Turdus_rubrocanus:complete",
+        "soib2023:Turdus_rubrocanus:partial",
+        "soib2023:Turdus_rubrocanus:minimal"
+      ],
+      "soib2023:Zapornia_pusilla": [
+        "soib2023:Zapornia_pusilla:complete",
+        "soib2023:Zapornia_pusilla:partial",
+        "soib2023:Zapornia_pusilla:minimal"
+      ]
+    },
+    "training_seeds": {
+      "constrained": [
+        null
+      ],
+      "qlora-42": [
+        42
+      ]
+    },
+    "per_seed": {
+      "constrained": {
+        "None": 0.7209876543209877
+      },
+      "qlora-42": {
+        "42": 1.0
+      }
+    },
+    "bootstrap_seed": 42,
+    "draws": 2000,
+    "method": "paired species cluster percentile bootstrap with crossed within-method training-seed resampling",
+    "training_seed_variation_estimable": {
+      "constrained": false,
+      "qlora-42": false
+    },
+    "caution": "A single adapted training seed cannot estimate training-seed variation; small species samples limit inference."
+  },
+  "relaxed": {
+    "status": "computed",
+    "difference": "qlora-42 minus constrained",
+    "metric": "structured_field_success_e2e",
+    "estimate": 0.010493827160493827,
+    "ci95": [
+      0.0,
+      0.025308641975308643
+    ],
+    "eligible_species": 60,
+    "excluded_species": [],
+    "variants_by_species": {
+      "soib2023:Acridotheres_grandis": [
+        "soib2023:Acridotheres_grandis:complete",
+        "soib2023:Acridotheres_grandis:partial",
+        "soib2023:Acridotheres_grandis:minimal"
+      ],
+      "soib2023:Actinodura_waldeni": [
+        "soib2023:Actinodura_waldeni:complete",
+        "soib2023:Actinodura_waldeni:partial",
+        "soib2023:Actinodura_waldeni:minimal"
+      ],
+      "soib2023:Actitis_hypoleucos": [
+        "soib2023:Actitis_hypoleucos:complete",
+        "soib2023:Actitis_hypoleucos:partial",
+        "soib2023:Actitis_hypoleucos:minimal"
+      ],
+      "soib2023:Aethopyga_ignicauda": [
+        "soib2023:Aethopyga_ignicauda:complete",
+        "soib2023:Aethopyga_ignicauda:partial",
+        "soib2023:Aethopyga_ignicauda:minimal"
+      ],
+      "soib2023:Anas_crecca": [
+        "soib2023:Anas_crecca:complete",
+        "soib2023:Anas_crecca:partial",
+        "soib2023:Anas_crecca:minimal"
+      ],
+      "soib2023:Aquila_rapax": [
+        "soib2023:Aquila_rapax:complete",
+        "soib2023:Aquila_rapax:partial",
+        "soib2023:Aquila_rapax:minimal"
+      ],
+      "soib2023:Argya_affinis": [
+        "soib2023:Argya_affinis:complete",
+        "soib2023:Argya_affinis:partial",
+        "soib2023:Argya_affinis:minimal"
+      ],
+      "soib2023:Arundinax_aedon": [
+        "soib2023:Arundinax_aedon:complete",
+        "soib2023:Arundinax_aedon:partial",
+        "soib2023:Arundinax_aedon:minimal"
+      ],
+      "soib2023:Burhinus_indicus": [
+        "soib2023:Burhinus_indicus:complete",
+        "soib2023:Burhinus_indicus:partial",
+        "soib2023:Burhinus_indicus:minimal"
+      ],
+      "soib2023:Buteo_rufinus": [
+        "soib2023:Buteo_rufinus:complete",
+        "soib2023:Buteo_rufinus:partial",
+        "soib2023:Buteo_rufinus:minimal"
+      ],
+      "soib2023:Cacomantis_merulinus": [
+        "soib2023:Cacomantis_merulinus:complete",
+        "soib2023:Cacomantis_merulinus:partial",
+        "soib2023:Cacomantis_merulinus:minimal"
+      ],
+      "soib2023:Ceryle_rudis": [
+        "soib2023:Ceryle_rudis:complete",
+        "soib2023:Ceryle_rudis:partial",
+        "soib2023:Ceryle_rudis:minimal"
+      ],
+      "soib2023:Charadrius_alexandrinus": [
+        "soib2023:Charadrius_alexandrinus:complete",
+        "soib2023:Charadrius_alexandrinus:partial",
+        "soib2023:Charadrius_alexandrinus:minimal"
+      ],
+      "soib2023:Chloris_spinoides": [
+        "soib2023:Chloris_spinoides:complete",
+        "soib2023:Chloris_spinoides:partial",
+        "soib2023:Chloris_spinoides:minimal"
+      ],
+      "soib2023:Chloropsis_hardwickii": [
+        "soib2023:Chloropsis_hardwickii:complete",
+        "soib2023:Chloropsis_hardwickii:partial",
+        "soib2023:Chloropsis_hardwickii:minimal"
+      ],
+      "soib2023:Cholornis_unicolor": [
+        "soib2023:Cholornis_unicolor:complete",
+        "soib2023:Cholornis_unicolor:partial",
+        "soib2023:Cholornis_unicolor:minimal"
+      ],
+      "soib2023:Circus_macrourus": [
+        "soib2023:Circus_macrourus:complete",
+        "soib2023:Circus_macrourus:partial",
+        "soib2023:Circus_macrourus:minimal"
+      ],
+      "soib2023:Clamator_jacobinus": [
+        "soib2023:Clamator_jacobinus:complete",
+        "soib2023:Clamator_jacobinus:partial",
+        "soib2023:Clamator_jacobinus:minimal"
+      ],
+      "soib2023:Coracina_macei": [
+        "soib2023:Coracina_macei:complete",
+        "soib2023:Coracina_macei:partial",
+        "soib2023:Coracina_macei:minimal"
+      ],
+      "soib2023:Dicaeum_ignipectus": [
+        "soib2023:Dicaeum_ignipectus:complete",
+        "soib2023:Dicaeum_ignipectus:partial",
+        "soib2023:Dicaeum_ignipectus:minimal"
+      ],
+      "soib2023:Dinopium_javanense": [
+        "soib2023:Dinopium_javanense:complete",
+        "soib2023:Dinopium_javanense:partial",
+        "soib2023:Dinopium_javanense:minimal"
+      ],
+      "soib2023:Egretta_gularis": [
+        "soib2023:Egretta_gularis:complete",
+        "soib2023:Egretta_gularis:partial",
+        "soib2023:Egretta_gularis:minimal"
+      ],
+      "soib2023:Esacus_recurvirostris": [
+        "soib2023:Esacus_recurvirostris:complete",
+        "soib2023:Esacus_recurvirostris:partial",
+        "soib2023:Esacus_recurvirostris:minimal"
+      ],
+      "soib2023:Galloperdix_lunulata": [
+        "soib2023:Galloperdix_lunulata:complete",
+        "soib2023:Galloperdix_lunulata:partial",
+        "soib2023:Galloperdix_lunulata:minimal"
+      ],
+      "soib2023:Gecinulus_grantia": [
+        "soib2023:Gecinulus_grantia:complete",
+        "soib2023:Gecinulus_grantia:partial",
+        "soib2023:Gecinulus_grantia:minimal"
+      ],
+      "soib2023:Glareola_lactea": [
+        "soib2023:Glareola_lactea:complete",
+        "soib2023:Glareola_lactea:partial",
+        "soib2023:Glareola_lactea:minimal"
+      ],
+      "soib2023:Gypaetus_barbatus": [
+        "soib2023:Gypaetus_barbatus:complete",
+        "soib2023:Gypaetus_barbatus:partial",
+        "soib2023:Gypaetus_barbatus:minimal"
+      ],
+      "soib2023:Hemipus_picatus": [
+        "soib2023:Hemipus_picatus:complete",
+        "soib2023:Hemipus_picatus:partial",
+        "soib2023:Hemipus_picatus:minimal"
+      ],
+      "soib2023:Hirundo_smithii": [
+        "soib2023:Hirundo_smithii:complete",
+        "soib2023:Hirundo_smithii:partial",
+        "soib2023:Hirundo_smithii:minimal"
+      ],
+      "soib2023:Hydrophasianus_chirurgus": [
+        "soib2023:Hydrophasianus_chirurgus:complete",
+        "soib2023:Hydrophasianus_chirurgus:partial",
+        "soib2023:Hydrophasianus_chirurgus:minimal"
+      ],
+      "soib2023:Larvivora_brunnea": [
+        "soib2023:Larvivora_brunnea:complete",
+        "soib2023:Larvivora_brunnea:partial",
+        "soib2023:Larvivora_brunnea:minimal"
+      ],
+      "soib2023:Linaria_flavirostris": [
+        "soib2023:Linaria_flavirostris:complete",
+        "soib2023:Linaria_flavirostris:partial",
+        "soib2023:Linaria_flavirostris:minimal"
+      ],
+      "soib2023:Lonchura_punctulata": [
+        "soib2023:Lonchura_punctulata:complete",
+        "soib2023:Lonchura_punctulata:partial",
+        "soib2023:Lonchura_punctulata:minimal"
+      ],
+      "soib2023:Luscinia_svecica": [
+        "soib2023:Luscinia_svecica:complete",
+        "soib2023:Luscinia_svecica:partial",
+        "soib2023:Luscinia_svecica:minimal"
+      ],
+      "soib2023:Macropygia_rufipennis": [
+        "soib2023:Macropygia_rufipennis:complete",
+        "soib2023:Macropygia_rufipennis:partial",
+        "soib2023:Macropygia_rufipennis:minimal"
+      ],
+      "soib2023:Megaceryle_lugubris": [
+        "soib2023:Megaceryle_lugubris:complete",
+        "soib2023:Megaceryle_lugubris:partial",
+        "soib2023:Megaceryle_lugubris:minimal"
+      ],
+      "soib2023:Microcarbo_niger": [
+        "soib2023:Microcarbo_niger:complete",
+        "soib2023:Microcarbo_niger:partial",
+        "soib2023:Microcarbo_niger:minimal"
+      ],
+      "soib2023:Mirafra_assamica": [
+        "soib2023:Mirafra_assamica:complete",
+        "soib2023:Mirafra_assamica:partial",
+        "soib2023:Mirafra_assamica:minimal"
+      ],
+      "soib2023:Montecincla_fairbanki": [
+        "soib2023:Montecincla_fairbanki:complete",
+        "soib2023:Montecincla_fairbanki:partial",
+        "soib2023:Montecincla_fairbanki:minimal"
+      ],
+      "soib2023:Neophron_percnopterus": [
+        "soib2023:Neophron_percnopterus:complete",
+        "soib2023:Neophron_percnopterus:partial",
+        "soib2023:Neophron_percnopterus:minimal"
+      ],
+      "soib2023:Nisaetus_cirrhatus": [
+        "soib2023:Nisaetus_cirrhatus:complete",
+        "soib2023:Nisaetus_cirrhatus:partial",
+        "soib2023:Nisaetus_cirrhatus:minimal"
+      ],
+      "soib2023:Ortygornis_pondicerianus": [
+        "soib2023:Ortygornis_pondicerianus:complete",
+        "soib2023:Ortygornis_pondicerianus:partial",
+        "soib2023:Ortygornis_pondicerianus:minimal"
+      ],
+      "soib2023:Pastor_roseus": [
+        "soib2023:Pastor_roseus:complete",
+        "soib2023:Pastor_roseus:partial",
+        "soib2023:Pastor_roseus:minimal"
+      ],
+      "soib2023:Pelargopsis_capensis": [
+        "soib2023:Pelargopsis_capensis:complete",
+        "soib2023:Pelargopsis_capensis:partial",
+        "soib2023:Pelargopsis_capensis:minimal"
+      ],
+      "soib2023:Pelecanus_philippensis": [
+        "soib2023:Pelecanus_philippensis:complete",
+        "soib2023:Pelecanus_philippensis:partial",
+        "soib2023:Pelecanus_philippensis:minimal"
+      ],
+      "soib2023:Pericrocotus_erythropygius": [
+        "soib2023:Pericrocotus_erythropygius:complete",
+        "soib2023:Pericrocotus_erythropygius:partial",
+        "soib2023:Pericrocotus_erythropygius:minimal"
+      ],
+      "soib2023:Phoenicurus_coeruleocephala": [
+        "soib2023:Phoenicurus_coeruleocephala:complete",
+        "soib2023:Phoenicurus_coeruleocephala:partial",
+        "soib2023:Phoenicurus_coeruleocephala:minimal"
+      ],
+      "soib2023:Pluvialis_squatarola": [
+        "soib2023:Pluvialis_squatarola:complete",
+        "soib2023:Pluvialis_squatarola:partial",
+        "soib2023:Pluvialis_squatarola:minimal"
+      ],
+      "soib2023:Pomatorhinus_horsfieldii": [
+        "soib2023:Pomatorhinus_horsfieldii:complete",
+        "soib2023:Pomatorhinus_horsfieldii:partial",
+        "soib2023:Pomatorhinus_horsfieldii:minimal"
+      ],
+      "soib2023:Psittacula_columboides": [
+        "soib2023:Psittacula_columboides:complete",
+        "soib2023:Psittacula_columboides:partial",
+        "soib2023:Psittacula_columboides:minimal"
+      ],
+      "soib2023:Rallina_canningi": [
+        "soib2023:Rallina_canningi:complete",
+        "soib2023:Rallina_canningi:partial",
+        "soib2023:Rallina_canningi:minimal"
+      ],
+      "soib2023:Sarcogyps_calvus": [
+        "soib2023:Sarcogyps_calvus:complete",
+        "soib2023:Sarcogyps_calvus:partial",
+        "soib2023:Sarcogyps_calvus:minimal"
+      ],
+      "soib2023:Spelaeornis_longicaudatus": [
+        "soib2023:Spelaeornis_longicaudatus:complete",
+        "soib2023:Spelaeornis_longicaudatus:partial",
+        "soib2023:Spelaeornis_longicaudatus:minimal"
+      ],
+      "soib2023:Spilopelia_chinensis": [
+        "soib2023:Spilopelia_chinensis:complete",
+        "soib2023:Spilopelia_chinensis:partial",
+        "soib2023:Spilopelia_chinensis:minimal"
+      ],
+      "soib2023:Spilornis_elgini": [
+        "soib2023:Spilornis_elgini:complete",
+        "soib2023:Spilornis_elgini:partial",
+        "soib2023:Spilornis_elgini:minimal"
+      ],
+      "soib2023:Sterna_acuticauda": [
+        "soib2023:Sterna_acuticauda:complete",
+        "soib2023:Sterna_acuticauda:partial",
+        "soib2023:Sterna_acuticauda:minimal"
+      ],
+      "soib2023:Tadorna_ferruginea": [
+        "soib2023:Tadorna_ferruginea:complete",
+        "soib2023:Tadorna_ferruginea:partial",
+        "soib2023:Tadorna_ferruginea:minimal"
+      ],
+      "soib2023:Treron_phoenicopterus": [
+        "soib2023:Treron_phoenicopterus:complete",
+        "soib2023:Treron_phoenicopterus:partial",
+        "soib2023:Treron_phoenicopterus:minimal"
+      ],
+      "soib2023:Turdus_rubrocanus": [
+        "soib2023:Turdus_rubrocanus:complete",
+        "soib2023:Turdus_rubrocanus:partial",
+        "soib2023:Turdus_rubrocanus:minimal"
+      ],
+      "soib2023:Zapornia_pusilla": [
+        "soib2023:Zapornia_pusilla:complete",
+        "soib2023:Zapornia_pusilla:partial",
+        "soib2023:Zapornia_pusilla:minimal"
+      ]
+    },
+    "training_seeds": {
+      "constrained": [
+        null
+      ],
+      "qlora-42": [
+        42
+      ]
+    },
+    "per_seed": {
+      "constrained": {
+        "None": 0.9895061728395063
+      },
+      "qlora-42": {
+        "42": 1.0
+      }
+    },
+    "bootstrap_seed": 42,
+    "draws": 2000,
+    "method": "paired species cluster percentile bootstrap with crossed within-method training-seed resampling",
+    "training_seed_variation_estimable": {
+      "constrained": false,
+      "qlora-42": false
+    },
+    "caution": "A single adapted training seed cannot estimate training-seed variation; small species samples limit inference."
+  },
+  "strict_aggregates": {
+    "constrained": {
+      "outputs": 180,
+      "species": 60,
+      "micro": {
+        "json_validity": {
+          "numerator": 179,
+          "denominator": 180,
+          "value": 0.9944444444444445
+        },
+        "schema_compliance": {
+          "numerator": 179,
+          "denominator": 180,
+          "value": 0.9944444444444445
+        },
+        "assessable_output": {
+          "numerator": 179,
+          "denominator": 180,
+          "value": 0.9944444444444445
+        },
+        "structured_claims_supported": {
+          "numerator": 94,
+          "denominator": 537,
+          "value": 0.1750465549348231
+        },
+        "unsupported_structured_claims": {
+          "numerator": 443,
+          "denominator": 537,
+          "value": 0.8249534450651769
+        },
+        "citation_existence": {
+          "numerator": 537,
+          "denominator": 537,
+          "value": 1.0
+        },
+        "citation_validity": {
+          "numerator": 537,
+          "denominator": 537,
+          "value": 1.0
+        },
+        "citation_structured_support": {
+          "numerator": 94,
+          "denominator": 537,
+          "value": 0.1750465549348231
+        },
+        "available_reporting_e2e": {
+          "numerator": 94,
+          "denominator": 540,
+          "value": 0.17407407407407408
+        },
+        "correct_abstention_e2e": {
+          "numerator": 1074,
+          "denominator": 1080,
+          "value": 0.9944444444444445
+        },
+        "structured_field_success_e2e": {
+          "numerator": 1168,
+          "denominator": 1620,
+          "value": 0.7209876543209877
+        },
+        "available_reporting_assessable": {
+          "numerator": 94,
+          "denominator": 537,
+          "value": 0.1750465549348231
+        },
+        "correct_abstention_assessable": {
+          "numerator": 1074,
+          "denominator": 1074,
+          "value": 1.0
+        },
+        "false_abstention_assessable": {
+          "numerator": 0,
+          "denominator": 537,
+          "value": 0.0
+        },
+        "prose_citation_validity": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        }
+      },
+      "species_macro": {
+        "json_validity": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "schema_compliance": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "assessable_output": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "structured_claims_supported": {
+          "value": 0.17916666666666667,
+          "assessable_species": 60
+        },
+        "unsupported_structured_claims": {
+          "value": 0.8208333333333333,
+          "assessable_species": 60
+        },
+        "citation_existence": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_validity": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_structured_support": {
+          "value": 0.17916666666666667,
+          "assessable_species": 60
+        },
+        "available_reporting_e2e": {
+          "value": 0.17777777777777776,
+          "assessable_species": 60
+        },
+        "correct_abstention_e2e": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "structured_field_success_e2e": {
+          "value": 0.7209876543209877,
+          "assessable_species": 60
+        },
+        "available_reporting_assessable": {
+          "value": 0.17916666666666667,
+          "assessable_species": 60
+        },
+        "correct_abstention_assessable": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "false_abstention_assessable": {
+          "value": 0.0,
+          "assessable_species": 60
+        }
+      },
+      "prose_claims_pending_annotation": 0
+    },
+    "qlora-42": {
+      "outputs": 180,
+      "species": 60,
+      "micro": {
+        "json_validity": {
+          "numerator": 180,
+          "denominator": 180,
+          "value": 1.0
+        },
+        "schema_compliance": {
+          "numerator": 180,
+          "denominator": 180,
+          "value": 1.0
+        },
+        "assessable_output": {
+          "numerator": 180,
+          "denominator": 180,
+          "value": 1.0
+        },
+        "structured_claims_supported": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "unsupported_structured_claims": {
+          "numerator": 0,
+          "denominator": 540,
+          "value": 0.0
+        },
+        "citation_existence": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "citation_validity": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "citation_structured_support": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "available_reporting_e2e": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "correct_abstention_e2e": {
+          "numerator": 1080,
+          "denominator": 1080,
+          "value": 1.0
+        },
+        "structured_field_success_e2e": {
+          "numerator": 1620,
+          "denominator": 1620,
+          "value": 1.0
+        },
+        "available_reporting_assessable": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "correct_abstention_assessable": {
+          "numerator": 1080,
+          "denominator": 1080,
+          "value": 1.0
+        },
+        "false_abstention_assessable": {
+          "numerator": 0,
+          "denominator": 540,
+          "value": 0.0
+        },
+        "prose_citation_validity": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        }
+      },
+      "species_macro": {
+        "json_validity": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "schema_compliance": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "assessable_output": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "structured_claims_supported": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "unsupported_structured_claims": {
+          "value": 0.0,
+          "assessable_species": 60
+        },
+        "citation_existence": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_validity": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_structured_support": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "available_reporting_e2e": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "correct_abstention_e2e": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "structured_field_success_e2e": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "available_reporting_assessable": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "correct_abstention_assessable": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "false_abstention_assessable": {
+          "value": 0.0,
+          "assessable_species": 60
+        }
+      },
+      "prose_claims_pending_annotation": 0
+    }
+  },
+  "relaxed_aggregates": {
+    "constrained": {
+      "outputs": 180,
+      "species": 60,
+      "micro": {
+        "json_validity": {
+          "numerator": 179,
+          "denominator": 180,
+          "value": 0.9944444444444445
+        },
+        "schema_compliance": {
+          "numerator": 179,
+          "denominator": 180,
+          "value": 0.9944444444444445
+        },
+        "assessable_output": {
+          "numerator": 179,
+          "denominator": 180,
+          "value": 0.9944444444444445
+        },
+        "structured_claims_supported": {
+          "numerator": 529,
+          "denominator": 537,
+          "value": 0.9851024208566108
+        },
+        "unsupported_structured_claims": {
+          "numerator": 8,
+          "denominator": 537,
+          "value": 0.0148975791433892
+        },
+        "citation_existence": {
+          "numerator": 537,
+          "denominator": 537,
+          "value": 1.0
+        },
+        "citation_validity": {
+          "numerator": 537,
+          "denominator": 537,
+          "value": 1.0
+        },
+        "citation_structured_support": {
+          "numerator": 529,
+          "denominator": 537,
+          "value": 0.9851024208566108
+        },
+        "available_reporting_e2e": {
+          "numerator": 529,
+          "denominator": 540,
+          "value": 0.9796296296296296
+        },
+        "correct_abstention_e2e": {
+          "numerator": 1074,
+          "denominator": 1080,
+          "value": 0.9944444444444445
+        },
+        "structured_field_success_e2e": {
+          "numerator": 1603,
+          "denominator": 1620,
+          "value": 0.9895061728395061
+        },
+        "available_reporting_assessable": {
+          "numerator": 529,
+          "denominator": 537,
+          "value": 0.9851024208566108
+        },
+        "correct_abstention_assessable": {
+          "numerator": 1074,
+          "denominator": 1074,
+          "value": 1.0
+        },
+        "false_abstention_assessable": {
+          "numerator": 0,
+          "denominator": 537,
+          "value": 0.0
+        },
+        "prose_citation_validity": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        }
+      },
+      "species_macro": {
+        "json_validity": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "schema_compliance": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "assessable_output": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "structured_claims_supported": {
+          "value": 0.9833333333333333,
+          "assessable_species": 60
+        },
+        "unsupported_structured_claims": {
+          "value": 0.016666666666666666,
+          "assessable_species": 60
+        },
+        "citation_existence": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_validity": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_structured_support": {
+          "value": 0.9833333333333333,
+          "assessable_species": 60
+        },
+        "available_reporting_e2e": {
+          "value": 0.975,
+          "assessable_species": 60
+        },
+        "correct_abstention_e2e": {
+          "value": 0.9944444444444444,
+          "assessable_species": 60
+        },
+        "structured_field_success_e2e": {
+          "value": 0.9895061728395063,
+          "assessable_species": 60
+        },
+        "available_reporting_assessable": {
+          "value": 0.9833333333333333,
+          "assessable_species": 60
+        },
+        "correct_abstention_assessable": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "false_abstention_assessable": {
+          "value": 0.0,
+          "assessable_species": 60
+        }
+      },
+      "prose_claims_pending_annotation": 0
+    },
+    "qlora-42": {
+      "outputs": 180,
+      "species": 60,
+      "micro": {
+        "json_validity": {
+          "numerator": 180,
+          "denominator": 180,
+          "value": 1.0
+        },
+        "schema_compliance": {
+          "numerator": 180,
+          "denominator": 180,
+          "value": 1.0
+        },
+        "assessable_output": {
+          "numerator": 180,
+          "denominator": 180,
+          "value": 1.0
+        },
+        "structured_claims_supported": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "unsupported_structured_claims": {
+          "numerator": 0,
+          "denominator": 540,
+          "value": 0.0
+        },
+        "citation_existence": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "citation_validity": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "citation_structured_support": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "available_reporting_e2e": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "correct_abstention_e2e": {
+          "numerator": 1080,
+          "denominator": 1080,
+          "value": 1.0
+        },
+        "structured_field_success_e2e": {
+          "numerator": 1620,
+          "denominator": 1620,
+          "value": 1.0
+        },
+        "available_reporting_assessable": {
+          "numerator": 540,
+          "denominator": 540,
+          "value": 1.0
+        },
+        "correct_abstention_assessable": {
+          "numerator": 1080,
+          "denominator": 1080,
+          "value": 1.0
+        },
+        "false_abstention_assessable": {
+          "numerator": 0,
+          "denominator": 540,
+          "value": 0.0
+        },
+        "prose_citation_validity": {
+          "numerator": 0,
+          "denominator": 0,
+          "value": null
+        }
+      },
+      "species_macro": {
+        "json_validity": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "schema_compliance": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "assessable_output": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "structured_claims_supported": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "unsupported_structured_claims": {
+          "value": 0.0,
+          "assessable_species": 60
+        },
+        "citation_existence": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_validity": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "citation_structured_support": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "available_reporting_e2e": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "correct_abstention_e2e": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "structured_field_success_e2e": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "available_reporting_assessable": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "correct_abstention_assessable": {
+          "value": 1.0,
+          "assessable_species": 60
+        },
+        "false_abstention_assessable": {
+          "value": 0.0,
+          "assessable_species": 60
+        }
+      },
+      "prose_claims_pending_annotation": 0
+    }
+  }
+}

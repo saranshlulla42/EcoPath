@@ -3,10 +3,25 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { searchSpecies } from "@/lib/api";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { getResolver } from "@/lib/taxonomy/load";
+import type { Resolver } from "@/lib/taxonomy/resolver";
+import { parse, type ParseResult } from "@/lib/commands/parse";
+import { execute } from "@/lib/commands/execute";
+import { COMMANDS } from "@/lib/commands/registry";
+import { evidenceLine, statusLabel } from "@/lib/commands/status";
+import * as telemetry from "@/lib/commands/telemetry";
+
+/** Indian states the parser recognises as a region argument. */
+const REGIONS = new Set([
+  "andhra pradesh", "arunachal pradesh", "assam", "bihar", "chhattisgarh", "goa",
+  "gujarat", "haryana", "himachal pradesh", "jharkhand", "karnataka", "kerala",
+  "madhya pradesh", "maharashtra", "manipur", "meghalaya", "mizoram", "nagaland",
+  "odisha", "punjab", "rajasthan", "sikkim", "tamil nadu", "telangana", "tripura",
+  "uttar pradesh", "uttarakhand", "west bengal", "delhi", "ladakh",
+]);
+import { identifyBird } from "@/lib/dataClient";
 import type { GBIFSearchResult } from "@/lib/types";
 
-const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY ?? "");
 
 const CAPABILITIES = [
   { index: "I",    label: "Occurrence heatmaps",       detail: "10-year population density maps, 2014–2024",        href: "/maps" },
@@ -46,6 +61,91 @@ export default function LandingPage() {
     }, 300);
   };
 
+  // ── Command bar ──────────────────────────────────────────────────────────
+  // This input is the command centre, not just a species search: the parser
+  // runs first and only genuinely open questions reach the agent.
+  const [resolver, setResolver] = useState<Resolver | null>(null);
+  const [parsed, setParsed] = useState<ParseResult | null>(null);
+  const [commandResult, setCommandResult] = useState<React.ReactNode>(null);
+  const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    telemetry.load();
+    getResolver().then(setResolver).catch(() => setResolver(null));
+  }, []);
+
+  useEffect(() => {
+    if (!resolver || !query.trim()) { setParsed(null); return; }
+    setParsed(parse(query, { resolver, regions: REGIONS }));
+  }, [query, resolver]);
+
+  const runCommand = async (text: string) => {
+    if (!resolver || !text.trim()) return;
+    const t0 = performance.now();
+    const result = parse(text, { resolver, regions: REGIONS });
+    const parseMs = performance.now() - t0;
+
+    setRunning(true);
+    const exec = await execute(result);
+    setRunning(false);
+
+    telemetry.record({
+      input: text,
+      outcome:
+        result.kind === "command" ? "command"
+        : result.kind === "disambiguate" ? "disambiguate"
+        : result.kind === "fallback" ? "fallback"
+        : "empty",
+      verb: result.kind === "command" ? result.spec.verb : null,
+      llmCalled: exec.llmCalled,
+      networkCalled: exec.networkCalled,
+      parseMs,
+      totalMs: performance.now() - t0,
+    });
+
+    const a = exec.action;
+    if (a.kind === "navigate") { router.push(a.href); return; }
+    if (a.kind === "message") {
+      setCommandResult(
+        <CommandNote tone={a.tone} title={a.title} body={a.body} />
+      );
+      return;
+    }
+    if (a.kind === "migration") {
+      const o = a.outcome;
+      const st = "status" in o ? o.status : null;
+      // Only a migratory verdict opens the map. Linking a resident or
+      // under-recorded species to it would put an empty map behind a sentence
+      // that just explained there is nothing to draw.
+      const href =
+        o.kind === "track"
+          ? `/migration?species=${encodeURIComponent(a.species.taxon.taxonId)}`
+          : undefined;
+      setCommandResult(
+        <CommandNote
+          tone={o.kind === "track" ? "info" : o.kind === "insufficient" ? "warn" : "info"}
+          title={`${a.species.taxon.commonName} — ${statusLabel(st)}`}
+          body={o.kind === "track" ? evidenceLine(st) : o.message}
+          footer={o.kind === "track" ? undefined : evidenceLine(st)}
+          href={href}
+          hrefLabel="View migration map →"
+          onNavigate={() => href && router.push(href)}
+        />
+      );
+      return;
+    }
+    if (a.kind === "agent") { router.push(`/chat?q=${encodeURIComponent(a.question)}`); return; }
+    if (a.kind === "help") {
+      setCommandResult(
+        <CommandNote
+          tone="info"
+          title="Commands"
+          body={COMMANDS.map(c => `${c.verb} — ${c.summary}`).join("\n")}
+        />
+      );
+    }
+  };
+
   const handleImageUpload = async (file: File) => {
     if (!file.type.startsWith("image/")) return;
     setImagePreview(URL.createObjectURL(file));
@@ -53,79 +153,31 @@ export default function LandingPage() {
     setVisionError(null);
     setVisionStatus("Identifying with Gemini…");
     try {
-      const base64String = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve((reader.result as string).split(",")[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
-      const parts = [
-        { inlineData: { data: base64String, mimeType: file.type } },
-        {
-          text: `You are an expert ornithologist. Identify the bird in this image.
-Respond with ONLY a JSON object, no markdown fences, no extra text:
-{"is_bird":true,"scientific_name":"Genus species","common_name":"Name","confidence":0.0}
-If you cannot identify it or it is not a bird, respond:
-{"is_bird":false,"scientific_name":null,"common_name":null,"confidence":0.0}`,
-        },
-      ];
+      // Identification runs server-side: the model call and the GBIF lookup both
+      // happen in the backend, so no provider key is shipped to the browser.
+      setVisionStatus("Identifying species…");
+      const parsed = await identifyBird(file);
+      console.log("[Vision] identification:", parsed);
 
-      const MAX_ATTEMPTS = 4;
-      let result: Awaited<ReturnType<typeof model.generateContent>> | null = null;
-      let lastErr: unknown = null;
-      for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-        try {
-          result = await model.generateContent(parts);
-          break;
-        } catch (e) {
-          lastErr = e;
-          const msg = e instanceof Error ? e.message : String(e);
-          const transient = /\b(503|429|overloaded|high demand|UNAVAILABLE|RESOURCE_EXHAUSTED)\b/i.test(msg);
-          console.warn(`[Vision] attempt ${attempt} failed (transient=${transient}):`, msg);
-          if (!transient || attempt === MAX_ATTEMPTS) throw e;
-          const backoff = Math.round(500 * 2 ** (attempt - 1) + Math.random() * 250);
-          setVisionStatus(`Gemini is busy, retrying (attempt ${attempt + 1}/${MAX_ATTEMPTS})…`);
-          await new Promise((r) => setTimeout(r, backoff));
-        }
-      }
-      if (!result) throw lastErr ?? new Error("Gemini call failed");
-
-      const finishReason = result.response.candidates?.[0]?.finishReason;
-      const rawText = result.response.text();
-      console.log("[Vision] finishReason:", finishReason);
-      console.log("[Vision] raw Gemini response:", rawText);
-
-      const raw = rawText.replace(/```json\n?|\n?```/g, "").trim();
-      let parsed: { is_bird: boolean; scientific_name: string | null; common_name: string | null; confidence: number };
-      try {
-        parsed = JSON.parse(raw);
-      } catch (parseErr) {
-        console.error("[Vision] JSON parse failed:", parseErr, "raw:", raw);
-        parsed = { is_bird: false, scientific_name: null, common_name: null, confidence: 0 };
-      }
-      console.log("[Vision] parsed:", parsed);
-
-      const scientificName = parsed.is_bird ? parsed.scientific_name : null;
-      if (!scientificName) {
+      if (!parsed.is_bird || !parsed.scientific_name) {
         setVisionError(
           parsed.is_bird === false
-            ? "Gemini did not detect a bird in this image."
-            : "Gemini could not identify the species. Try a clearer photo."
+            ? "No bird was detected in this image."
+            : "The species could not be identified. Try a clearer photo."
         );
         setVisionLoading(false);
         return;
       }
-      setVisionStatus(`Matched: ${scientificName}`);
-      const gbifRes = await fetch(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(scientificName)}&kingdom=Animalia&class=Aves`);
-      const gbifData = await gbifRes.json();
-      console.log("[Vision] GBIF match:", gbifData);
-      if (!gbifData.usageKey) {
-        setVisionError(`Gemini identified "${scientificName}" but GBIF has no matching record.`);
+
+      setVisionStatus(`Matched: ${parsed.scientific_name}`);
+      if (!parsed.gbif_key) {
+        setVisionError(
+          `Identified "${parsed.scientific_name}" but GBIF has no matching record.`
+        );
         setVisionLoading(false);
         return;
       }
-      router.push(`/species/${gbifData.usageKey}`);
+      router.push(`/species/${parsed.gbif_key}`);
     } catch (err) {
       console.error("[Vision] top-level error:", err);
       const msg = err instanceof Error ? err.message : String(err);
@@ -206,7 +258,7 @@ If you cannot identify it or it is not a bird, respond:
           fontWeight: 400,
         }}>
           Move beyond identification. Understand population change.
-          Ten years of GBIF occurrence data, visualized migration corridors, and AI-driven analysis — one unified platform.
+          Ten years of GBIF occurrence data, visualized migration corridors, and AI-driven analysis. One unified platform.
         </p>
 
         {/* ── Search ─────────────────────────────────────────────────────── */}
@@ -214,8 +266,9 @@ If you cannot identify it or it is not a bird, respond:
           <input
             type="text"
             value={query}
-            onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search any bird species…"
+            onChange={(e) => { setCommandResult(null); handleSearch(e.target.value); }}
+            onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); void runCommand(query); } }}
+            placeholder="Search a species, or run a command — try “migration amur falcon”"
             id="species-search-input"
             style={{
               width: "100%",
@@ -242,6 +295,12 @@ If you cannot identify it or it is not a bird, respond:
             }} />
           )}
         </div>
+
+        {/* What Enter will do. Shown before committing, so a closed command set
+            is discoverable instead of something you have to memorise. */}
+        {parsed && <CommandPreview parsed={parsed} onPick={(t) => { setQuery(t); void runCommand(t); }} />}
+        {running && <CommandNote tone="info" title="Working…" body="" />}
+        {commandResult}
 
         {/* Autocomplete */}
         {results.length > 0 && (
@@ -483,4 +542,126 @@ If you cannot identify it or it is not a bird, respond:
       `}</style>
     </div>
   );
+}
+
+/* ── Command bar presentation ─────────────────────────────────────────────── */
+
+function CommandNote({
+  tone, title, body, footer, href, hrefLabel, onNavigate,
+}: {
+  tone: "info" | "warn";
+  title: string;
+  body: string;
+  footer?: string;
+  /** When set, the whole card is a link to the view that renders this result. */
+  href?: string;
+  hrefLabel?: string;
+  onNavigate?: () => void;
+}) {
+  const clickable = Boolean(href);
+  return (
+    <div
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onClick={clickable ? onNavigate : undefined}
+      onKeyDown={
+        clickable
+          ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onNavigate?.(); } }
+          : undefined
+      }
+      style={{
+      border: `1px solid ${tone === "warn" ? "var(--accent-danger, #c0563a)" : "var(--border)"}`,
+      borderRadius: "var(--r-md)",
+      background: "var(--surface-raised)",
+      padding: "0.9rem 1rem",
+      marginBottom: "1rem",
+      boxShadow: "var(--shadow-card)",
+      cursor: clickable ? "pointer" : undefined,
+    }}>
+      <div style={{ fontWeight: 600, color: tone === "warn" ? "var(--accent-danger, #c0563a)" : "var(--text-primary)" }}>
+        {title}
+      </div>
+      {body && (
+        <div style={{ marginTop: "0.35rem", whiteSpace: "pre-line", color: "var(--text-secondary)", fontSize: "0.92rem" }}>
+          {body}
+        </div>
+      )}
+      {footer && (
+        <div style={{ marginTop: "0.4rem", color: "var(--text-tertiary, #778)", fontSize: "0.8rem" }}>
+          {footer}
+        </div>
+      )}
+      {clickable && (
+        <div style={{ marginTop: "0.55rem", color: "var(--accent-primary)", fontSize: "0.85rem", fontWeight: 600 }}>
+          {hrefLabel ?? "Open →"}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CommandPreview({
+  parsed, onPick,
+}: { parsed: ParseResult; onPick: (text: string) => void }) {
+  if (parsed.kind === "command") {
+    const args = [
+      ...parsed.species.map((sp) => sp.taxon.commonName),
+      ...Object.entries(parsed.values).map(([k, v]) => `${k}: ${v}`),
+    ];
+    const first = parsed.species[0];
+    return (
+      <div style={{ marginBottom: "1rem", fontSize: "0.9rem", color: "var(--text-secondary)" }}>
+        <strong style={{ color: "var(--accent-primary)" }}>{parsed.spec.verb}</strong>
+        {args.length > 0 && <> · {args.join(", ")}</>}
+        {/* The resolved name is always shown back, never silently substituted. */}
+        {first && first.confidence < 1 && (
+          <> · matched “{first.matchedAlias}” ({(first.confidence * 100).toFixed(0)}%)</>
+        )}
+        {parsed.unavailable && (
+          <div style={{ color: "var(--accent-danger, #c0563a)", marginTop: 4 }}>{parsed.unavailable}</div>
+        )}
+        <span style={{ opacity: 0.6 }}> — press Enter</span>
+      </div>
+    );
+  }
+
+  if (parsed.kind === "disambiguate") {
+    return (
+      <div style={{
+        border: "1px solid var(--border)", borderRadius: "var(--r-md)",
+        background: "var(--surface-raised)", marginBottom: "1rem", overflow: "hidden",
+      }}>
+        <div style={{ padding: "0.6rem 1rem", fontSize: "0.85rem", color: "var(--text-secondary)" }}>
+          Several species match “{parsed.input}” — which one?
+        </div>
+        {parsed.resolution.candidates.map((c) => (
+          <button
+            key={c.taxon.taxonId}
+            onClick={() => onPick(parsed.spec ? `${parsed.spec.verb} ${c.taxon.commonName}` : c.taxon.commonName)}
+            style={{
+              width: "100%", textAlign: "left", padding: "0.6rem 1rem", border: "none",
+              background: "transparent", cursor: "pointer", fontFamily: "var(--font-sans)",
+              fontSize: "0.92rem", color: "var(--text-primary)",
+            }}
+          >
+            <strong>{c.taxon.commonName}</strong>{" "}
+            <span style={{ color: "var(--text-tertiary, #778)" }}>
+              {c.taxon.scientificName} · {(c.confidence * 100).toFixed(0)}%
+            </span>
+          </button>
+        ))}
+      </div>
+    );
+  }
+
+  if (parsed.kind === "fallback") {
+    return (
+      <div style={{ marginBottom: "1rem", fontSize: "0.9rem", color: "var(--text-secondary)" }}>
+        {parsed.reason === "unresolved-species"
+          ? "No species matches that name."
+          : "No command matches — Enter asks the research agent."}
+      </div>
+    );
+  }
+  return null;
 }

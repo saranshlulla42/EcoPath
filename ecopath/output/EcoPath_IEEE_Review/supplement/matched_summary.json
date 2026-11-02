@@ -1,0 +1,2278 @@
+{
+  "results": [
+    {
+      "phase": "final",
+      "method_id": "constrained",
+      "level": "all",
+      "metrics": {
+        "outputs": 180,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 179,
+            "denominator": 180,
+            "value": 0.9944444444444445
+          },
+          "available_reporting_assessable": {
+            "numerator": 94,
+            "denominator": 537,
+            "value": 0.1750465549348231
+          },
+          "available_reporting_e2e": {
+            "numerator": 94,
+            "denominator": 540,
+            "value": 0.17407407407407408
+          },
+          "citation_existence": {
+            "numerator": 537,
+            "denominator": 537,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 94,
+            "denominator": 537,
+            "value": 0.1750465549348231
+          },
+          "citation_validity": {
+            "numerator": 537,
+            "denominator": 537,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 1074,
+            "denominator": 1074,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 1074,
+            "denominator": 1080,
+            "value": 0.9944444444444445
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 537,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 179,
+            "denominator": 180,
+            "value": 0.9944444444444445
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 179,
+            "denominator": 180,
+            "value": 0.9944444444444445
+          },
+          "structured_claims_supported": {
+            "numerator": 94,
+            "denominator": 537,
+            "value": 0.1750465549348231
+          },
+          "structured_field_success_e2e": {
+            "numerator": 1168,
+            "denominator": 1620,
+            "value": 0.7209876543209877
+          },
+          "unsupported_structured_claims": {
+            "numerator": 443,
+            "denominator": 537,
+            "value": 0.8249534450651769
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 0.9944444444444444,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 0.17916666666666667,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 0.17777777777777776,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 0.17916666666666667,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 0.9944444444444444,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 0.9944444444444444,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 0.9944444444444444,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 0.17916666666666667,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 0.7209876543209877,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.8208333333333333,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 25.46004908663284,
+      "output_tokens": 80726,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "constrained",
+      "level": "complete",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 60,
+            "denominator": 360,
+            "value": 0.16666666666666666
+          },
+          "available_reporting_e2e": {
+            "numerator": 60,
+            "denominator": 360,
+            "value": 0.16666666666666666
+          },
+          "citation_existence": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 60,
+            "denominator": 360,
+            "value": 0.16666666666666666
+          },
+          "citation_validity": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 360,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 60,
+            "denominator": 360,
+            "value": 0.16666666666666666
+          },
+          "structured_field_success_e2e": {
+            "numerator": 240,
+            "denominator": 540,
+            "value": 0.4444444444444444
+          },
+          "unsupported_structured_claims": {
+            "numerator": 300,
+            "denominator": 360,
+            "value": 0.8333333333333334
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 0.16666666666666666,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 0.16666666666666666,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 0.16666666666666666,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 0.16666666666666666,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 0.4444444444444444,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.8333333333333334,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 33.43337484569929,
+      "output_tokens": 33380,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "constrained",
+      "level": "minimal",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 17.579839702082488,
+      "output_tokens": 20315,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "constrained",
+      "level": "partial",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 59,
+            "denominator": 60,
+            "value": 0.9833333333333333
+          },
+          "available_reporting_assessable": {
+            "numerator": 34,
+            "denominator": 177,
+            "value": 0.192090395480226
+          },
+          "available_reporting_e2e": {
+            "numerator": 34,
+            "denominator": 180,
+            "value": 0.18888888888888888
+          },
+          "citation_existence": {
+            "numerator": 177,
+            "denominator": 177,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 34,
+            "denominator": 177,
+            "value": 0.192090395480226
+          },
+          "citation_validity": {
+            "numerator": 177,
+            "denominator": 177,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 354,
+            "denominator": 354,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 354,
+            "denominator": 360,
+            "value": 0.9833333333333333
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 177,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 59,
+            "denominator": 60,
+            "value": 0.9833333333333333
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 59,
+            "denominator": 60,
+            "value": 0.9833333333333333
+          },
+          "structured_claims_supported": {
+            "numerator": 34,
+            "denominator": 177,
+            "value": 0.192090395480226
+          },
+          "structured_field_success_e2e": {
+            "numerator": 388,
+            "denominator": 540,
+            "value": 0.7185185185185186
+          },
+          "unsupported_structured_claims": {
+            "numerator": 143,
+            "denominator": 177,
+            "value": 0.807909604519774
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 0.9833333333333333,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 0.19209039548022597,
+            "assessable_species": 59
+          },
+          "available_reporting_e2e": {
+            "value": 0.18888888888888886,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 59
+          },
+          "citation_structured_support": {
+            "value": 0.19209039548022597,
+            "assessable_species": 59
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 59
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 59
+          },
+          "correct_abstention_e2e": {
+            "value": 0.9833333333333333,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 59
+          },
+          "json_validity": {
+            "value": 0.9833333333333333,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 0.9833333333333333,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 0.19209039548022597,
+            "assessable_species": 59
+          },
+          "structured_field_success_e2e": {
+            "value": 0.7185185185185184,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.807909604519774,
+            "assessable_species": 59
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 25.366932712116736,
+      "output_tokens": 27031,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "original",
+      "level": "all",
+      "metrics": {
+        "outputs": 62,
+        "species": 21,
+        "micro": {
+          "assessable_output": {
+            "numerator": 0,
+            "denominator": 62,
+            "value": 0.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 189,
+            "value": 0.0
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_e2e": {
+            "numerator": 0,
+            "denominator": 369,
+            "value": 0.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 0,
+            "denominator": 62,
+            "value": 0.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 0,
+            "denominator": 62,
+            "value": 0.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 0,
+            "denominator": 558,
+            "value": 0.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "available_reporting_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "correct_abstention_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "json_validity": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "schema_compliance": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "structured_field_success_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 31.279718394241964,
+      "output_tokens": 43364,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "original",
+      "level": "complete",
+      "metrics": {
+        "outputs": 21,
+        "species": 21,
+        "micro": {
+          "assessable_output": {
+            "numerator": 0,
+            "denominator": 21,
+            "value": 0.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 126,
+            "value": 0.0
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_e2e": {
+            "numerator": 0,
+            "denominator": 63,
+            "value": 0.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 0,
+            "denominator": 21,
+            "value": 0.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 0,
+            "denominator": 21,
+            "value": 0.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 0,
+            "denominator": 189,
+            "value": 0.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "available_reporting_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "correct_abstention_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "json_validity": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "schema_compliance": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "structured_field_success_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 33.70781107371503,
+      "output_tokens": 15708,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "original",
+      "level": "minimal",
+      "metrics": {
+        "outputs": 20,
+        "species": 20,
+        "micro": {
+          "assessable_output": {
+            "numerator": 0,
+            "denominator": 20,
+            "value": 0.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_e2e": {
+            "numerator": 0,
+            "denominator": 180,
+            "value": 0.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 0,
+            "denominator": 20,
+            "value": 0.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 0,
+            "denominator": 20,
+            "value": 0.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 0,
+            "denominator": 180,
+            "value": 0.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 0.0,
+            "assessable_species": 20
+          },
+          "correct_abstention_e2e": {
+            "value": 0.0,
+            "assessable_species": 20
+          },
+          "json_validity": {
+            "value": 0.0,
+            "assessable_species": 20
+          },
+          "schema_compliance": {
+            "value": 0.0,
+            "assessable_species": 20
+          },
+          "structured_field_success_e2e": {
+            "value": 0.0,
+            "assessable_species": 20
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 29.170117935949747,
+      "output_tokens": 13061,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "original",
+      "level": "partial",
+      "metrics": {
+        "outputs": 21,
+        "species": 21,
+        "micro": {
+          "assessable_output": {
+            "numerator": 0,
+            "denominator": 21,
+            "value": 0.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 63,
+            "value": 0.0
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_e2e": {
+            "numerator": 0,
+            "denominator": 126,
+            "value": 0.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 0,
+            "denominator": 21,
+            "value": 0.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 0,
+            "denominator": 21,
+            "value": 0.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 0,
+            "denominator": 189,
+            "value": 0.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "available_reporting_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "correct_abstention_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "json_validity": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "schema_compliance": {
+            "value": 0.0,
+            "assessable_species": 21
+          },
+          "structured_field_success_e2e": {
+            "value": 0.0,
+            "assessable_species": 21
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 30.860769008380537,
+      "output_tokens": 14595,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "qlora-42",
+      "level": "all",
+      "metrics": {
+        "outputs": 180,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "available_reporting_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "citation_existence": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "citation_validity": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 1080,
+            "denominator": 1080,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 1080,
+            "denominator": 1080,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 540,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "structured_field_success_e2e": {
+            "numerator": 1620,
+            "denominator": 1620,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 540,
+            "value": 0.0
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 29.363850442227864,
+      "output_tokens": 57059,
+      "training_seed": 42,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "qlora-42",
+      "level": "complete",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "available_reporting_e2e": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_existence": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_validity": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 360,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 360,
+            "value": 0.0
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 39.01788057048301,
+      "output_tokens": 25311,
+      "training_seed": 42,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "qlora-42",
+      "level": "minimal",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 19.85149484608373,
+      "output_tokens": 12791,
+      "training_seed": 42,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "qlora-42",
+      "level": "partial",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "available_reporting_e2e": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "citation_existence": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "citation_validity": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 180,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 180,
+            "value": 0.0
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 29.222175910116857,
+      "output_tokens": 18957,
+      "training_seed": 42,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "template",
+      "level": "all",
+      "metrics": {
+        "outputs": 180,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "available_reporting_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "citation_existence": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "citation_validity": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 1080,
+            "denominator": 1080,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 1080,
+            "denominator": 1080,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 540,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "structured_field_success_e2e": {
+            "numerator": 1620,
+            "denominator": 1620,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 540,
+            "value": 0.0
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 3.516716662690871e-05,
+      "output_tokens": null,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "template",
+      "level": "complete",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "available_reporting_e2e": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_existence": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "citation_validity": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 360,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 360,
+            "value": 0.0
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 3.692831645215241e-05,
+      "output_tokens": null,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "template",
+      "level": "minimal",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "available_reporting_e2e": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_existence": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_structured_support": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "correct_abstention_assessable": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 3.280388288355122e-05,
+      "output_tokens": null,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    },
+    {
+      "phase": "final",
+      "method_id": "template",
+      "level": "partial",
+      "metrics": {
+        "outputs": 60,
+        "species": 60,
+        "micro": {
+          "assessable_output": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "available_reporting_assessable": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "available_reporting_e2e": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "citation_existence": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "citation_structured_support": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "citation_validity": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "correct_abstention_assessable": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "correct_abstention_e2e": {
+            "numerator": 360,
+            "denominator": 360,
+            "value": 1.0
+          },
+          "false_abstention_assessable": {
+            "numerator": 0,
+            "denominator": 180,
+            "value": 0.0
+          },
+          "json_validity": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "prose_citation_validity": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "schema_compliance": {
+            "numerator": 60,
+            "denominator": 60,
+            "value": 1.0
+          },
+          "structured_claims_supported": {
+            "numerator": 180,
+            "denominator": 180,
+            "value": 1.0
+          },
+          "structured_field_success_e2e": {
+            "numerator": 540,
+            "denominator": 540,
+            "value": 1.0
+          },
+          "unsupported_structured_claims": {
+            "numerator": 0,
+            "denominator": 180,
+            "value": 0.0
+          }
+        },
+        "species_macro": {
+          "assessable_output": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "available_reporting_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_existence": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_structured_support": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "citation_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_assessable": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "correct_abstention_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "false_abstention_assessable": {
+            "value": 0.0,
+            "assessable_species": 60
+          },
+          "json_validity": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "schema_compliance": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_claims_supported": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "structured_field_success_e2e": {
+            "value": 1.0,
+            "assessable_species": 60
+          },
+          "unsupported_structured_claims": {
+            "value": 0.0,
+            "assessable_species": 60
+          }
+        },
+        "prose_claims_pending_annotation": 0
+      },
+      "failures": 0,
+      "latency_scope": "single-example wall time; excludes model loading and warmups",
+      "mean_wall_seconds": 3.576930054502251e-05,
+      "output_tokens": null,
+      "training_seed": null,
+      "configuration": {
+        "max_input_tokens": 4096,
+        "max_new_tokens": 768,
+        "seed": 42,
+        "temperature": 0.0
+      }
+    }
+  ],
+  "error_counts": {
+    "invalid_json": 63,
+    "truncation": 25,
+    "unsupported_or_incorrect": 443
+  },
+  "scope": "structured extraction support; unrestricted prose is not automatically verified"
+}

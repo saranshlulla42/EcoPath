@@ -4,10 +4,12 @@ Loads and validates all environment variables using pydantic-settings.
 """
 
 from functools import lru_cache
+from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    ollama_comparison_base_model: str = "qwen2.5:7b-instruct"
     # Supabase
     supabase_url: str
     supabase_anon_key: str
@@ -34,14 +36,31 @@ class Settings(BaseSettings):
     # Agent Settings
     agent_model: str = "openai/gpt-oss-120b"
     agent_temperature: float = 0.3
-    agent_max_tool_rounds: int = 5
+    # Each extra round resends the whole prefix plus everything accumulated so
+    # far, so cost climbs steeply with rounds. Three covers resolve -> query ->
+    # refine, and a round may fire several tools in parallel, so this is not one
+    # tool call per round. Past three the model is generally retrying a failing
+    # tool rather than making progress; the loop says so instead of grinding on.
+    agent_max_tool_rounds: int = 3
     # Research session lifetime. Lower it (e.g. 0.17 ≈ 10s) to exercise expiry handling.
     agent_session_ttl_minutes: float = 30.0
+
+    # Fine-tuned PEFT model (lazy-loaded at first inference, not at startup).
+    # Set peft_base_model to the HuggingFace repo id of the base model and
+    # peft_adapter_path to the local directory containing the LoRA adapter.
+    # Leave either unset to skip local-model inference entirely.
+    peft_base_model: Optional[str] = None
+    peft_adapter_path: Optional[str] = None
 
     # GBIF
     gbif_base_url: str = "https://api.gbif.org/v1"
     gbif_aves_taxon_key: int = 212
     gbif_country_code: str = ""  # Default empty = no country filter (global)
+
+    # eBird — server-side only. Previously exposed to the browser as
+    # NEXT_PUBLIC_EBIRD_API_KEY, which shipped the key in the client bundle.
+    ebird_api_key: str = ""
+    ebird_base_url: str = "https://api.ebird.org/v2"
 
     # Open-Meteo
     openmeteo_base_url: str = "https://archive-api.open-meteo.com/v1/archive"

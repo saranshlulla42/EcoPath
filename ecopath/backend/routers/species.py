@@ -32,7 +32,7 @@ async def list_species(limit: int = Query(20, ge=1, le=100)):
     supabase = get_supabase()
     result = (
         supabase.table("species")
-        .select("id, common_name, scientific_name, family, iucn_status, image_url, gbif_image_url, endemic_india, migratory")
+        .select("id, gbif_key, common_name, scientific_name, family, iucn_status, image_url, gbif_image_url, endemic_india, migratory")
         .limit(limit)
         .execute()
     )
@@ -54,7 +54,7 @@ async def search_species_endpoint(
     # Try local DB first (fast path)
     result = (
         supabase.table("species")
-        .select("id, common_name, scientific_name, family, iucn_status, image_url, gbif_image_url, endemic_india, migratory")
+        .select("id, gbif_key, common_name, scientific_name, family, iucn_status, image_url, gbif_image_url, endemic_india, migratory")
         .ilike("common_name", f"%{q}%")
         .limit(limit)
         .execute()
@@ -68,9 +68,12 @@ async def search_species_endpoint(
             gbif_results = await search_species(q, limit=limit)
             gbif_formatted = []
             for r in gbif_results:
-                if r.get("rank") == "SPECIES" and r.get("kingdom") == "Animalia":
+                if r.get("rank") == "SPECIES" and r.get("kingdom") == "Animalia" and r.get("key"):
                     gbif_formatted.append({
                         "id": None,
+                        # Required by SpeciesSearchResult; omitting it made every
+                        # GBIF-supplemented search fail response validation.
+                        "gbif_key": r.get("key"),
                         "common_name": r.get("vernacularName") or r.get("canonicalName", "Unknown"),
                         "scientific_name": r.get("canonicalName", ""),
                         "family": r.get("family"),
@@ -208,7 +211,7 @@ async def identify_species_from_image(
         supabase = get_supabase()
         match = (
             supabase.table("species")
-            .select("id, common_name, scientific_name, family, iucn_status, image_url, gbif_image_url, endemic_india, migratory")
+            .select("id, gbif_key, common_name, scientific_name, family, iucn_status, image_url, gbif_image_url, endemic_india, migratory")
             .ilike("scientific_name", f"%{result['scientific_name'].split()[0]}%")
             .limit(1)
             .execute()

@@ -1,0 +1,122 @@
+{
+  "species": 30,
+  "genera": 30,
+  "split_species_counts": {
+    "pilot": 30
+  },
+  "families": {
+    "Prunellidae (Accentors)": 1,
+    "Cisticolidae (Cisticolas and Allies)": 1,
+    "Laridae (Gulls, Terns, and Skimmers)": 1,
+    "Scolopacidae (Sandpipers and Allies)": 2,
+    "Muscicapidae (Old World Flycatchers)": 3,
+    "Picidae (Woodpeckers)": 1,
+    "Timaliidae (Tree-Babblers, Scimitar-Babblers, and Allies)": 1,
+    "Cuculidae (Cuckoos)": 2,
+    "Artamidae (Woodswallows, Bellmagpies, and Allies)": 1,
+    "Alaudidae (Larks)": 1,
+    "Motacillidae (Wagtails and Pipits)": 2,
+    "Podicipedidae (Grebes)": 1,
+    "Columbidae (Pigeons and Doves)": 2,
+    "Apodidae (Swifts)": 1,
+    "Trogonidae (Trogons)": 1,
+    "Dicruridae (Drongos)": 1,
+    "Pellorneidae (Ground Babblers and Allies)": 1,
+    "Strigidae (Owls)": 1,
+    "Meropidae (Bee-eaters)": 1,
+    "Psittaculidae (Old World Parrots)": 1,
+    "Phylloscopidae (Leaf Warblers)": 1,
+    "Corvidae (Crows, Jays, and Magpies)": 1,
+    "Rhipiduridae (Fantails)": 1,
+    "Nectariniidae (Sunbirds and Spiderhunters)": 1
+  },
+  "orders": {
+    "Passeriformes": 16,
+    "Charadriiformes": 3,
+    "Piciformes": 1,
+    "Cuculiformes": 2,
+    "Podicipediformes": 1,
+    "Columbiformes": 2,
+    "Caprimulgiformes": 1,
+    "Trogoniformes": 1,
+    "Strigiformes": 1,
+    "Coraciiformes": 1,
+    "Psittaciformes": 1
+  },
+  "collected_availability": {
+    "iucn_status": {
+      "missing": 30
+    },
+    "population_trend": {
+      "available": 30
+    },
+    "population_size": {
+      "missing": 30
+    },
+    "habitat": {
+      "available": 30
+    },
+    "range_summary": {
+      "available": 30
+    },
+    "diet": {
+      "available": 30
+    },
+    "breeding_behavior": {
+      "missing": 30
+    },
+    "migratory_behavior": {
+      "available": 30
+    },
+    "key_threats": {
+      "missing": 30
+    }
+  },
+  "by_level": {
+    "complete": {
+      "examples": 30,
+      "available_fields": {
+        "iucn_status": 0,
+        "population_trend": 30,
+        "population_size": 0,
+        "habitat": 30,
+        "range_summary": 30,
+        "diet": 30,
+        "breeding_behavior": 0,
+        "migratory_behavior": 30,
+        "key_threats": 0
+      }
+    },
+    "partial": {
+      "examples": 30,
+      "available_fields": {
+        "iucn_status": 0,
+        "population_trend": 23,
+        "population_size": 0,
+        "habitat": 22,
+        "range_summary": 12,
+        "diet": 16,
+        "breeding_behavior": 0,
+        "migratory_behavior": 17,
+        "key_threats": 0
+      }
+    },
+    "minimal": {
+      "examples": 30,
+      "available_fields": {
+        "iucn_status": 0,
+        "population_trend": 0,
+        "population_size": 0,
+        "habitat": 0,
+        "range_summary": 0,
+        "diet": 0,
+        "breeding_behavior": 0,
+        "migratory_behavior": 0,
+        "key_threats": 0
+      }
+    }
+  },
+  "partial_equals_minimal_species": 0,
+  "source_assertions": 150,
+  "source_missing_retrieval_dates": 0
+}

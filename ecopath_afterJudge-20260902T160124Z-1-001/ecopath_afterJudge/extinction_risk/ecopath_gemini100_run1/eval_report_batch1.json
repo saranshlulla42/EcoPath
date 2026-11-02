@@ -1,0 +1,312 @@
+{
+  "aggregate": {
+    "base_model": {
+      "n_samples": 8,
+      "json_valid_pct": 0.0,
+      "schema_ok_pct": 0.0,
+      "judge_format_compliance_avg": 1.0,
+      "judge_factual_accuracy_avg": 2.38,
+      "judge_completeness_avg": 3.88,
+      "judge_usefulness_avg": 1.88
+    },
+    "ft_model": {
+      "n_samples": 8,
+      "json_valid_pct": 100.0,
+      "schema_ok_pct": 100.0,
+      "judge_format_compliance_avg": 5.0,
+      "judge_factual_accuracy_avg": 5.0,
+      "judge_completeness_avg": 5.0,
+      "judge_usefulness_avg": 4.75
+    }
+  },
+  "rows": [
+    {
+      "idx": 1,
+      "species": "Herring Gull",
+      "scientific_name": "Larus argentatus",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 2,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The model produced plain Markdown instead of the required JSON schema and hallucinated ecologically implausible threats such as deforestation for a coastal seabird."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Herring Gull)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The report strictly adheres to the provided minimal evidence without hallucinating, accurately flags critical data gaps, and provides actionable recommendations to gather the missing information."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 2,
+      "species": "Mediterranean Gull",
+      "scientific_name": "Ichthyaetus melanocephalus",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 3,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The model generated plain Markdown text instead of the required JSON structure and included raw search query strings within its citations."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Mediterranean Gull)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 4,
+        "brief_reason": "The report strictly adheres to the provided minimal evidence without hallucinating facts, correctly identifies critical data gaps, and follows the expected JSON format."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 3,
+      "species": "European Goldfinch",
+      "scientific_name": "Carduelis carduelis",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 3,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The model output failed format compliance by providing Markdown text instead of JSON and included hallucinated search query citations."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: European Goldfinch)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The model produced a perfectly formatted JSON report that strictly adheres to the sparse provided evidence, accurately highlighting critical data gaps without hallucinating facts."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 4,
+      "species": "Eurasian Hobby",
+      "scientific_name": "Falco subbuteo",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 3,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The model generated a Markdown report instead of valid JSON, and included raw search query strings within the main text."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Eurasian Hobby)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The report perfectly handles sparse evidence by strictly adhering to the provided data without hallucinating facts, clearly identifying critical data gaps, and recommending actionable baseline steps in valid JSON format."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 5,
+      "species": "Eurasian Hoopoe",
+      "scientific_name": "Upupa epops",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 2,
+        "completeness": 3,
+        "usefulness": 2,
+        "brief_reason": "The output is formatted as Markdown text rather than the expected JSON schema and hallucinates threat evidence by citing internal search queries."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Eurasian Hoopoe)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 4,
+        "brief_reason": "The model accurately adheres to the provided evidence without hallucinating missing ecological details, maintaining perfect formatting while clearly identifying critical data gaps."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 6,
+      "species": "Common Murre",
+      "scientific_name": "Uria aalge",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 1,
+        "completeness": 4,
+        "usefulness": 1,
+        "brief_reason": "The model failed format compliance by producing Markdown instead of JSON and hallucinated ecologically absurd threats for a pelagic seabird, such as deforestation and wetland drainage."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Common Murre)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The model accurately identified the severe data gaps in the input without hallucinating facts, producing a well-structured and actionable report focused on essential baseline data collection."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 7,
+      "species": "Southern Cassowary",
+      "scientific_name": "Casuarius casuarius",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 3,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The model failed format compliance by generating Markdown text instead of JSON, and included raw search query strings as source citations."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Southern Cassowary)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The model appropriately handled the sparse input evidence without hallucinating facts, producing a well-structured and accurate decision-support draft that highlights data gaps."
+      },
+      "has_ft": true
+    },
+    {
+      "idx": 8,
+      "species": "Crested Lark",
+      "scientific_name": "Galerida cristata",
+      "iucn_ground_truth": null,
+      "base_json_valid": false,
+      "base_schema_ok": false,
+      "base_missing_keys": [],
+      "base_iucn_extracted": null,
+      "base_iucn_match": null,
+      "base_judge": {
+        "format_compliance": 1,
+        "factual_accuracy": 2,
+        "completeness": 4,
+        "usefulness": 2,
+        "brief_reason": "The model produced Markdown text instead of JSON, and hallucinated threat details and false citations attributed to the sparse GBIF input."
+      },
+      "ft_json_valid": true,
+      "ft_schema_ok": true,
+      "ft_missing_keys": [],
+      "ft_iucn_extracted": {
+        "iucn_status": "Unavailable",
+        "population_trend": "Unavailable",
+        "population_size": "Unavailable",
+        "status_summary": "The current global IUCN Red List status, population size, and population trend are unavailable in the provided species profile (GBIF species profile: Crested Lark)."
+      },
+      "ft_iucn_match": null,
+      "ft_judge": {
+        "format_compliance": 5,
+        "factual_accuracy": 5,
+        "completeness": 5,
+        "usefulness": 5,
+        "brief_reason": "The model perfectly handles the data deficiency of the input without hallucinating, providing solid next steps and adhering to JSON format."
+      },
+      "has_ft": true
+    }
+  ]
+}

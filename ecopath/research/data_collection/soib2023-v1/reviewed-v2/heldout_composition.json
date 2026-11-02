@@ -1,0 +1,151 @@
+{
+  "species": 90,
+  "genera": 90,
+  "split_species_counts": {
+    "validation": 30,
+    "test": 60
+  },
+  "families": {
+    "Muscicapidae (Old World Flycatchers)": 7,
+    "Cinclidae (Dippers)": 1,
+    "Picidae (Woodpeckers)": 3,
+    "Cuculidae (Cuckoos)": 4,
+    "Pycnonotidae (Bulbuls)": 2,
+    "Phasianidae (Pheasants, Grouse, and Allies)": 3,
+    "Charadriidae (Plovers and Lapwings)": 3,
+    "Scolopacidae (Sandpipers and Allies)": 3,
+    "Leiothrichidae (Laughingthrushes and Allies)": 4,
+    "Accipitridae (Hawks, Eagles, and Kites)": 10,
+    "Bucerotidae (Hornbills)": 1,
+    "Emberizidae (Old World Buntings)": 1,
+    "Columbidae (Pigeons and Doves)": 4,
+    "Coraciidae (Rollers)": 1,
+    "Aegithinidae (Ioras)": 1,
+    "Falconidae (Falcons and Caracaras)": 1,
+    "Paridae (Tits, Chickadees, and Titmice)": 1,
+    "Strigidae (Owls)": 1,
+    "Phoenicopteridae (Flamingos)": 1,
+    "Cisticolidae (Cisticolas and Allies)": 1,
+    "Sittidae (Nuthatches)": 1,
+    "Fringillidae (Finches, Euphonias, and Allies)": 3,
+    "Laridae (Gulls, Terns, and Skimmers)": 2,
+    "Vangidae (Vangas, Helmetshrikes, and Allies)": 1,
+    "Dicaeidae (Flowerpeckers)": 1,
+    "Timaliidae (Tree-Babblers, Scimitar-Babblers, and Allies)": 2,
+    "Sturnidae (Starlings)": 2,
+    "Burhinidae (Thick-knees)": 2,
+    "Alcedinidae (Kingfishers)": 3,
+    "Pelecanidae (Pelicans)": 1,
+    "Alaudidae (Larks)": 1,
+    "Campephagidae (Cuckooshrikes)": 2,
+    "Estrildidae (Waxbills and Allies)": 1,
+    "Hirundinidae (Swallows)": 1,
+    "Chloropseidae (Leafbirds)": 1,
+    "Nectariniidae (Sunbirds and Spiderhunters)": 1,
+    "Psittaculidae (Old World Parrots)": 1,
+    "Anatidae (Ducks, Geese, and Waterfowl)": 2,
+    "Acrocephalidae (Reed Warblers and Allies)": 1,
+    "Turdidae (Thrushes and Allies)": 1,
+    "Phalacrocoracidae (Cormorants and Shags)": 1,
+    "Sylviidae (Sylviid Warblers, Parrotbills, and Allies)": 1,
+    "Jacanidae (Jacanas)": 1,
+    "Rallidae (Rails, Gallinules, and Coots)": 2,
+    "Ardeidae (Herons, Egrets, and Bitterns)": 1,
+    "Glareolidae (Pratincoles and Coursers)": 1
+  },
+  "orders": {
+    "Passeriformes": 38,
+    "Piciformes": 3,
+    "Cuculiformes": 4,
+    "Galliformes": 3,
+    "Charadriiformes": 12,
+    "Accipitriformes": 10,
+    "Bucerotiformes": 1,
+    "Columbiformes": 4,
+    "Coraciiformes": 4,
+    "Falconiformes": 1,
+    "Strigiformes": 1,
+    "Phoenicopteriformes": 1,
+    "Pelecaniformes": 2,
+    "Psittaciformes": 1,
+    "Anseriformes": 2,
+    "Suliformes": 1,
+    "Gruiformes": 2
+  },
+  "collected_availability": {
+    "iucn_status": {
+      "missing": 90
+    },
+    "population_trend": {
+      "available": 90
+    },
+    "population_size": {
+      "missing": 90
+    },
+    "habitat": {
+      "available": 90
+    },
+    "range_summary": {
+      "available": 90
+    },
+    "diet": {
+      "available": 90
+    },
+    "breeding_behavior": {
+      "missing": 90
+    },
+    "migratory_behavior": {
+      "available": 90
+    },
+    "key_threats": {
+      "missing": 90
+    }
+  },
+  "by_level": {
+    "complete": {
+      "examples": 90,
+      "available_fields": {
+        "iucn_status": 0,
+        "population_trend": 90,
+        "population_size": 0,
+        "habitat": 90,
+        "range_summary": 90,
+        "diet": 90,
+        "breeding_behavior": 0,
+        "migratory_behavior": 90,
+        "key_threats": 0
+      }
+    },
+    "partial": {
+      "examples": 90,
+      "available_fields": {
+        "iucn_status": 0,
+        "population_trend": 60,
+        "population_size": 0,
+        "habitat": 48,
+        "range_summary": 58,
+        "diet": 53,
+        "breeding_behavior": 0,
+        "migratory_behavior": 51,
+        "key_threats": 0
+      }
+    },
+    "minimal": {
+      "examples": 90,
+      "available_fields": {
+        "iucn_status": 0,
+        "population_trend": 0,
+        "population_size": 0,
+        "habitat": 0,
+        "range_summary": 0,
+        "diet": 0,
+        "breeding_behavior": 0,
+        "migratory_behavior": 0,
+        "key_threats": 0
+      }
+    }
+  },
+  "partial_equals_minimal_species": 0,
+  "source_assertions": 450,
+  "source_missing_retrieval_dates": 0
+}

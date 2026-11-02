@@ -1,0 +1,178 @@
+{
+  "data_pipeline": {
+    "total_species": 69,
+    "total_population_records": 36000,
+    "total_observations_sum": 36000,
+    "species_with_pop_data": 18,
+    "year_range": "2015-2024",
+    "distinct_years": 10,
+    "distinct_states": 44,
+    "states_list": [
+      "Andaman and Nicobar",
+      "Andaman and Nicobar Islands",
+      "Andhra Pradesh",
+      "Andra Pradesh",
+      "Arunachal Pradesh",
+      "Assam",
+      "Bihar",
+      "Chandigarh",
+      "Chhattisgarh",
+      "Dadra and Nagar Haveli",
+      "Daman and Diu",
+      "Delhi",
+      "Deli",
+      "Goa",
+      "Gujarat",
+      "Haryana",
+      "Himachal Pradesh",
+      "Jammu and Kashmir",
+      "Jharkhand",
+      "Karnataka",
+      "Kerala",
+      "Ladakh",
+      "Lakshadweep",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Maharastra",
+      "Manipur",
+      "Meghalaya",
+      "Mizoram",
+      "NCT of Delhi",
+      "Nagaland",
+      "New Delhi",
+      "Odisha",
+      "Puducherry",
+      "Punjab",
+      "Rajasthan",
+      "Sikkim",
+      "Tamil Nadu",
+      "Telangana",
+      "Tripura",
+      "Unknown",
+      "Uttar Pradesh",
+      "Uttarakhand",
+      "West Bengal"
+    ],
+    "temporal_completeness": {
+      "species_with_all_years": 18,
+      "total_species_with_data": 18,
+      "avg_years_per_species": 10.0
+    },
+    "records_by_year": {
+      "2015": 3600,
+      "2016": 3600,
+      "2017": 3600,
+      "2018": 3600,
+      "2019": 3600,
+      "2020": 3600,
+      "2021": 3600,
+      "2022": 3600,
+      "2023": 3600,
+      "2024": 3600
+    },
+    "records_by_state": {
+      "Kerala": 6990,
+      "Karnataka": 6715,
+      "Tamil Nadu": 5816,
+      "Maharashtra": 3785,
+      "West Bengal": 1781,
+      "Telangana": 1465,
+      "Gujarat": 1458,
+      "Madhya Pradesh": 990,
+      "Uttarakhand": 838,
+      "Goa": 824,
+      "Rajasthan": 732,
+      "Assam": 672,
+      "Andhra Pradesh": 559,
+      "Delhi": 476,
+      "Haryana": 419,
+      "Uttar Pradesh": 415,
+      "Odisha": 386,
+      "Chhattisgarh": 363,
+      "Punjab": 258,
+      "Puducherry": 173,
+      "Unknown": 134,
+      "Himachal Pradesh": 132,
+      "Bihar": 111,
+      "Andaman and Nicobar Islands": 86,
+      "Jammu and Kashmir": 81,
+      "NCT of Delhi": 81,
+      "Chandigarh": 71,
+      "Jharkhand": 39,
+      "Arunachal Pradesh": 27,
+      "Meghalaya": 26,
+      "Maharastra": 23,
+      "Tripura": 18,
+      "Andra Pradesh": 12,
+      "New Delhi": 11,
+      "Manipur": 7,
+      "Sikkim": 7,
+      "Nagaland": 4,
+      "Mizoram": 3,
+      "Ladakh": 3,
+      "Dadra and Nagar Haveli": 3,
+      "Andaman and Nicobar": 2,
+      "Daman and Diu": 2,
+      "Lakshadweep": 1,
+      "Deli": 1
+    }
+  },
+  "migration_routes": {
+    "total_routes": 4,
+    "species_with_routes": 4,
+    "routes_by_source": {
+      "BirdLife": 4
+    },
+    "routes_by_flyway": {
+      "Central Asian Flyway": 3,
+      "East Asian-Australasian Flyway": 1
+    },
+    "distance_stats_km": {
+      "min": 3200.0,
+      "max": 22000.0,
+      "avg": 8375
+    }
+  },
+  "anomaly_detection": {
+    "total_anomalies": 0,
+    "status": "empty_table",
+    "algorithm_implemented": true,
+    "features": [
+      "z_score_5yr_rolling",
+      "4_anomaly_types",
+      "4_severity_levels",
+      "weather_enrichment"
+    ]
+  },
+  "species_catalogue": {
+    "total": 69,
+    "iucn_distribution": {
+      "LC": 47,
+      "VU": 7,
+      "CR": 6,
+      "NT": 5,
+      "EN": 4
+    },
+    "migratory": 11,
+    "endemic_india": 10
+  },
+  "rag_pipeline": {
+    "total_cached_answers": 150,
+    "species_with_cache": 15,
+    "question_templates": 10
+  },
+  "integration": {
+    "api_count": 9,
+    "apis": [
+      "GBIF",
+      "Supabase + PostGIS",
+      "Gemini 2.5 Flash",
+      "Xeno-canto",
+      "Wikimedia Commons",
+      "Open-Meteo",
+      "Movebank",
+      "eBird",
+      "MapLibre GL JS"
+    ]
+  }
+}

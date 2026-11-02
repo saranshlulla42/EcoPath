@@ -1,0 +1,8352 @@
+[
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "1\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        734.3622
+      ],
+      "text": "Fine-Tuning a Language Model for Bird Conservation\nReport Drafting\n",
+      "font": "/F3",
+      "size": 17.5,
+      "leading": 21.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            24.5
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.3963,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            142.7037,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            -163.1,
+            0.0
+          ]
+        ]
+      ],
+      "end": 31,
+      "id": 1
+    },
+    {
+      "begin": 37,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        689.3622
+      ],
+      "text": "Atharva Girkar    Taneesh Hinduja    Saransh Lulla    Ved Sarode\nIndu Dokare\n",
+      "font": "/F2",
+      "size": 11.0,
+      "leading": 14.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            17.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            80.0288,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            115.9345,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            -195.9633,
+            0.0
+          ]
+        ]
+      ],
+      "end": 52,
+      "id": 2
+    },
+    {
+      "begin": 59,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        670.8622
+      ],
+      "text": "Department of Computer Engineering, Vivekanand Education Society's Institute of Technology, Mumbai, India\n",
+      "font": "/F4",
+      "size": 9.3,
+      "leading": 11.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ],
+        [
+          "Td",
+          [
+            16.7371,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            -16.7371,
+            0.0
+          ]
+        ]
+      ],
+      "end": 67,
+      "id": 3
+    },
+    {
+      "begin": 73,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        631.8622
+      ],
+      "text": "indu.dokare@ves.ac.in; 2023.atharva.girkar@ves.ac.in;\n2023.taneesh.hinduja@ves.ac.in; 2023.saransh.lulla@ves.ac.in;\n2023.ved.sarode@ves.ac.in\n",
+      "font": "/F2",
+      "size": 8.7,
+      "leading": 11.0,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            24.3
+          ]
+        ],
+        [
+          "Td",
+          [
+            126.9232,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            -13.9026,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            62.8488,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            -175.8694,
+            0.0
+          ]
+        ]
+      ],
+      "end": 88,
+      "id": 4
+    },
+    {
+      "begin": 95,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        598.8622
+      ],
+      "text": "Abstract\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 101,
+      "id": 5
+    },
+    {
+      "begin": 108,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        372.2622
+      ],
+      "text": "Preparing a conservation report from incomplete biodiversity information requires more than a fluent\nsummary: the report must preserve the distinction between available evidence and unanswered questions.\nWe investigated whether parameter-efficient fine-tuning could help a language model perform this task\nwithin EcoPath, a geospatial bird-intelligence platform. We adapted Qwen2.5-7B-Instruct using QLoRA\non 85 synthetic examples and compared it with the unadapted model on 15 held-out bird species. Inputs\ncontained GBIF-linked species metadata but lacked verified conservation status, population trend,\npopulation estimate, habitat, and range fields. The adapted model produced valid, schema-compliant\nJSON for all 15 species, whereas the unadapted model returned Markdown prose and passed neither\nstructural check. Mean output length decreased from 590 to 335 words. Supplementary automated\nevaluation also favoured the adapted responses, with mean grounding scores of 5.00 versus 2.33 and\nreviewer-usefulness scores of 4.73 versus 1.87 on a five-point scale. Illustrative cases showed a shift from\nunsupported threat descriptions to explicit acknowledgement of missing information. The findings\ndemonstrate adaptation to a structured drafting task under sparse inputs. Whether this behaviour represents\nreliable evidence use beyond the learned reporting pattern remains unresolved, particularly in comparison\nwith stronger prompting and constrained generation. EcoPath provides a setting for investigating that\ndistinction while retaining human responsibility for conservation interpretation.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 16,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            207.1
+          ]
+        ]
+      ],
+      "end": 174,
+      "id": 6
+    },
+    {
+      "begin": 180,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        342.2622
+      ],
+      "text": "Keywords: ecological AI; biodiversity data platform; QLoRA; bird conservation; report drafting; structured generation;\nmissing evidence.\n",
+      "font": "/F2",
+      "size": 9.1,
+      "leading": 11.5,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.9
+          ]
+        ]
+      ],
+      "end": 193,
+      "id": 7
+    },
+    {
+      "begin": 200,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        311.2622
+      ],
+      "text": "1 Introduction\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 206,
+      "id": 8
+    },
+    {
+      "begin": 213,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        234.2622
+      ],
+      "text": "Conservation reporting depends on assembling information that differs in its source, coverage, and\nrelevance to the question being asked. A species may have an identifiable taxonomic record and a\ntraceable occurrence source while still lacking the population, habitat, or threat evidence needed for an\nassessment. For bird-related information systems, the practical challenge is therefore not simply to retrieve\nrecords, but to communicate what those records support and where the evidence remains incomplete.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 235,
+      "id": 9
+    },
+    {
+      "begin": 242,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        132.0622
+      ],
+      "text": "Citizen-science initiatives and open repositories have expanded opportunities to work with biodiversity\ninformation. The eBird framework illustrates how distributed observations can support avian research [1],\nwhile research on GBIF demonstrates that spatial bias can affect the interpretation of aggregated records\n[2]. These resources are valuable inputs to conservation workflows, but their availability should not be\nconfused with sufficient evidence for every field in a report. A reporting system must preserve the\ndistinction between observed information, unavailable information, and conclusions requiring further\ninvestigation.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 7,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            84.7
+          ]
+        ]
+      ],
+      "end": 272,
+      "id": 10
+    },
+    {
+      "begin": 279,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        70.6622
+      ],
+      "text": "Large language models (LLMs) offer a way to turn heterogeneous information into readable drafts. Castro\net al. [9] demonstrated their potential for extracting and structuring ecological information from text,\nalthough performance differed across tasks and models. The same fluency that makes these systems useful\ncan also conceal unsupported content [7]. In a conservation report, a plausible description of threats may\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 299,
+      "id": 11
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "2\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        749.1622
+      ],
+      "text": "appear informative even when those threats were absent from the input. Useful drafting therefore requires\nboth a consistent report structure and a response to uncertainty that readers can inspect.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            16.7
+          ]
+        ]
+      ],
+      "end": 30,
+      "id": 1
+    },
+    {
+      "begin": 37,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        646.9622
+      ],
+      "text": "There are several ways to address these requirements. Retrieval-augmented generation supplies external\ninformation to the generator [3], while output specifications define how that information should be\npresented. Parameter-efficient adaptation offers a further possibility: learning a reporting pattern from\nexamples without updating the full model [4,6]. However, producing the requested structure and faithfully\nusing evidence are different achievements. Format restrictions can also affect task performance [10]. An\nevaluation of report drafting must consequently distinguish successful delivery of an output format from\nthe quality of the ecological content within it.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 7,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            84.7
+          ]
+        ]
+      ],
+      "end": 67,
+      "id": 2
+    },
+    {
+      "begin": 74,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        558.3622
+      ],
+      "text": "We examined this problem within EcoPath, a platform that combines bird species exploration, geospatial\nvisualisation, and AI-assisted interaction. Its report-drafting module is intended to organise selected\ninformation for human review. We used QLoRA to adapt Qwen2.5-7B-Instruct [11] on examples in which\nmajor ecological fields were missing and compared its responses with those of the unadapted model. This\nsetting allowed us to examine whether a small training dataset could establish a consistent report format\nand encourage explicit acknowledgement of missing information.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 100,
+      "id": 3
+    },
+    {
+      "begin": 107,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        456.1622
+      ],
+      "text": "The study addressed two questions: (i) how does QLoRA adaptation change structural compliance on\nheld-out species under the same reporting prompts, and (ii) what differences in missing-information\nhandling are apparent in automated ratings and illustrative outputs? We expected the adapted model to\nfollow the report schema more consistently. We treated the second question as exploratory because the\ninputs did not vary the availability of the principal ecological fields. The resulting contribution is a proof\nof concept for structured bird conservation drafting, together with an analysis of the distinction between\nlearning a report template and learning to use evidence selectively.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 7,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            84.7
+          ]
+        ]
+      ],
+      "end": 137,
+      "id": 4
+    },
+    {
+      "begin": 144,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        425.1622
+      ],
+      "text": "2 Related Work\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 150,
+      "id": 5
+    },
+    {
+      "begin": 157,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        361.7622
+      ],
+      "text": "The reporting problem connects research on biodiversity information with work on language-model\ngrounding, structured generation, and efficient adaptation. The literature provides reasons to investigate\neach component, but also makes clear why success on one component cannot substitute for evaluation of\nthe others.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 175,
+      "id": 6
+    },
+    {
+      "begin": 182,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        336.2622
+      ],
+      "text": "2.1 Biodiversity Information and Ecological AI\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 188,
+      "id": 7
+    },
+    {
+      "begin": 195,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        234.0622
+      ],
+      "text": "Sullivan et al. [1] describe how eBird supports the collection and reuse of bird observations through a\nshared information system. Beck et al. [2] examine a complementary issue: spatial bias in aggregated\noccurrence records can affect downstream analyses. For report drafting, these studies motivate retaining\nsource context and avoiding conclusions that exceed the observations. Tuia et al. [5] further emphasise the\nrole of ecological knowledge and interdisciplinary collaboration in machine-learning applications for\nconservation. We therefore place EcoPath within an evidence-inspection workflow in which automated\ndrafting supports, rather than determines, conservation interpretation.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 7,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            84.7
+          ]
+        ]
+      ],
+      "end": 225,
+      "id": 8
+    },
+    {
+      "begin": 232,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        208.5622
+      ],
+      "text": "2.2 Language Models for Ecological Information Processing\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 238,
+      "id": 9
+    },
+    {
+      "begin": 245,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        133.5622
+      ],
+      "text": "Castro et al. [9] evaluated prompt-based LLMs for identifying, extracting, geocoding, and structuring\nspecies-distribution information. Their work demonstrates that language models can assist ecological data\nprocessing and that their performance depends on the task. This motivates a separate assessment of report\nstructure and content in EcoPath. It also establishes prompting as an important comparator when\ndetermining whether additional model training is worthwhile.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 267,
+      "id": 10
+    },
+    {
+      "begin": 274,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        72.1622
+      ],
+      "text": "Ecological knowledge benchmarks show why evidence organisation should be separated from judgement.\nDorm et al. [12] found differences in LLM performance across species presence, range mapping, threat\nclassification, and related tasks. Uryu [13], in a preprint examining IUCN-related species information,\nlikewise reported differing performance on taxonomic and conservation-status questions. These studies do\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 294,
+      "id": 11
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "3\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        749.1622
+      ],
+      "text": "not evaluate the same task as EcoPath, but they motivate its restricted scope: organising the supplied\nmaterial without treating the draft as a formal conservation assessment.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            16.7
+          ]
+        ]
+      ],
+      "end": 30,
+      "id": 1
+    },
+    {
+      "begin": 37,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        723.6622
+      ],
+      "text": "2.3 Grounding and Structured Generation\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 43,
+      "id": 2
+    },
+    {
+      "begin": 50,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        635.0622
+      ],
+      "text": "Lewis et al. [3] introduced retrieval-augmented generation as a means of conditioning language generation\non external information. For a report generator, such access is useful only if the output remains faithful to\nthe retrieved material. Structure adds a separate requirement. Tam et al. [10] found that format restrictions\ncan affect performance on reasoning tasks, showing that predictable output and successful task execution\nneed independent measurement. EcoPath accordingly treats JSON validity as an integration measure and\nevidence support as a distinct question.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 76,
+      "id": 3
+    },
+    {
+      "begin": 83,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        609.5622
+      ],
+      "text": "2.4 Parameter-Efficient Adaptation and Evaluation\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 89,
+      "id": 4
+    },
+    {
+      "begin": 96,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        520.9622
+      ],
+      "text": "LoRA reduces the number of parameters updated during adaptation by learning low-rank changes to\nfrozen pretrained weights [4]. QLoRA extends this approach to a quantised backbone, reducing the\nmemory needed for training [6]. These properties make adaptation relevant to small\napplication-development teams, although they do not establish a quality or cost advantage for a particular\nworkflow. We used the instruction-tuned Qwen2.5 family [11] to examine adaptation in the specific\ncontext of sparse-input report drafting.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 122,
+      "id": 5
+    },
+    {
+      "begin": 129,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        432.3622
+      ],
+      "text": "Evaluating the resulting text introduces a further challenge. Zheng et al. [8] showed that LLM-based\njudges can approximate human preferences while exhibiting position, verbosity, and self-enhancement\nbiases. Automated scores can therefore provide an exploratory comparison, but do not independently\nverify ecological statements. The present study combines deterministic format checks with supplementary\njudging and qualitative examples, while reserving claims about evidence fidelity for more direct\nevaluation.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 155,
+      "id": 6
+    },
+    {
+      "begin": 162,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        401.3622
+      ],
+      "text": "3 Methodology\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 168,
+      "id": 7
+    },
+    {
+      "begin": 175,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        337.9622
+      ],
+      "text": "We implemented the drafting task within EcoPath and evaluated the same instruction-tuned model with\nand without a QLoRA adapter. The experiment comprised a synthetic training dataset, one adaptation run,\nand a paired comparison on 15 held-out species. This section describes the application context and the\nprocedures underlying that comparison.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 193,
+      "id": 8
+    },
+    {
+      "begin": 200,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        312.4622
+      ],
+      "text": "3.1 System Architecture\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 206,
+      "id": 9
+    },
+    {
+      "begin": 213,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        237.4622
+      ],
+      "text": "EcoPath separates user interaction, application orchestration, persistent data, external sources, and AI\nservices (Figure 1; Table 1). A Next.js frontend provides species search, profiles, image-assisted\nidentification, and map-based exploration, with MapLibre GL JS supporting visualisation. FastAPI\nhandles requests and coordinates species-resolution and service workflows. Supabase and PostgreSQL\nprovide persistent storage, while PostGIS supports spatial queries.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 235,
+      "id": 10
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "4\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 29,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        442.7194
+      ],
+      "text": "Figure 1. EcoPath architecture. The report-drafting module is the experimental focus; the remaining platform\ncomponents provide the application context.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.6
+          ]
+        ]
+      ],
+      "end": 40,
+      "id": 1
+    },
+    {
+      "begin": 47,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        364.7194
+      ],
+      "text": "The platform connects to GBIF, Movebank, eBird, Xeno-canto, Wikimedia Commons, and Open-Meteo\nfor different biodiversity, movement, media, and weather functions. Its AI services support identification,\nconversation, and report drafting. Our evaluation concerned the drafting module alone. Although several\nsources are accessible through the platform, the experimental inputs contained only the GBIF-linked\nmetadata described in Section 3.3.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 69,
+      "id": 2
+    },
+    {
+      "begin": 75,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        346.3194
+      ],
+      "text": "Table 1. EcoPath architecture and the scope of the report-generation experiment.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 84,
+      "id": 3
+    },
+    {
+      "begin": 99,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        320.1194
+      ],
+      "text": "Layer\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 105,
+      "id": 4
+    },
+    {
+      "begin": 112,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        165.28188999999998,
+        320.1194
+      ],
+      "text": "Responsibilities and technologies\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 118,
+      "id": 5
+    },
+    {
+      "begin": 125,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        385.7039,
+        320.1194
+      ],
+      "text": "Experimental scope\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 131,
+      "id": 6
+    },
+    {
+      "begin": 138,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        298.9194
+      ],
+      "text": "Presentation\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 144,
+      "id": 7
+    },
+    {
+      "begin": 151,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        165.28188999999998,
+        287.7194
+      ],
+      "text": "Search, profiles, maps, report display; Next.js and\nMapLibre GL JS\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.4
+          ]
+        ]
+      ],
+      "end": 159,
+      "id": 8
+    },
+    {
+      "begin": 166,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        385.7039,
+        298.9194
+      ],
+      "text": "Application context\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 172,
+      "id": 9
+    },
+    {
+      "begin": 179,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        266.5194
+      ],
+      "text": "Application services\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 185,
+      "id": 10
+    },
+    {
+      "begin": 192,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        165.28188999999998,
+        266.5194
+      ],
+      "text": "Routing, species resolution, orchestration; FastAPI\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 198,
+      "id": 11
+    },
+    {
+      "begin": 205,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        385.7039,
+        266.5194
+      ],
+      "text": "Application context\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 211,
+      "id": 12
+    },
+    {
+      "begin": 218,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        245.31939999999997
+      ],
+      "text": "Persistent data\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 224,
+      "id": 13
+    },
+    {
+      "begin": 231,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        165.28188999999998,
+        234.11939999999998
+      ],
+      "text": "Records and spatial queries; Supabase, PostgreSQL,\nPostGIS\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.4
+          ]
+        ]
+      ],
+      "end": 239,
+      "id": 14
+    },
+    {
+      "begin": 246,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        385.7039,
+        245.31939999999997
+      ],
+      "text": "Application context\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 252,
+      "id": 15
+    },
+    {
+      "begin": 259,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        212.9194
+      ],
+      "text": "External services\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 265,
+      "id": 16
+    },
+    {
+      "begin": 272,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        165.28188999999998,
+        212.9194
+      ],
+      "text": "Biodiversity, movement, media, and weather sources\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 278,
+      "id": 17
+    },
+    {
+      "begin": 285,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        385.7039,
+        201.71939999999998
+      ],
+      "text": "Only supplied GBIF-linked metadata\nevaluated\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.4
+          ]
+        ]
+      ],
+      "end": 293,
+      "id": 18
+    },
+    {
+      "begin": 300,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        180.5194
+      ],
+      "text": "AI services\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 306,
+      "id": 19
+    },
+    {
+      "begin": 313,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        165.28188999999998,
+        180.5194
+      ],
+      "text": "Identification, conversation, and QLoRA report drafting\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 319,
+      "id": 20
+    },
+    {
+      "begin": 326,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        385.7039,
+        180.5194
+      ],
+      "text": "Report drafting evaluated\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 332,
+      "id": 21
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "5\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        761.8622
+      ],
+      "text": "3.2 Evidence-Bounded Decision-Support Pipeline\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 26,
+      "id": 1
+    },
+    {
+      "begin": 33,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        686.8622
+      ],
+      "text": "The workflow consisted of preparing species-linked targets, dividing the dataset into training and held-out\nsubsets, adapting the model, and generating paired reports (Figure 2). Each model condition received the\nsame held-out species payload and reporting prompt. We assessed the resulting responses for parseability\nand schema compliance, then used an automated rubric to compare their presentation and judged content\nquality.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 55,
+      "id": 2
+    },
+    {
+      "begin": 70,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "GBIF-linked species metadata\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            14.4995,
+            119.0
+          ]
+        ]
+      ],
+      "end": 74,
+      "id": 3
+    },
+    {
+      "begin": 79,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "100 synthetic examples\n",
+      "font": "/F2",
+      "size": 8.6,
+      "leading": 10.32,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            32.1316,
+            104.0
+          ]
+        ]
+      ],
+      "end": 83,
+      "id": 4
+    },
+    {
+      "begin": 94,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "Qwen2.5-7B-Instruct\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            346.0911,
+            119.0
+          ]
+        ]
+      ],
+      "end": 98,
+      "id": 5
+    },
+    {
+      "begin": 103,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "Frozen 4-bit backbone\n",
+      "font": "/F2",
+      "size": 8.6,
+      "leading": 10.32,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            348.0212,
+            104.0
+          ]
+        ]
+      ],
+      "end": 107,
+      "id": 6
+    },
+    {
+      "begin": 118,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "Fixed split: seed 42\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            35.8745,
+            47.0
+          ]
+        ]
+      ],
+      "end": 122,
+      "id": 7
+    },
+    {
+      "begin": 127,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "85 training / 15 held-out\n",
+      "font": "/F2",
+      "size": 8.6,
+      "leading": 10.32,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            30.6954,
+            32.0
+          ]
+        ]
+      ],
+      "end": 131,
+      "id": 8
+    },
+    {
+      "begin": 142,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "QLoRA adaptation\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            349.5831,
+            47.0
+          ]
+        ]
+      ],
+      "end": 146,
+      "id": 9
+    },
+    {
+      "begin": 151,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        527.8622
+      ],
+      "text": "Rank 16; 3 epochs; 33 steps\n",
+      "font": "/F2",
+      "size": 8.6,
+      "leading": 10.32,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            338.5784,
+            32.0
+          ]
+        ]
+      ],
+      "end": 155,
+      "id": 10
+    },
+    {
+      "begin": 199,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        505.0622
+      ],
+      "text": "Figure 2. Dataset preparation and QLoRA adaptation. The unadapted model and the resulting adapter were compared\nusing identical inputs for 15 held-out species.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.6
+          ]
+        ]
+      ],
+      "end": 210,
+      "id": 11
+    },
+    {
+      "begin": 217,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        440.6622
+      ],
+      "text": "The intended evidence boundary was straightforward: organise the supplied information, retain the source\nreference, and acknowledge unavailable fields. The pipeline did not infer an official IUCN category or\nverify the draft against an independent ecological assessment. Human review was the intended use\ncontext, rather than an evaluated intervention in this experiment.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 235,
+      "id": 12
+    },
+    {
+      "begin": 242,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        415.1622
+      ],
+      "text": "3.3 Dataset Generation and Evidence Boundary\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 248,
+      "id": 13
+    },
+    {
+      "begin": 255,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        340.1622
+      ],
+      "text": "We constructed the EcoPath Gemini-100 supervised fine-tuning dataset, comprising 100 synthetic\nexamples for 100 bird species. Each example contained a structured species payload, retrieval queries,\nevidence records, and a teacher-generated report. Species identity and taxonomic metadata were resolved\nthrough GBIF. A GBIF URL provided the traceable source reference, while verified IUCN status,\npopulation trend, population estimate, habitat, and range fields were absent.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 277,
+      "id": 14
+    },
+    {
+      "begin": 284,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        265.1622
+      ],
+      "text": "Target reports made these gaps explicit rather than supplying unsupported numerical or\nconservation-status claims. This design exposed the model to a consistent reporting task: express the\navailable species context within the required structure and identify the ecological information that could\nnot be established. Because the principal ecological fields were absent throughout, the dataset tested this\nsparse-input pattern without testing how behaviour changed when those fields became available.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 306,
+      "id": 15
+    },
+    {
+      "begin": 313,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        190.1622
+      ],
+      "text": "Using a deterministic split with seed 42, we assigned 85 species examples to training and 15 to held-out\nevaluation. The held-out set was not used for prompt modification or checkpoint selection. There was no\nseparate validation partition. The evaluation species are listed in Appendix A. The platform had an\nIndia-focused motivation, but the held-out list was geographically broader and was not designed to\nestimate performance specifically on Indian birds.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 335,
+      "id": 16
+    },
+    {
+      "begin": 342,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        164.6622
+      ],
+      "text": "3.4 Fine-Tuning Configuration\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 348,
+      "id": 17
+    },
+    {
+      "begin": 354,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        103.2622
+      ],
+      "text": "We loaded Qwen/Qwen2.5-7B-Instruct [11] in 4-bit quantised form and trained a QLoRA adapter [6].\nUpdates targeted the q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, and down_proj layers. The adapter\nused rank 16, alpha 32, and dropout 0.05. Training proceeded for three epochs with a learning rate of 2 x\n10-4 and batch size 1 with gradient accumulation, giving 33 optimisation steps (Table 2).\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 379,
+      "id": 18
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "6\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 19,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        764.9622
+      ],
+      "text": "Table 2. Reported fine-tuning configuration.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 28,
+      "id": 1
+    },
+    {
+      "begin": 43,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        738.7622
+      ],
+      "text": "Parameter\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 49,
+      "id": 2
+    },
+    {
+      "begin": 56,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        738.7622
+      ],
+      "text": "Value\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 62,
+      "id": 3
+    },
+    {
+      "begin": 69,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        717.5622000000001
+      ],
+      "text": "Base model\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 75,
+      "id": 4
+    },
+    {
+      "begin": 82,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        717.5622000000001
+      ],
+      "text": "Qwen/Qwen2.5-7B-Instruct\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 88,
+      "id": 5
+    },
+    {
+      "begin": 95,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        696.3622
+      ],
+      "text": "Quantisation\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 101,
+      "id": 6
+    },
+    {
+      "begin": 108,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        696.3622
+      ],
+      "text": "4-bit backbone\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 114,
+      "id": 7
+    },
+    {
+      "begin": 121,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        675.1622
+      ],
+      "text": "Training / held-out examples\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 127,
+      "id": 8
+    },
+    {
+      "begin": 134,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        675.1622
+      ],
+      "text": "85 / 15; split seed 42\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 140,
+      "id": 9
+    },
+    {
+      "begin": 147,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        653.9622
+      ],
+      "text": "LoRA rank / alpha / dropout\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 153,
+      "id": 10
+    },
+    {
+      "begin": 160,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        653.9622
+      ],
+      "text": "16 / 32 / 0.05\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 166,
+      "id": 11
+    },
+    {
+      "begin": 173,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        632.7622
+      ],
+      "text": "Target layers\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 179,
+      "id": 12
+    },
+    {
+      "begin": 186,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        632.7622
+      ],
+      "text": "q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 192,
+      "id": 13
+    },
+    {
+      "begin": 199,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        611.5622000000001
+      ],
+      "text": "Learning rate\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 205,
+      "id": 14
+    },
+    {
+      "begin": 211,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        611.5622000000001
+      ],
+      "text": "2 x 10-4\n",
+      "font": "/F2",
+      "size": 7.2,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 221,
+      "id": 15
+    },
+    {
+      "begin": 228,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        590.3622
+      ],
+      "text": "Batch size\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 234,
+      "id": 16
+    },
+    {
+      "begin": 241,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        590.3622
+      ],
+      "text": "1, with gradient accumulation\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 247,
+      "id": 17
+    },
+    {
+      "begin": 254,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        569.1622
+      ],
+      "text": "Duration\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 260,
+      "id": 18
+    },
+    {
+      "begin": 267,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        569.1622
+      ],
+      "text": "3 epochs; 33 optimisation steps\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 273,
+      "id": 19
+    },
+    {
+      "begin": 280,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        547.9622
+      ],
+      "text": "Recorded loss values\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 286,
+      "id": 20
+    },
+    {
+      "begin": 293,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        547.9622
+      ],
+      "text": "1.437 at step 10; 0.376 at step 30\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 299,
+      "id": 21
+    },
+    {
+      "begin": 306,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        526.7622
+      ],
+      "text": "Independent training runs\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 312,
+      "id": 22
+    },
+    {
+      "begin": 319,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        526.7622
+      ],
+      "text": "One reported\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 325,
+      "id": 23
+    },
+    {
+      "begin": 332,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        505.5622
+      ],
+      "text": "Validation set\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 338,
+      "id": 24
+    },
+    {
+      "begin": 345,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        234.16379999999998,
+        505.5622
+      ],
+      "text": "None reported\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 351,
+      "id": 25
+    },
+    {
+      "begin": 383,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        438.1622
+      ],
+      "text": "We conducted one adaptation run. Training loss was recorded during optimisation, and the resulting\nadapter was used for the held-out comparison. No validation-based checkpoint comparison or\nrepeated-seed analysis was conducted. The implications of this design and incomplete implementation\nreporting are addressed in Section 5.5.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 401,
+      "id": 26
+    },
+    {
+      "begin": 408,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        412.6622
+      ],
+      "text": "3.5 Evaluation Protocol\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 414,
+      "id": 27
+    },
+    {
+      "begin": 421,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        351.2622
+      ],
+      "text": "We generated reports for each of the 15 held-out species in two conditions: the unadapted\nQwen2.5-7B-Instruct model and the same model with the EcoPath adapter. The conditions used the same\nprompts, evidence payloads, and generation settings. This paired design held the input constant while\nexamining the difference associated with the adapter under the tested configuration.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 439,
+      "id": 28
+    },
+    {
+      "begin": 446,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        276.2622
+      ],
+      "text": "We first assessed JSON validity after removing optional Markdown fences. We then checked schema\ncompliance for six report components: species, current conservation status, key threats, survivability\nassessment, mitigation actions, and sources. These checks measured whether the application could\nconsume the response in the requested form. They did not verify the factual support of the text within each\nfield.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 468,
+      "id": 29
+    },
+    {
+      "begin": 475,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        214.8622
+      ],
+      "text": "We used a Gemini-family LLM judge to score all 30 responses against the supplied evidence. The\nfive-point rubric covered format compliance, factual grounding, completeness, and reviewer usefulness.\nAll responses received scores. These ratings were supplementary: no blinded human assessment was\nconducted, and independence between the judge and the synthetic-data teacher was not established.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 493,
+      "id": 30
+    },
+    {
+      "begin": 500,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        126.2622
+      ],
+      "text": "We summarised structural outcomes as counts and proportions, report length as the mean number of\nwords, and rubric outcomes as descriptive means. For each binary structural proportion, we calculated a\ntwo-sided 95% exact binomial interval. These intervals describe the observed proportions under a\nbinomial assumption; they are not confidence intervals for the paired treatment difference. We did not\nestimate an unsupported-claim rate, field-level abstention accuracy, or citation-support rate. Qualitative\nanalysis examined the Herring Gull and Common Murre cases presented in Appendix A.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 526,
+      "id": 31
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "7\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        760.3622
+      ],
+      "text": "4 Results\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 26,
+      "id": 1
+    },
+    {
+      "begin": 33,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        710.5622
+      ],
+      "text": "Adaptation changed the form and length of the generated reports and was accompanied by higher\nautomated ratings. We first report training behaviour and structural outcomes, followed by the rubric\ncomparison and species-level observations.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            30.3
+          ]
+        ]
+      ],
+      "end": 47,
+      "id": 2
+    },
+    {
+      "begin": 54,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        685.0622
+      ],
+      "text": "4.1 Training Behaviour\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 60,
+      "id": 3
+    },
+    {
+      "begin": 67,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        637.2622
+      ],
+      "text": "Training loss decreased from 1.437 at optimisation step 10 to 0.376 at step 30. This decline showed that\nthe training objective decreased during the run. Held-out structural results provide the separate assessment\nof whether the resulting adapter followed the reporting format on species outside the training subset.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            30.3
+          ]
+        ]
+      ],
+      "end": 81,
+      "id": 4
+    },
+    {
+      "begin": 88,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        611.7622
+      ],
+      "text": "4.2 Held-Out Structural Evaluation\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 94,
+      "id": 5
+    },
+    {
+      "begin": 101,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        550.3622
+      ],
+      "text": "All 15 adapted responses were valid JSON and satisfied the schema, compared with none of the unadapted\nresponses (Table 3). The unadapted model returned Markdown prose rather than the requested objects. Its\nschema failures therefore coincided with parse failures; the two structural checks described the same\nfailure pattern rather than independent dimensions of improvement.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 119,
+      "id": 6
+    },
+    {
+      "begin": 125,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        531.9622
+      ],
+      "text": "Table 3. Paired held-out results on 15 species. Rubric scores are automated five-point ratings.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 134,
+      "id": 7
+    },
+    {
+      "begin": 149,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        505.7622
+      ],
+      "text": "Metric\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 155,
+      "id": 8
+    },
+    {
+      "begin": 162,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        505.7622
+      ],
+      "text": "Unadapted\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 168,
+      "id": 9
+    },
+    {
+      "begin": 175,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        505.7622
+      ],
+      "text": "QLoRA-adapted\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 181,
+      "id": 10
+    },
+    {
+      "begin": 188,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        505.7622
+      ],
+      "text": "Difference\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 194,
+      "id": 11
+    },
+    {
+      "begin": 201,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        484.56219999999996
+      ],
+      "text": "JSON validity\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 207,
+      "id": 12
+    },
+    {
+      "begin": 214,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        484.56219999999996
+      ],
+      "text": "0/15 (0.0%)\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 220,
+      "id": 13
+    },
+    {
+      "begin": 227,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        484.56219999999996
+      ],
+      "text": "15/15 (100.0%)\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 233,
+      "id": 14
+    },
+    {
+      "begin": 240,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        484.56219999999996
+      ],
+      "text": "+100.0 pp\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 246,
+      "id": 15
+    },
+    {
+      "begin": 253,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        463.3622
+      ],
+      "text": "Schema compliance\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 259,
+      "id": 16
+    },
+    {
+      "begin": 266,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        463.3622
+      ],
+      "text": "0/15 (0.0%)\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 272,
+      "id": 17
+    },
+    {
+      "begin": 279,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        463.3622
+      ],
+      "text": "15/15 (100.0%)\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 285,
+      "id": 18
+    },
+    {
+      "begin": 292,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        463.3622
+      ],
+      "text": "+100.0 pp\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 298,
+      "id": 19
+    },
+    {
+      "begin": 305,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        442.1622
+      ],
+      "text": "Mean output length\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 311,
+      "id": 20
+    },
+    {
+      "begin": 318,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        442.1622
+      ],
+      "text": "590 words\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 324,
+      "id": 21
+    },
+    {
+      "begin": 331,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        442.1622
+      ],
+      "text": "335 words\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 337,
+      "id": 22
+    },
+    {
+      "begin": 344,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        442.1622
+      ],
+      "text": "-255 words\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 350,
+      "id": 23
+    },
+    {
+      "begin": 357,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        420.96219999999994
+      ],
+      "text": "Judge: format compliance\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 363,
+      "id": 24
+    },
+    {
+      "begin": 370,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        420.96219999999994
+      ],
+      "text": "1.00\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 376,
+      "id": 25
+    },
+    {
+      "begin": 383,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        420.96219999999994
+      ],
+      "text": "5.00\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 389,
+      "id": 26
+    },
+    {
+      "begin": 396,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        420.96219999999994
+      ],
+      "text": "+4.00\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 402,
+      "id": 27
+    },
+    {
+      "begin": 409,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        399.76219999999995
+      ],
+      "text": "Judge: factual grounding\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 415,
+      "id": 28
+    },
+    {
+      "begin": 422,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        399.76219999999995
+      ],
+      "text": "2.33\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 428,
+      "id": 29
+    },
+    {
+      "begin": 435,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        399.76219999999995
+      ],
+      "text": "5.00\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 441,
+      "id": 30
+    },
+    {
+      "begin": 448,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        399.76219999999995
+      ],
+      "text": "+2.67\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 454,
+      "id": 31
+    },
+    {
+      "begin": 461,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        378.56219999999996
+      ],
+      "text": "Judge: completeness\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 467,
+      "id": 32
+    },
+    {
+      "begin": 474,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        378.56219999999996
+      ],
+      "text": "3.87\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 480,
+      "id": 33
+    },
+    {
+      "begin": 487,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        378.56219999999996
+      ],
+      "text": "5.00\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 493,
+      "id": 34
+    },
+    {
+      "begin": 500,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        378.56219999999996
+      ],
+      "text": "+1.13\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 506,
+      "id": 35
+    },
+    {
+      "begin": 513,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        357.3622
+      ],
+      "text": "Judge: reviewer usefulness\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 519,
+      "id": 36
+    },
+    {
+      "begin": 526,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        261.7165,
+        357.3622
+      ],
+      "text": "1.87\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 532,
+      "id": 37
+    },
+    {
+      "begin": 539,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        353.5591,
+        357.3622
+      ],
+      "text": "4.73\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 545,
+      "id": 38
+    },
+    {
+      "begin": 552,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        454.5858,
+        357.3622
+      ],
+      "text": "+2.86\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 558,
+      "id": 39
+    },
+    {
+      "begin": 590,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        303.5622
+      ],
+      "text": "The 95% exact binomial intervals were 0.0-21.8% for the unadapted proportion and 78.2-100.0% for the\nadapted proportion. Thus, although the observed outcomes were uniform within each condition, the small\nheld-out set left substantial uncertainty about performance on additional species.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            30.3
+          ]
+        ]
+      ],
+      "end": 604,
+      "id": 40
+    },
+    {
+      "begin": 611,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        228.5622
+      ],
+      "text": "Adapted reports were shorter, averaging 335 words compared with 590 words for the unadapted\nresponses. The judge also assigned higher mean scores to adapted reports across the four rubric\ndimensions (Figure 3). Grounding increased from 2.33 to 5.00, completeness from 3.87 to 5.00, and\nreviewer usefulness from 1.87 to 4.73. Format compliance increased from 1.00 to 5.00. These were\ndescriptive automated ratings; variation in the individual scores was not analysed.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 633,
+      "id": 41
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "8\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 29,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        473.0346
+      ],
+      "text": "Figure 3. Mean automated rubric scores for the paired report conditions. Scores concern the supplied evidence and report\nrequirements, rather than verified conservation-assessment accuracy. Error bars are unavailable.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.6
+          ]
+        ]
+      ],
+      "end": 42,
+      "id": 1
+    },
+    {
+      "begin": 49,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        447.5346
+      ],
+      "text": "4.3 Per-Species Results\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 55,
+      "id": 2
+    },
+    {
+      "begin": 62,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        399.7346
+      ],
+      "text": "The structural difference was consistent across the 15 held-out species: every unadapted response failed\nthe checks, and every adapted response passed. Adapted reports were also shorter for each species. The\nspecies list and two illustrative report comparisons are provided in Appendix A.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            30.3
+          ]
+        ]
+      ],
+      "end": 76,
+      "id": 3
+    },
+    {
+      "begin": 83,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        368.7346
+      ],
+      "text": "5 Discussion\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 89,
+      "id": 4
+    },
+    {
+      "begin": 96,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        343.2346
+      ],
+      "text": "5.1 Interpreting the Structural and Rubric Gap\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 102,
+      "id": 5
+    },
+    {
+      "begin": 109,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        268.2346
+      ],
+      "text": "The comparison shows that a small synthetic training set was sufficient to establish the requested reporting\nformat in this configuration. Within EcoPath, that change has a concrete application-level benefit: a\nstructured response can be parsed and presented through a consistent interface. The result addresses the\nfirst research question, while leaving open whether the same reliability could be achieved with a stronger\nunadapted baseline.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 131,
+      "id": 6
+    },
+    {
+      "begin": 138,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        179.6346
+      ],
+      "text": "The supplementary ratings suggest that the change extended beyond the visible format, because the judge\ncould assess the unadapted Markdown responses as well as the adapted JSON. Higher grounding and\nusefulness scores are consistent with reports that state information gaps more directly and avoid generic\nelaboration. However, response structure, brevity, and similarity to the target style could also influence the\nratings. The automated comparison therefore motivates closer examination of the content rather than\nestablishing a measured reduction in unsupported claims.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 164,
+      "id": 7
+    },
+    {
+      "begin": 171,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        104.6346
+      ],
+      "text": "The distinction becomes particularly important in this dataset. When the same ecological fields are\nmissing throughout, a model can learn to mark them unavailable without learning when to report a\nsupported value. What appears to be appropriate restraint under sparse inputs could become excessive\nabstention under richer ones. This is the central unresolved question raised by the findings: did the adapter\nlearn a useful evidence-sensitive behaviour, a consistent template, or a combination of the two?\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 193,
+      "id": 8
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "9\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            295.3878,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        761.8622
+      ],
+      "text": "5.2 Qualitative Analysis\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 26,
+      "id": 1
+    },
+    {
+      "begin": 32,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        686.8622
+      ],
+      "text": "The Herring Gull (Larus argentatus) and Common Murre (Uria aalge) cases illustrate why the distinction\nmatters. The unadapted reports introduced threats such as deforestation and wetland drainage without\ncorresponding support in the input. The adapted reports instead identified missing information and\nretained the GBIF source reference. In the Common Murre case, the adapted response also explained that\nthe available material could not support an IUCN-style assessment.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 63,
+      "id": 2
+    },
+    {
+      "begin": 70,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        598.2622
+      ],
+      "text": "For a reviewer, the practical difference is between a plausible account that requires verification and an\nexplicit account of what still needs to be established. The adapted examples better expressed the latter\nrole. Nevertheless, two illustrative cases cannot show how often the same behaviour occurred across all\nfactual statements. Source retention also establishes traceability only at the report level; it does not\ndemonstrate that each claim is supported. Claim-level analysis is needed to connect these examples to an\nestimated error rate.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 96,
+      "id": 3
+    },
+    {
+      "begin": 103,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        572.7622
+      ],
+      "text": "5.3 Relationship to Prior Work\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 109,
+      "id": 4
+    },
+    {
+      "begin": 116,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        497.7622
+      ],
+      "text": "Our findings fit the task-specific adaptation enabled by LoRA and QLoRA [4,6]. Their contribution here\nis not a new adaptation algorithm, but an application in which report structure and missing-information\nstatements can be learned from a small dataset. Castro et al. [9] demonstrate the promise of prompt-based\necological information processing, making strong prompting a necessary next comparator for determining\nwhether adaptation adds value in this setting.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 138,
+      "id": 5
+    },
+    {
+      "begin": 145,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        409.1622
+      ],
+      "text": "The ecological benchmarks of Dorm et al. [12] and Uryu [13] place the result in a broader context. They\nevaluate knowledge and judgement tasks that differ from drafting a report from supplied metadata.\nEcoPath did not predict verified conservation categories or infer population trajectories, and its structural\nresults should not be compared numerically with those ecological prediction scores. The relevant\nconnection is the need to define the task narrowly enough that successful performance has a clear\nmeaning.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 171,
+      "id": 6
+    },
+    {
+      "begin": 178,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        334.1622
+      ],
+      "text": "Tam et al. [10] further motivate distinguishing format adherence from task success, while Zheng et al. [8]\nexplain why automated judgements require independent scrutiny. Together, these studies support the next\nstage of evaluation: hold the output contract constant and test whether an adapted model makes better use\nof evidence than competitive alternatives. The current experiment establishes feasibility for that\ncomparison without resolving it.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 200,
+      "id": 7
+    },
+    {
+      "begin": 207,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        308.6622
+      ],
+      "text": "5.4 Role within the Wider EcoPath Platform\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 213,
+      "id": 8
+    },
+    {
+      "begin": 220,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        233.6622
+      ],
+      "text": "EcoPath connects information exploration with report preparation. Search, species profiles, and maps help\nusers inspect available records; the drafting module offers a way to organise selected inputs for subsequent\nreview. The structural improvement observed here supports that interface role. The study did not evaluate\nwhether the reports reduced reviewer effort, improved decisions, or increased trust appropriately, and\nthese outcomes remain separate application questions.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 242,
+      "id": 9
+    },
+    {
+      "begin": 249,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        172.2622
+      ],
+      "text": "The most defensible use is therefore an initial draft that makes missing evidence visible. A report should\nhelp a reviewer identify the information available and the questions that remain, with suggested\ndata-collection actions distinguished from species facts. Formal conservation interpretation continues to\nrequire appropriate evidence and expertise.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 267,
+      "id": 10
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "10\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            293.1378,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 20,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        761.8622
+      ],
+      "text": "5.5 Limitations\n",
+      "font": "/F3",
+      "size": 11.4,
+      "leading": 14.5,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.1
+          ]
+        ]
+      ],
+      "end": 26,
+      "id": 1
+    },
+    {
+      "begin": 33,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        673.2622
+      ],
+      "text": "The small, synthetic dataset limits the range of conclusions. Training and evaluation examples came from\nthe same generation pipeline, and the split did not establish generalisation across taxonomic groups.\nSpecies-selection criteria were not recorded sufficiently to characterise sampling bias. Although the\nplatform was motivated by Indian bird information needs, the held-out species did not constitute an\nIndia-specific evaluation. The findings therefore concern the sampled reporting examples rather than a\nregional conservation population.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 6,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            71.1
+          ]
+        ]
+      ],
+      "end": 59,
+      "id": 2
+    },
+    {
+      "begin": 66,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        611.8622
+      ],
+      "text": "The evidence design also limits the interpretation of missing-information handling. Verified status, trend,\npopulation, habitat, and range values were absent, so the experiment could not distinguish selective\nabstention from a repeated unavailable-field response. Controlled tests with both present and missing\nfields are needed to measure supported extraction, false abstention, and unsupported statements jointly.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 84,
+      "id": 3
+    },
+    {
+      "begin": 91,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        536.8622
+      ],
+      "text": "The comparison included one unadapted prompting condition and one training run. Engineered prompts,\nschema constraints, and deterministic templates could produce different results. There was no independent\nvalidation set or repeated-seed analysis. Complete prompt, chat-template, decoding, model-revision,\noptimisation, and hardware details were not documented in the experimental materials available for this\npaper, limiting reproducibility and preventing a measured cost comparison.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 113,
+      "id": 4
+    },
+    {
+      "begin": 120,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        461.8622
+      ],
+      "text": "Finally, automated scores were not validated against blinded human review, and teacher-judge\nindependence was not established. The provider identifier corresponding to the recorded judge label,\n\"Gemini 3.6 Flash\", also requires verification. These limitations prevent interpreting the rubric as a\ncalibrated measure of ecological correctness. Future evaluation should combine direct evidence checks\nwith reviewer assessment and report errors in unsupported claims, ignored evidence, and source support.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 142,
+      "id": 5
+    },
+    {
+      "begin": 149,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        430.8622
+      ],
+      "text": "6 Conclusion\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 155,
+      "id": 6
+    },
+    {
+      "begin": 162,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        353.8622
+      ],
+      "text": "We investigated QLoRA adaptation as a means of preparing structured bird conservation report drafts\nwithin EcoPath. On 15 held-out species, the adapted model consistently produced the requested JSON\nstructure, whereas the unadapted condition returned Markdown prose. Adapted reports were shorter and\nreceived higher automated ratings, while illustrative cases showed explicit acknowledgement of evidence\ngaps.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 5,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            57.5
+          ]
+        ]
+      ],
+      "end": 184,
+      "id": 7
+    },
+    {
+      "begin": 191,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        292.4622
+      ],
+      "text": "The study establishes that the reporting pattern can be learned under the tested sparse-input conditions. It\nalso identifies the next scientific question: whether adaptation improves evidence use once format is\ncontrolled and the availability of ecological information varies. Answering that question requires stronger\nbaselines, direct claim and abstention measures, repeated runs, and human review.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            43.9
+          ]
+        ]
+      ],
+      "end": 209,
+      "id": 8
+    },
+    {
+      "begin": 216,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        244.6622
+      ],
+      "text": "For EcoPath, the immediate implication is a bounded drafting role. A useful report should organise what is\nknown and make the remaining evidence needs easier to inspect. The present results support the feasibility\nof that workflow while leaving its broader factual reliability and practical value to be established.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            30.3
+          ]
+        ]
+      ],
+      "end": 230,
+      "id": 9
+    },
+    {
+      "begin": 237,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        213.6622
+      ],
+      "text": "Acknowledgments\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 243,
+      "id": 10
+    },
+    {
+      "begin": 250,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        177.4622
+      ],
+      "text": "The authors thank Dr. Indu Dokare, Department of Computer Engineering, Vivekanand Education\nSociety's Institute of Technology, for guidance and supervision of the project.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            16.7
+          ]
+        ]
+      ],
+      "end": 260,
+      "id": 11
+    },
+    {
+      "begin": 267,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        146.4622
+      ],
+      "text": "References\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 273,
+      "id": 12
+    },
+    {
+      "begin": 279,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        101.4622
+      ],
+      "text": "[1] Sullivan, B.L., Wood, C.L., Iliff, M.J., Bonney, R.E., Fink, D., Kelling, S.: eBird: A citizen-based bird observation\nnetwork in the biological sciences. Biological Conservation 142(10), 2282-2292 (2009).\n10.1016/j.biocon.2009.05.006.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            26.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 295,
+      "id": 13
+    },
+    {
+      "begin": 301,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        70.4622
+      ],
+      "text": "[2] Beck, J., B\u00f6ller, M., Erhardt, A., Schwanghart, W.: Spatial bias in the GBIF database and its effect on modeling\nspecies' geographic distributions. Ecological Informatics 19, 10-15 (2014). 10.1016/j.ecoinf.2013.11.002.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 317,
+      "id": 14
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "11\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            293.1378,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 19,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        752.3622
+      ],
+      "text": "[3] Lewis, P., et al.: Retrieval-augmented generation for knowledge-intensive NLP tasks. Advances in Neural\nInformation Processing Systems 33, 9459-9474 (2020). arXiv:2005.11401.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 34,
+      "id": 1
+    },
+    {
+      "begin": 40,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        721.3622
+      ],
+      "text": "[4] Hu, E.J., et al.: LoRA: Low-rank adaptation of large language models. International Conference on Learning\nRepresentations (2022). arXiv:2106.09685.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 55,
+      "id": 2
+    },
+    {
+      "begin": 61,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        690.3622
+      ],
+      "text": "[5] Tuia, D., et al.: Perspectives in machine learning for wildlife conservation. Nature Communications 13, 792 (2022).\n10.1038/s41467-022-27980-y.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 77,
+      "id": 3
+    },
+    {
+      "begin": 83,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        659.3622
+      ],
+      "text": "[6] Dettmers, T., Pagnoni, A., Holtzman, A., Zettlemoyer, L.: QLoRA: Efficient finetuning of quantized LLMs.\nAdvances in Neural Information Processing Systems 36, 10088-10115 (2023). arXiv:2305.14314.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 98,
+      "id": 4
+    },
+    {
+      "begin": 104,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        628.3622
+      ],
+      "text": "[7] Ji, Z., et al.: Survey of hallucination in natural language generation. ACM Computing Surveys 55(12), Article 248\n(2023). 10.1145/3571730.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 119,
+      "id": 5
+    },
+    {
+      "begin": 125,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        597.3622
+      ],
+      "text": "[8] Zheng, L., et al.: Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. Advances in Neural Information\nProcessing Systems 36 (2023). arXiv:2306.05685.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 140,
+      "id": 6
+    },
+    {
+      "begin": 146,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        566.3622
+      ],
+      "text": "[9] Castro, A., Pinto, J., Reino, L., Pipek, P., Capinha, C.: Large language models overcome the challenges of\nunstructured text data in ecology. Ecological Informatics 82, 102742 (2024). 10.1016/j.ecoinf.2024.102742.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 161,
+      "id": 7
+    },
+    {
+      "begin": 167,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        511.3622
+      ],
+      "text": "[10] Tam, Z.R., Wu, C.-K., Tsai, Y.-L., Lin, C.-Y., Lee, H.-y., Chen, Y.-N.: Let me speak freely? A study on the\nimpact of format restrictions on large language model performance. Proceedings of the 2024 Conference on\nEmpirical Methods in Natural Language Processing: Industry Track, 1218-1236 (2024).\n10.18653/v1/2024.emnlp-industry.91.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            38.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 185,
+      "id": 8
+    },
+    {
+      "begin": 191,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        492.3622
+      ],
+      "text": "[11] Yang, A., et al.: Qwen2.5 technical report. arXiv preprint arXiv:2412.15115 (2024). arXiv:2412.15115.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            2.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 204,
+      "id": 9
+    },
+    {
+      "begin": 210,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        461.3622
+      ],
+      "text": "[12] Dorm, F., Millard, J., Purves, D., Harfoot, M., Mac Aodha, O.: Large language models possess some ecological\nknowledge, but how much? Ecological Informatics 95, 103699 (2026). 10.1016/j.ecoinf.2026.103699.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 225,
+      "id": 10
+    },
+    {
+      "begin": 231,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        430.3622
+      ],
+      "text": "[13] Uryu, S.: Evaluating large language models for IUCN Red List species information. arXiv preprint\narXiv:2510.02830 (2025). arXiv:2510.02830.\n",
+      "font": "/F2",
+      "size": 9.4,
+      "leading": 12.0,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            20.0,
+            14.6
+          ]
+        ],
+        [
+          "Td",
+          [
+            -20.0,
+            0.0
+          ]
+        ],
+        [
+          "Td",
+          [
+            20.0,
+            0.0
+          ]
+        ]
+      ],
+      "end": 246,
+      "id": 11
+    },
+    {
+      "begin": 253,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        399.3622
+      ],
+      "text": "A Held-Out Evaluation Materials\n",
+      "font": "/F3",
+      "size": 13.0,
+      "leading": 16.0,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            3.0
+          ]
+        ]
+      ],
+      "end": 259,
+      "id": 12
+    },
+    {
+      "begin": 266,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        349.5622
+      ],
+      "text": "Table 4 lists the 15 held-out species and their structural outcomes. Table 5 summarises the Herring Gull\nand Common Murre comparisons used to examine missing-information handling. The cases illustrate\nreport behaviour and do not constitute a systematic estimate of unsupported-claim frequency.\n",
+      "font": "/F2",
+      "size": 10.5,
+      "leading": 13.6,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            30.3
+          ]
+        ]
+      ],
+      "end": 280,
+      "id": 13
+    }
+  ],
+  [
+    {
+      "begin": 10,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "text": "12\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 10.8,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            293.1378,
+            39.68504
+          ]
+        ]
+      ],
+      "end": 14,
+      "id": 0
+    },
+    {
+      "begin": 19,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        764.9622
+      ],
+      "text": "Table 4. Structural outcomes for the 15 held-out species.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 28,
+      "id": 1
+    },
+    {
+      "begin": 43,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        738.7622
+      ],
+      "text": "Held-out species\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 49,
+      "id": 2
+    },
+    {
+      "begin": 56,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        738.7622
+      ],
+      "text": "Base: JSON / schema\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 62,
+      "id": 3
+    },
+    {
+      "begin": 69,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        738.7622
+      ],
+      "text": "Adapted: JSON / schema\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 75,
+      "id": 4
+    },
+    {
+      "begin": 82,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        717.5622000000001
+      ],
+      "text": "Herring Gull\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 88,
+      "id": 5
+    },
+    {
+      "begin": 95,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        717.5622000000001
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 101,
+      "id": 6
+    },
+    {
+      "begin": 108,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        717.5622000000001
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 114,
+      "id": 7
+    },
+    {
+      "begin": 121,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        696.3622
+      ],
+      "text": "Mediterranean Gull\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 127,
+      "id": 8
+    },
+    {
+      "begin": 134,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        696.3622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 140,
+      "id": 9
+    },
+    {
+      "begin": 147,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        696.3622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 153,
+      "id": 10
+    },
+    {
+      "begin": 160,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        675.1622
+      ],
+      "text": "European Goldfinch\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 166,
+      "id": 11
+    },
+    {
+      "begin": 173,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        675.1622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 179,
+      "id": 12
+    },
+    {
+      "begin": 186,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        675.1622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 192,
+      "id": 13
+    },
+    {
+      "begin": 199,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        653.9621999999999
+      ],
+      "text": "Eurasian Hobby\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 205,
+      "id": 14
+    },
+    {
+      "begin": 212,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        653.9621999999999
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 218,
+      "id": 15
+    },
+    {
+      "begin": 225,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        653.9621999999999
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 231,
+      "id": 16
+    },
+    {
+      "begin": 238,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        632.7622
+      ],
+      "text": "Eurasian Hoopoe\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 244,
+      "id": 17
+    },
+    {
+      "begin": 251,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        632.7622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 257,
+      "id": 18
+    },
+    {
+      "begin": 264,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        632.7622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 270,
+      "id": 19
+    },
+    {
+      "begin": 277,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        611.5622000000001
+      ],
+      "text": "Common Murre\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 283,
+      "id": 20
+    },
+    {
+      "begin": 290,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        611.5622000000001
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 296,
+      "id": 21
+    },
+    {
+      "begin": 303,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        611.5622000000001
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 309,
+      "id": 22
+    },
+    {
+      "begin": 316,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        590.3622
+      ],
+      "text": "Southern Cassowary\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 322,
+      "id": 23
+    },
+    {
+      "begin": 329,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        590.3622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 335,
+      "id": 24
+    },
+    {
+      "begin": 342,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        590.3622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 348,
+      "id": 25
+    },
+    {
+      "begin": 355,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        569.1622
+      ],
+      "text": "Crested Lark\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 361,
+      "id": 26
+    },
+    {
+      "begin": 368,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        569.1622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 374,
+      "id": 27
+    },
+    {
+      "begin": 381,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        569.1622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 387,
+      "id": 28
+    },
+    {
+      "begin": 394,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        547.9621999999999
+      ],
+      "text": "Tawny Owl\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 400,
+      "id": 29
+    },
+    {
+      "begin": 407,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        547.9621999999999
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 413,
+      "id": 30
+    },
+    {
+      "begin": 420,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        547.9621999999999
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 426,
+      "id": 31
+    },
+    {
+      "begin": 433,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        526.7622
+      ],
+      "text": "Song Thrush\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 439,
+      "id": 32
+    },
+    {
+      "begin": 446,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        526.7622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 452,
+      "id": 33
+    },
+    {
+      "begin": 459,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        526.7622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 465,
+      "id": 34
+    },
+    {
+      "begin": 472,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        505.5622
+      ],
+      "text": "Common House-Martin\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 478,
+      "id": 35
+    },
+    {
+      "begin": 485,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        505.5622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 491,
+      "id": 36
+    },
+    {
+      "begin": 498,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        505.5622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 504,
+      "id": 37
+    },
+    {
+      "begin": 511,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        484.36220000000003
+      ],
+      "text": "Peregrine Falcon\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 517,
+      "id": 38
+    },
+    {
+      "begin": 524,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        484.36220000000003
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 530,
+      "id": 39
+    },
+    {
+      "begin": 537,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        484.36220000000003
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 543,
+      "id": 40
+    },
+    {
+      "begin": 550,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        463.1622
+      ],
+      "text": "European Turtle-Dove\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 556,
+      "id": 41
+    },
+    {
+      "begin": 563,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        463.1622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 569,
+      "id": 42
+    },
+    {
+      "begin": 576,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        463.1622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 582,
+      "id": 43
+    },
+    {
+      "begin": 589,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        441.9622
+      ],
+      "text": "Eurasian Collared-Dove\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 595,
+      "id": 44
+    },
+    {
+      "begin": 602,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        441.9622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 608,
+      "id": 45
+    },
+    {
+      "begin": 615,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        441.9622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 621,
+      "id": 46
+    },
+    {
+      "begin": 628,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        420.7622
+      ],
+      "text": "Barn Swallow\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 634,
+      "id": 47
+    },
+    {
+      "begin": 641,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        275.49289999999996,
+        420.7622
+      ],
+      "text": "Fail / Fail\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 647,
+      "id": 48
+    },
+    {
+      "begin": 654,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        406.3685,
+        420.7622
+      ],
+      "text": "Pass / Pass\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 660,
+      "id": 49
+    },
+    {
+      "begin": 691,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        396.3622
+      ],
+      "text": "Table 5. Illustrative paired reports under sparse evidence.\n",
+      "font": "/F2",
+      "size": 9.2,
+      "leading": 11.4,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 700,
+      "id": 50
+    },
+    {
+      "begin": 715,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        370.1622
+      ],
+      "text": "Species and supplied evidence\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 721,
+      "id": 51
+    },
+    {
+      "begin": 728,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        238.7559,
+        370.1622
+      ],
+      "text": "Unadapted output\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 734,
+      "id": 52
+    },
+    {
+      "begin": 741,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        388.0,
+        370.1622
+      ],
+      "text": "Adapted output\n",
+      "font": "/F3",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 1,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.2
+          ]
+        ]
+      ],
+      "end": 747,
+      "id": 53
+    },
+    {
+      "begin": 753,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        326.56219999999996
+      ],
+      "text": "Herring Gull (Larus argentatus).\nGBIF-linked identity and source\nreference; key ecological fields absent.\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            24.6
+          ]
+        ]
+      ],
+      "end": 768,
+      "id": 54
+    },
+    {
+      "begin": 775,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        238.7559,
+        326.56219999999996
+      ],
+      "text": "Markdown prose. Introduced\ndeforestation without input support.\nAutomated grounding score: 2/5.\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 3,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            24.6
+          ]
+        ]
+      ],
+      "end": 785,
+      "id": 55
+    },
+    {
+      "begin": 792,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        388.0,
+        315.3622
+      ],
+      "text": "Valid JSON. Marked missing fields\nunavailable, retained the source, and\nrecommended data collection.\nAutomated grounding score: 5/5.\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            35.8
+          ]
+        ]
+      ],
+      "end": 804,
+      "id": 56
+    },
+    {
+      "begin": 810,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        78.0315,
+        282.9622
+      ],
+      "text": "Common Murre (Uria aalge). Same\nsparse evidence boundary.\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.4
+          ]
+        ]
+      ],
+      "end": 823,
+      "id": 57
+    },
+    {
+      "begin": 830,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        238.7559,
+        260.56219999999996
+      ],
+      "text": "Markdown prose. Introduced wetland\ndrainage and deforestation without\ninput support. Automated grounding\nscore: 1/5.\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            35.8
+          ]
+        ]
+      ],
+      "end": 842,
+      "id": 58
+    },
+    {
+      "begin": 849,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        388.0,
+        260.56219999999996
+      ],
+      "text": "Valid JSON. Stated that an IUCN-style\nassessment could not be completed and\nrequested more evidence. Automated\ngrounding score: 5/5.\n",
+      "font": "/F2",
+      "size": 9.0,
+      "leading": 11.2,
+      "newlines": 4,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            35.8
+          ]
+        ]
+      ],
+      "end": 865,
+      "id": 59
+    },
+    {
+      "begin": 897,
+      "ctm": [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        74.0315,
+        224.5622
+      ],
+      "text": "The cases were not selected through a documented random sampling procedure. The reported pattern should therefore be\ninterpreted alongside the aggregate structural results rather than as an estimated factual error rate.\n",
+      "font": "/F2",
+      "size": 9.1,
+      "leading": 11.5,
+      "newlines": 2,
+      "moves": [
+        [
+          "Tm",
+          [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            13.9
+          ]
+        ]
+      ],
+      "end": 907,
+      "id": 60
+    }
+  ]
+]

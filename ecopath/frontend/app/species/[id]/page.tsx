@@ -3,6 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getGBIFSpeciesDetail, getGBIFOccurrences } from "@/lib/api";
+import { getSpeciesContext, getSpeciesMedia, getOccurrenceTimeline } from "@/lib/dataClient";
 import { ExternalLink, Play, Pause, Loader2, Globe, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { COUNTRY_OPTIONS } from "@/lib/countries";
@@ -72,24 +73,32 @@ function computeClientAnomalies(history: PopulationYearSummary[]) {
   return results;
 }
 
+// Wikipedia and GBIF media both go through the backend's unified data layer
+// rather than being fetched from the browser, so responses are cached across
+// users and upstream policy (User-Agent, rate limits) is handled in one place.
 async function fetchWikipediaData(scientificName: string) {
-  const encoded = encodeURIComponent(scientificName.replace(/ /g, "_"));
-  const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encoded}`);
-  if (!res.ok) return null;
-  const data = await res.json();
-  return {
-    imageUrl: data.thumbnail?.source ?? null,
-    extract: data.extract ? data.extract.split(".").slice(0, 3).join(".") + "." : null,
-    pageUrl: data.content_urls?.desktop?.page ?? null,
-  };
+  try {
+    const data = await getSpeciesContext(scientificName);
+    if (!data) return null;
+    return {
+      imageUrl: data.thumbnail ?? null,
+      extract: data.extract
+        ? data.extract.split(".").slice(0, 3).join(".") + "."
+        : null,
+      pageUrl: data.url ?? null,
+    };
+  } catch {
+    return null;
+  }
 }
 
 async function fetchGBIFMedia(gbifKey: string) {
-  const res = await fetch(`https://api.gbif.org/v1/species/${gbifKey}/media`);
-  if (!res.ok) return null;
-  const data = await res.json();
-  const img = data.results?.find((m: any) => m.type === "StillImage" && m.identifier);
-  return img?.identifier ?? null;
+  try {
+    const media = await getSpeciesMedia(gbifKey, 5);
+    return media?.find((m: any) => m.url)?.url ?? null;
+  } catch {
+    return null;
+  }
 }
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -412,7 +421,34 @@ export default function SpeciesDetailPage() {
     enabled: !!gbifKey,
   });
 
-  const scientificName = gbifSpecies?.canonicalName ?? gbifSpecies?.scientificName ?? "";
+  // The backend's unified data router returns snake_case fields; the raw GBIF
+  // names are kept as fallbacks because this page predates that router and may
+  // still be handed a direct GBIF payload.
+  //
+  // Getting this wrong is not cosmetic: `scientificName` gates the Wikipedia
+  // and xeno-canto queries below, so an empty value silently disabled the
+  // image and the audio as well as showing "Unknown" as the title.
+  // Yearly totals for the trend come from GBIF's facet counts, not from the
+  // occurrence sample. The sample is capped at 300 records for a single year
+  // (it defaulted to the current one, which is why this chart showed a lone
+  // 2026 point), whereas facets are exact totals for every year.
+  const { data: timeline } = useQuery({
+    queryKey: ["gbif-timeline", gbifKey, selectedCountry],
+    queryFn: () =>
+      getOccurrenceTimeline(
+        gbifKey,
+        2015,
+        2024,
+        selectedCountry === "GLOBAL" ? null : selectedCountry,
+      ),
+    enabled: !!gbifKey,
+  });
+
+  const scientificName =
+    gbifSpecies?.scientific_name ??
+    gbifSpecies?.canonicalName ??
+    gbifSpecies?.scientificName ??
+    "";
 
   const { data: wikiData, isLoading: loadingWiki } = useQuery({
     queryKey: ["wikipedia", scientificName],
@@ -423,7 +459,9 @@ export default function SpeciesDetailPage() {
   const { data: gbifMediaUrl } = useQuery({
     queryKey: ["gbif-media-fallback", gbifKey],
     queryFn: () => fetchGBIFMedia(gbifKey),
-    enabled: !!gbifKey && wikiData !== undefined && !wikiData?.imageUrl,
+    // Runs whenever Wikipedia produced no image — including when that query was
+    // skipped entirely — so a missing wiki page never means a missing picture.
+    enabled: !!gbifKey && !loadingWiki && !wikiData?.imageUrl,
   });
 
   const { data: xenoData } = useQuery({
@@ -432,13 +470,29 @@ export default function SpeciesDetailPage() {
     enabled: !!scientificName,
   });
 
-  const commonName = gbifSpecies?.vernacularName ?? gbifSpecies?.canonicalName ?? "Unknown";
+  const commonName =
+    gbifSpecies?.common_name ??
+    gbifSpecies?.vernacularName ??
+    gbifSpecies?.canonicalName ??
+    scientificName ??
+    "Unknown";
   const family = gbifSpecies?.family ?? "";
-  const order = gbifSpecies?.order ?? "";
+  const order = gbifSpecies?.order_name ?? gbifSpecies?.order ?? "";
   const kingdom = gbifSpecies?.kingdom ?? "";
   const resolvedImageUrl = wikiData?.imageUrl ?? gbifMediaUrl ?? null;
 
-  const populationHistory = useMemo(() => buildPopulationHistory(occurrenceData?.results ?? []), [occurrenceData]);
+  const populationHistory = useMemo<PopulationYearSummary[]>(() => {
+    if (timeline?.length) {
+      // `states_observed` stays 0 here: facet counts carry no region breakdown,
+      // and inventing one from the smaller point sample would misreport it.
+      return timeline.map((t) => ({
+        year: t.year,
+        total_observations: t.count,
+        states_observed: 0,
+      }));
+    }
+    return buildPopulationHistory(occurrenceData?.results ?? []);
+  }, [timeline, occurrenceData]);
   const anomalies = useMemo(() => computeClientAnomalies(populationHistory), [populationHistory]);
   const anomalyYears = new Set(anomalies.map(a => a.year));
   const anomalyMap = new Map(anomalies.map(a => [a.year, a]));
@@ -450,7 +504,13 @@ export default function SpeciesDetailPage() {
     anomalyType: anomalyMap.get(p.year)?.type,
   }));
 
-  const totalOccurrences = occurrenceData?.count ?? 0;
+  // Prefer the facet total: `occurrenceData` is a capped single-year sample, so
+  // reading the headline occurrence count off it reported 4 records for a bird
+  // with tens of thousands.
+  const totalOccurrences =
+    timeline?.length
+      ? timeline.reduce((sum, t) => sum + t.count, 0)
+      : occurrenceData?.count ?? 0;
   const statesSet = new Set<string>();
   for (const occ of occurrenceData?.results ?? []) {
     if (occ.stateProvince) statesSet.add(occ.stateProvince);

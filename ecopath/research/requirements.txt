@@ -1,0 +1,6 @@
+# Offline pipeline uses only jsonschema; pytest is the repository test framework.
+jsonschema>=4.18,<5
+pytest>=8,<10
+# GPU dependencies are deliberately optional. Install and lock vetted compatible
+# versions on the selected GPU host, then preserve its environment in run records.
+# torch, transformers, peft, datasets, accelerate, bitsandbytes, lm-format-enforcer

@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 
 import { createExtinctionRiskReport } from "@/lib/api";
 import type { ExtinctionRiskReportResult } from "@/lib/types";
+import { EvidenceComparisonPanel } from "./EvidenceComparisonPanel";
 
 
 type Props = {
@@ -178,6 +179,7 @@ export function ExtinctionRiskReportPanel({ speciesName, scientificName, gbifKey
                 {report && (
                     <div style={{ display: "grid", gap: "1rem" }}>
                         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                            <Pill>Draft for human review</Pill>
                             <Pill>Status: {report.current_conservation_status}</Pill>
                             <Pill>{formatGenerationMode(report.generation_mode)}</Pill>
                             <Pill>{formatModelStatus(report.model_output_status)}</Pill>
@@ -185,11 +187,14 @@ export function ExtinctionRiskReportPanel({ speciesName, scientificName, gbifKey
                             {report.limited_evidence_reasons.length > 0 && <Pill>Limited evidence</Pill>}
                         </div>
 
+                        <p role="status">Evidence fidelity requires human review. {report.validation_errors?.join(" ")}</p>
+                        {!!report.missing_evidence_fields?.length && <p>Missing evidence: {report.missing_evidence_fields.join(", ")}</p>}
+
                         {report.model_output_status !== "complete" && (
                             <div style={{ display: "flex", gap: 10, alignItems: "flex-start", background: "rgba(214, 129, 14, 0.08)", border: "1px solid rgba(214, 129, 14, 0.22)", borderRadius: "var(--r-md)", padding: "0.85rem 1rem" }}>
                                 <AlertCircle size={16} style={{ color: "rgb(214, 129, 14)", marginTop: 2, flexShrink: 0 }} />
                                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.88rem", lineHeight: 1.7, color: "var(--text-primary)" }}>
-                                    Live evidence was collected and the report is still usable. The local Ollama synthesis was incomplete in this run, so EcoPath finished the draft from the retrieved evidence and reference records.
+                                    The model response was incomplete or invalid. Recovery content is shown as an unverified draft and requires human review.
                                 </p>
                             </div>
                         )}
@@ -288,6 +293,8 @@ export function ExtinctionRiskReportPanel({ speciesName, scientificName, gbifKey
                     </div>
                 )}
             </div>
+
+            <EvidenceComparisonPanel key={scientificName} scientificName={scientificName} />
 
             <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
         </section>

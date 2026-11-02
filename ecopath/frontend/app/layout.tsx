@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { CommandBar } from "@/components/CommandBar";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
@@ -32,6 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-1">{children}</main>
+            {/* The bar is additive for now: the tabs above stay reachable
+                until it is at parity with them. */}
+            <CommandBar />
           </div>
         </Providers>
       </body>

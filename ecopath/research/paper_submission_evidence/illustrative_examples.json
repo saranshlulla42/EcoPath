@@ -1,0 +1,221 @@
+{
+  "punctuation_example": {
+    "example_id": "soib2023:Hemipus_picatus:complete",
+    "scientific_name": "Hemipus picatus",
+    "variant": "complete",
+    "field": "diet",
+    "category": "terminal_period_only",
+    "expected_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+    "baseline_value": "SoIB 2023 diet-guild classification: Invertebrate",
+    "expected_source_ids": [
+      "s-462f42e71095a56a34f3"
+    ],
+    "baseline_source_ids": [
+      "s-462f42e71095a56a34f3"
+    ],
+    "baseline_kind": "source_reported",
+    "adapted_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+    "adapted_source_ids": [
+      "s-462f42e71095a56a34f3"
+    ],
+    "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=654; scientific-name=Hemipus picatus",
+    "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+    "source_excerpt": "Diet Guild=Invertebrate"
+  },
+  "other_value_differences": [
+    {
+      "example_id": "soib2023:Luscinia_svecica:partial",
+      "scientific_name": "Luscinia svecica",
+      "variant": "partial",
+      "field": "diet",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+      "baseline_value": "Invertebrate",
+      "expected_source_ids": [
+        "s-ae5f7ed9167d43be17d5"
+      ],
+      "baseline_source_ids": [
+        "s-ae5f7ed9167d43be17d5"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+      "adapted_source_ids": [
+        "s-ae5f7ed9167d43be17d5"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1140; scientific-name=Luscinia svecica",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "Diet Guild=Invertebrate"
+    },
+    {
+      "example_id": "soib2023:Luscinia_svecica:partial",
+      "scientific_name": "Luscinia svecica",
+      "variant": "partial",
+      "field": "range_summary",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 distribution range-size category: Large.",
+      "baseline_value": "Large",
+      "expected_source_ids": [
+        "s-55febd2d55edb701bd1c"
+      ],
+      "baseline_source_ids": [
+        "s-55febd2d55edb701bd1c"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 distribution range-size category: Large.",
+      "adapted_source_ids": [
+        "s-55febd2d55edb701bd1c"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1140; scientific-name=Luscinia svecica",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "SoIB 2023 Distribution Range Size Status=Large"
+    },
+    {
+      "example_id": "soib2023:Acridotheres_grandis:complete",
+      "scientific_name": "Acridotheres grandis",
+      "variant": "complete",
+      "field": "diet",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+      "baseline_value": "Invertebrate",
+      "expected_source_ids": [
+        "s-d997234284aabead6e82"
+      ],
+      "baseline_source_ids": [
+        "s-d997234284aabead6e82"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+      "adapted_source_ids": [
+        "s-d997234284aabead6e82"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1068; scientific-name=Acridotheres grandis",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "Diet Guild=Invertebrate"
+    },
+    {
+      "example_id": "soib2023:Acridotheres_grandis:complete",
+      "scientific_name": "Acridotheres grandis",
+      "variant": "complete",
+      "field": "habitat",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 habitat specialization classification: Open Habitat.",
+      "baseline_value": "Open Habitat",
+      "expected_source_ids": [
+        "s-83ac0239577ea7460244"
+      ],
+      "baseline_source_ids": [
+        "s-83ac0239577ea7460244"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 habitat specialization classification: Open Habitat.",
+      "adapted_source_ids": [
+        "s-83ac0239577ea7460244"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1068; scientific-name=Acridotheres grandis",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "Habitat Specialization=Open Habitat"
+    },
+    {
+      "example_id": "soib2023:Acridotheres_grandis:complete",
+      "scientific_name": "Acridotheres grandis",
+      "variant": "complete",
+      "field": "migratory_behavior",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 migratory-status classification within India: Resident.",
+      "baseline_value": "Resident",
+      "expected_source_ids": [
+        "s-7b42a996a8c86bf179b1"
+      ],
+      "baseline_source_ids": [
+        "s-7b42a996a8c86bf179b1"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 migratory-status classification within India: Resident.",
+      "adapted_source_ids": [
+        "s-7b42a996a8c86bf179b1"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1068; scientific-name=Acridotheres grandis",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "Migratory Status within India=Resident"
+    },
+    {
+      "example_id": "soib2023:Acridotheres_grandis:complete",
+      "scientific_name": "Acridotheres grandis",
+      "variant": "complete",
+      "field": "range_summary",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 distribution range-size category: Moderate.",
+      "baseline_value": "Moderate",
+      "expected_source_ids": [
+        "s-f3a9f990ee61588ed622"
+      ],
+      "baseline_source_ids": [
+        "s-f3a9f990ee61588ed622"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 distribution range-size category: Moderate.",
+      "adapted_source_ids": [
+        "s-f3a9f990ee61588ed622"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1068; scientific-name=Acridotheres grandis",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "SoIB 2023 Distribution Range Size Status=Moderate"
+    },
+    {
+      "example_id": "soib2023:Acridotheres_grandis:partial",
+      "scientific_name": "Acridotheres grandis",
+      "variant": "partial",
+      "field": "diet",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+      "baseline_value": "Invertebrate",
+      "expected_source_ids": [
+        "s-d997234284aabead6e82"
+      ],
+      "baseline_source_ids": [
+        "s-d997234284aabead6e82"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 diet-guild classification: Invertebrate.",
+      "adapted_source_ids": [
+        "s-d997234284aabead6e82"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1068; scientific-name=Acridotheres grandis",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "Diet Guild=Invertebrate"
+    },
+    {
+      "example_id": "soib2023:Acridotheres_grandis:partial",
+      "scientific_name": "Acridotheres grandis",
+      "variant": "partial",
+      "field": "habitat",
+      "category": "other_value_difference",
+      "expected_value": "SoIB 2023 habitat specialization classification: Open Habitat.",
+      "baseline_value": "Open Habitat",
+      "expected_source_ids": [
+        "s-83ac0239577ea7460244"
+      ],
+      "baseline_source_ids": [
+        "s-83ac0239577ea7460244"
+      ],
+      "baseline_kind": "source_reported",
+      "adapted_value": "SoIB 2023 habitat specialization classification: Open Habitat.",
+      "adapted_source_ids": [
+        "s-83ac0239577ea7460244"
+      ],
+      "source_record_id": "10.5281/zenodo.11124590/SoIB 2023 India.csv; data-record=1068; scientific-name=Acridotheres grandis",
+      "source_url": "https://zenodo.org/records/11124590/files/SoIB%202023%20India.csv?download=1",
+      "source_excerpt": "Habitat Specialization=Open Habitat"
+    }
+  ],
+  "unassessable": {
+    "example_id": "soib2023:Neophron_percnopterus:partial",
+    "finish_reason": "length",
+    "truncated": true,
+    "parse_errors": [
+      "Unterminated string starting at: line 54 column 9 (char 1628)",
+      "invalid JSON"
+    ],
+    "output_tokens": 768
+  }
+}

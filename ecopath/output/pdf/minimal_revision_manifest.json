@@ -1,0 +1,437 @@
+{
+  "created_at_utc": "2026-10-29T19:44:46.122212+00:00",
+  "source_pdf": "/home/saranshlulla/Downloads/Paper 2nd draft.pdf",
+  "source_sha256": "126c78dd80c94cfa36e9ea58f4f1fd8c19144c2c87b836b57fd4e4734b30fc24",
+  "output_pdf": "/home/saranshlulla/Documents/Capstone/ecopath/output/pdf/EcoPath_Paper_Minimal_Revision.pdf",
+  "output_sha256": "b35d5eb4aa5383b5a0673582e93de69f37ecedd4546429a2efe2acf3b9e7cbdb",
+  "original_pages": 12,
+  "appendix_pages": 2,
+  "changed_original_pages": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "unchanged_original_pages": [
+    4
+  ],
+  "edits": [
+    {
+      "page": 1,
+      "group": 6,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 217.6,
+      "new_height": 190.4,
+      "rect_pdf": [
+        74.0315,
+        372.2622,
+        521.2441,
+        589.8622
+      ],
+      "original_text": "Preparing a conservation report from incomplete biodiversity information requires more than a fluent\nsummary: the report must preserve the distinction between available evidence and unanswered questions.\nWe investigated whether parameter-efficient fine-tuning could help a language model perform this task\nwithin EcoPath, a geospatial bird-intelligence platform. We adapted Qwen2.5-7B-Instruct using QLoRA\non 85 synthetic examples and compared it with the unadapted model on 15 held-out bird species. Inputs\ncontained GBIF-linked species metadata but lacked verified conservation status, population trend,\npopulation estimate, habitat, and range fields. The adapted model produced valid, schema-compliant\nJSON for all 15 species, whereas the unadapted model returned Markdown prose and passed neither\nstructural check. Mean output length decreased from 590 to 335 words. Supplementary automated\nevaluation also favoured the adapted responses, with mean grounding scores of 5.00 versus 2.33 and\nreviewer-usefulness scores of 4.73 versus 1.87 on a five-point scale. Illustrative cases showed a shift from\nunsupported threat descriptions to explicit acknowledgement of missing information. The findings\ndemonstrate adaptation to a structured drafting task under sparse inputs. Whether this behaviour represents\nreliable evidence use beyond the learned reporting pattern remains unresolved, particularly in comparison\nwith stronger prompting and constrained generation. EcoPath provides a setting for investigating that\ndistinction while retaining human responsibility for conservation interpretation.\n",
+      "replacement_text": "Preparing a conservation report from incomplete biodiversity information requires more than a fluent summary: the report must preserve the distinction between available evidence and unanswered questions. We investigated whether parameter-efficient fine-tuning could help a language model perform this task within EcoPath, a geospatial bird-intelligence platform. An archived QLoRA experiment adapted Qwen2.5-7B-Instruct on 85 synthetic examples with taxonomy-only inputs. On 15 held-out species, valid JSON and required-key presence were observed in 15/15 adapted responses and 0/15 base responses; the original prompt did not explicitly require JSON. We then compared a newly trained adapter with a strongly prompted unadapted model on 60 additional held-out species under three evidence variants, using identical prompts and schema constraints. End-to-end field success was 100.0% for QLoRA and 72.1% for the unadapted comparator (paired difference +27.9 percentage points; 95% species bootstrap interval +27.2 to +29.0). Available-value agreement, abstention and source associations were assessed separately. This single-seed comparison evaluates agreement with reviewed structured assertions, rather than independent ecological correctness. EcoPath retains a bounded report-drafting role while the measured results qualify the incremental contribution of adaptation."
+    },
+    {
+      "page": 2,
+      "group": 4,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 95.2,
+      "new_height": 95.2,
+      "rect_pdf": [
+        74.0315,
+        456.1622,
+        521.2441,
+        551.3622
+      ],
+      "original_text": "The study addressed two questions: (i) how does QLoRA adaptation change structural compliance on\nheld-out species under the same reporting prompts, and (ii) what differences in missing-information\nhandling are apparent in automated ratings and illustrative outputs? We expected the adapted model to\nfollow the report schema more consistently. We treated the second question as exploratory because the\ninputs did not vary the availability of the principal ecological fields. The resulting contribution is a proof\nof concept for structured bird conservation drafting, together with an analysis of the distinction between\nlearning a report template and learning to use evidence selectively.\n",
+      "replacement_text": "The study addressed two questions: (i) how does QLoRA adaptation change structural compliance on held-out species under the same reporting prompts, and (ii) what differences in missing-information handling are apparent in automated ratings and illustrative outputs? We expected the adapted model to follow the report schema more consistently. We treated the second question as exploratory because the original inputs did not vary the principal ecological fields. A subsequent matched comparison on 60 held-out species (Appendix B) tested supplied-evidence use under identical prompting and schema constraints."
+    },
+    {
+      "page": 3,
+      "group": 8,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 54.4,
+      "new_height": 54.4,
+      "rect_pdf": [
+        74.0315,
+        337.9622,
+        521.2441,
+        392.3622
+      ],
+      "original_text": "We implemented the drafting task within EcoPath and evaluated the same instruction-tuned model with\nand without a QLoRA adapter. The experiment comprised a synthetic training dataset, one adaptation run,\nand a paired comparison on 15 held-out species. This section describes the application context and the\nprocedures underlying that comparison.\n",
+      "replacement_text": "We implemented the drafting task within EcoPath and evaluated the same instruction-tuned model with and without a QLoRA adapter. Sections 3-5 describe the archived synthetic-data experiment and its 15-species comparison. Appendix B reports a separate sourced dataset, new training and a matched 60-species evaluation addressing the same drafting purpose."
+    },
+    {
+      "page": 5,
+      "group": 2,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        686.8622,
+        521.2441,
+        754.8622
+      ],
+      "original_text": "The workflow consisted of preparing species-linked targets, dividing the dataset into training and held-out\nsubsets, adapting the model, and generating paired reports (Figure 2). Each model condition received the\nsame held-out species payload and reporting prompt. We assessed the resulting responses for parseability\nand schema compliance, then used an automated rubric to compare their presentation and judged content\nquality.\n",
+      "replacement_text": "The workflow consisted of preparing species-linked targets, dividing the dataset into training and held-out subsets, adapting the model, and generating paired reports (Figure 2). Each model condition received the same held-out species payload and reporting prompt. We assessed parseability and required-key presence, then obtained supplementary automated ratings. The archived prompt did not explicitly require JSON or supply a schema; Appendix B adds a matched, explicitly constrained comparison."
+    },
+    {
+      "page": 5,
+      "group": 15,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        265.1622,
+        521.2441,
+        333.1622
+      ],
+      "original_text": "Target reports made these gaps explicit rather than supplying unsupported numerical or\nconservation-status claims. This design exposed the model to a consistent reporting task: express the\navailable species context within the required structure and identify the ecological information that could\nnot be established. Because the principal ecological fields were absent throughout, the dataset tested this\nsparse-input pattern without testing how behaviour changed when those fields became available.\n",
+      "replacement_text": "Target reports identified many evidence gaps, exposing the model to a consistent structured drafting pattern. However, the synthetic targets were not independently verified conservation references: source auditing also identified heuristic risk language unsupported by the taxonomy-only inputs. Because the principal ecological fields were absent throughout, this dataset could not test whether the model would selectively report supported values when richer evidence became available."
+    },
+    {
+      "page": 5,
+      "group": 16,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        190.1622,
+        521.2441,
+        258.1622
+      ],
+      "original_text": "Using a deterministic split with seed 42, we assigned 85 species examples to training and 15 to held-out\nevaluation. The held-out set was not used for prompt modification or checkpoint selection. There was no\nseparate validation partition. The evaluation species are listed in Appendix A. The platform had an\nIndia-focused motivation, but the held-out list was geographically broader and was not designed to\nestimate performance specifically on Indian birds.\n",
+      "replacement_text": "Using a deterministic split with seed 42, we assigned 85 species examples to training and 15 to held-out evaluation. There was no separate validation partition or recorded validation-based checkpoint selection. Species were disjoint, but Larus and Turdus occurred in both splits. The evaluation species are listed in Appendix A. Although EcoPath has an India-focused motivation, this geographically broader held-out list was not designed to estimate performance specifically on Indian birds."
+    },
+    {
+      "page": 6,
+      "group": 29,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        276.2622,
+        521.2441,
+        344.2622
+      ],
+      "original_text": "We first assessed JSON validity after removing optional Markdown fences. We then checked schema\ncompliance for six report components: species, current conservation status, key threats, survivability\nassessment, mitigation actions, and sources. These checks measured whether the application could\nconsume the response in the requested form. They did not verify the factual support of the text within each\nfield.\n",
+      "replacement_text": "We assessed JSON validity after removing optional Markdown fences, then checked the presence of six component keys: species, current conservation status, key threats, survivability assessment, mitigation actions, and sources. The historical check accepted flat or nested layouts and did not validate field types or a full JSON schema. These measures describe parseability and key presence; they do not verify factual support. Full schema validation is used in Appendix B."
+    },
+    {
+      "page": 6,
+      "group": 30,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 54.4,
+      "new_height": 54.4,
+      "rect_pdf": [
+        74.0315,
+        214.8622,
+        521.2441,
+        269.2622
+      ],
+      "original_text": "We used a Gemini-family LLM judge to score all 30 responses against the supplied evidence. The\nfive-point rubric covered format compliance, factual grounding, completeness, and reviewer usefulness.\nAll responses received scores. These ratings were supplementary: no blinded human assessment was\nconducted, and independence between the judge and the synthetic-data teacher was not established.\n",
+      "replacement_text": "A Gemini-family LLM judge assigned five-point ratings for format, grounding, completeness and usefulness to all 30 responses. Its context was limited to the first 600 characters of the user prompt, generally omitting the source-result section. These historical ratings therefore do not establish fidelity to the full supplied evidence. No blinded human validation or teacher-judge independence was established."
+    },
+    {
+      "page": 7,
+      "group": 6,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 54.4,
+      "new_height": 54.4,
+      "rect_pdf": [
+        74.0315,
+        550.3622,
+        521.2441,
+        604.7622
+      ],
+      "original_text": "All 15 adapted responses were valid JSON and satisfied the schema, compared with none of the unadapted\nresponses (Table 3). The unadapted model returned Markdown prose rather than the requested objects. Its\nschema failures therefore coincided with parse failures; the two structural checks described the same\nfailure pattern rather than independent dimensions of improvement.\n",
+      "replacement_text": "All 15 adapted responses were valid JSON and contained the required keys, compared with none of the unadapted responses (Table 3). The base model returned Markdown prose under an instruction requesting a structured report, without explicitly requiring JSON. Parse failure and required-key failure therefore coincided. This weak baseline does not establish that adaptation is necessary for JSON output."
+    },
+    {
+      "page": 7,
+      "group": 16,
+      "font": "Times-Roman",
+      "font_size": 9.0,
+      "leading": 11.2,
+      "old_height": 11.2,
+      "new_height": 11.2,
+      "rect_pdf": [
+        78.0315,
+        463.3622,
+        243.0315,
+        474.56219999999996
+      ],
+      "original_text": "Schema compliance\n",
+      "replacement_text": "Required-key presence"
+    },
+    {
+      "page": 8,
+      "group": 1,
+      "font": "Times-Roman",
+      "font_size": 9.2,
+      "leading": 11.4,
+      "old_height": 22.8,
+      "new_height": 22.8,
+      "rect_pdf": [
+        74.0315,
+        473.0346,
+        521.2441,
+        495.8346
+      ],
+      "original_text": "Figure 3. Mean automated rubric scores for the paired report conditions. Scores concern the supplied evidence and report\nrequirements, rather than verified conservation-assessment accuracy. Error bars are unavailable.\n",
+      "replacement_text": "<b>Figure 3.</b> Historical automated ratings. Judge identity is unverified; context was limited to 600 prompt characters, generally omitting source excerpts. Scores do not validate full-evidence fidelity."
+    },
+    {
+      "page": 8,
+      "group": 6,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        268.2346,
+        521.2441,
+        336.2346
+      ],
+      "original_text": "The comparison shows that a small synthetic training set was sufficient to establish the requested reporting\nformat in this configuration. Within EcoPath, that change has a concrete application-level benefit: a\nstructured response can be parsed and presented through a consistent interface. The result addresses the\nfirst research question, while leaving open whether the same reliability could be achieved with a stronger\nunadapted baseline.\n",
+      "replacement_text": "The archived comparison shows that a small synthetic training set could establish a learned JSON reporting pattern under the tested instruction. A structured response can be parsed and presented through a consistent interface. However, the instruction did not explicitly require JSON, so the result does not establish superiority over strong prompting. The matched comparison in Appendix B evaluates the adapter under the same explicit prompt and output constraints as its unadapted comparator."
+    },
+    {
+      "page": 8,
+      "group": 7,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 81.6,
+      "new_height": 81.6,
+      "rect_pdf": [
+        74.0315,
+        179.6346,
+        521.2441,
+        261.2346
+      ],
+      "original_text": "The supplementary ratings suggest that the change extended beyond the visible format, because the judge\ncould assess the unadapted Markdown responses as well as the adapted JSON. Higher grounding and\nusefulness scores are consistent with reports that state information gaps more directly and avoid generic\nelaboration. However, response structure, brevity, and similarity to the target style could also influence the\nratings. The automated comparison therefore motivates closer examination of the content rather than\nestablishing a measured reduction in unsupported claims.\n",
+      "replacement_text": "The supplementary ratings favoured the adapted reports, but their interpretation is limited by the judge context: only a 600-character prompt prefix was supplied, generally excluding source excerpts. These scores cannot show that the judge checked each report against the complete supplied evidence. Structure, brevity and similarity to the target style may also have influenced the ratings. We retain them as historical descriptive observations and use the direct structured-source checks in Appendix B to examine evidence agreement without treating automated judging as ecological validation."
+    },
+    {
+      "page": 9,
+      "group": 5,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        497.7622,
+        521.2441,
+        565.7622
+      ],
+      "original_text": "Our findings fit the task-specific adaptation enabled by LoRA and QLoRA [4,6]. Their contribution here\nis not a new adaptation algorithm, but an application in which report structure and missing-information\nstatements can be learned from a small dataset. Castro et al. [9] demonstrate the promise of prompt-based\necological information processing, making strong prompting a necessary next comparator for determining\nwhether adaptation adds value in this setting.\n",
+      "replacement_text": "Our findings fit the task-specific adaptation enabled by LoRA and QLoRA [4,6]. The contribution here is an application in which report structure and missing-information statements can be learned from a small dataset. Castro et al. [9] demonstrate the promise of prompt-based ecological processing, motivating a strong prompting comparator. Appendix B supplies this control while keeping the evidence and schema constraints identical between the unadapted and adapted conditions."
+    },
+    {
+      "page": 9,
+      "group": 7,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        334.1622,
+        521.2441,
+        402.1622
+      ],
+      "original_text": "Tam et al. [10] further motivate distinguishing format adherence from task success, while Zheng et al. [8]\nexplain why automated judgements require independent scrutiny. Together, these studies support the next\nstage of evaluation: hold the output contract constant and test whether an adapted model makes better use\nof evidence than competitive alternatives. The current experiment establishes feasibility for that\ncomparison without resolving it.\n",
+      "replacement_text": "Tam et al. [10] motivate distinguishing format adherence from task success, while Zheng et al. [8] explain why automated judgements require scrutiny. The follow-up evaluation in Appendix B holds the output contract constant and compares the adapted model with a strongly prompted unadapted model on available and missing evidence. Its structured-source agreement measures address the original experiment's evidence-use gap, while remaining distinct from ecological or practical validation."
+    },
+    {
+      "page": 10,
+      "group": 3,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 54.4,
+      "new_height": 54.4,
+      "rect_pdf": [
+        74.0315,
+        611.8622,
+        521.2441,
+        666.2622
+      ],
+      "original_text": "The evidence design also limits the interpretation of missing-information handling. Verified status, trend,\npopulation, habitat, and range values were absent, so the experiment could not distinguish selective\nabstention from a repeated unavailable-field response. Controlled tests with both present and missing\nfields are needed to measure supported extraction, false abstention, and unsupported statements jointly.\n",
+      "replacement_text": "The original evidence design limited the interpretation of missing-information handling: verified status, trend, population, habitat and range values were absent, so selective abstention could not be distinguished from a repeated unavailable-field response. Appendix B varies availability for six collected fields and measures supplied-value agreement and abstention jointly; wider ecological validity remains untested."
+    },
+    {
+      "page": 10,
+      "group": 4,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        536.8622,
+        521.2441,
+        604.8622
+      ],
+      "original_text": "The comparison included one unadapted prompting condition and one training run. Engineered prompts,\nschema constraints, and deterministic templates could produce different results. There was no independent\nvalidation set or repeated-seed analysis. Complete prompt, chat-template, decoding, model-revision,\noptimisation, and hardware details were not documented in the experimental materials available for this\npaper, limiting reproducibility and preventing a measured cost comparison.\n",
+      "replacement_text": "The archived comparison included one weak prompting condition, one training run and no independent validation set. Its incomplete runtime and hardware record limits reproducibility and cost analysis. Appendix B adds a pinned model revision, validation-based checkpoint selection and a matched constrained baseline. Only seed 42 was evaluated there; although three adapters were trained, the deadline-reduced comparison cannot estimate variation across training seeds."
+    },
+    {
+      "page": 10,
+      "group": 5,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        461.8622,
+        521.2441,
+        529.8622
+      ],
+      "original_text": "Finally, automated scores were not validated against blinded human review, and teacher-judge\nindependence was not established. The provider identifier corresponding to the recorded judge label,\n\"Gemini 3.6 Flash\", also requires verification. These limitations prevent interpreting the rubric as a\ncalibrated measure of ecological correctness. Future evaluation should combine direct evidence checks\nwith reviewer assessment and report errors in unsupported claims, ignored evidence, and source support.\n",
+      "replacement_text": "Historical judge scores were not validated against blinded human review. The 600-character context limit, unverified judge identifier and unresolved teacher-judge independence prevent interpreting the rubric as calibrated ecological correctness. The newer checks compare output values and citations with reviewed structured assertions; source review was AI-assisted, not independent ornithologist validation. Neither experiment establishes reviewer benefit or formal conservation-assessment accuracy."
+    },
+    {
+      "page": 10,
+      "group": 7,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 68.0,
+      "new_height": 68.0,
+      "rect_pdf": [
+        74.0315,
+        353.8622,
+        521.2441,
+        421.8622
+      ],
+      "original_text": "We investigated QLoRA adaptation as a means of preparing structured bird conservation report drafts\nwithin EcoPath. On 15 held-out species, the adapted model consistently produced the requested JSON\nstructure, whereas the unadapted condition returned Markdown prose. Adapted reports were shorter and\nreceived higher automated ratings, while illustrative cases showed explicit acknowledgement of evidence\ngaps.\n",
+      "replacement_text": "We studied QLoRA adaptation for structured bird report drafting in EcoPath. Archived 15-species adapted outputs produced valid JSON and required keys, whereas the base model returned prose. A matched 60-species comparison under identical prompts and schema constraints evaluated evidence fidelity (Appendix B). The evaluated adapter improved automatic field success under these conditions; this does not establish ecological truth, reviewer benefit, or seed invariance."
+    },
+    {
+      "page": 10,
+      "group": 8,
+      "font": "Times-Roman",
+      "font_size": 10.5,
+      "leading": 13.6,
+      "old_height": 54.4,
+      "new_height": 54.4,
+      "rect_pdf": [
+        74.0315,
+        292.4622,
+        521.2441,
+        346.8622
+      ],
+      "original_text": "The study establishes that the reporting pattern can be learned under the tested sparse-input conditions. It\nalso identifies the next scientific question: whether adaptation improves evidence use once format is\ncontrolled and the availability of ecological information varies. Answering that question requires stronger\nbaselines, direct claim and abstention measures, repeated runs, and human review.\n",
+      "replacement_text": "Learning a reporting pattern and using supplied evidence remain separate outcomes. The follow-up comparison measures available-value agreement, abstention and structural failures directly, while its single evaluated seed and dated, selected dataset limit generalisation. Further training-seed replication and independent ecological assessment remain outside the measured scope."
+    },
+    {
+      "page": 11,
+      "group": 12,
+      "font": "Times-Bold",
+      "font_size": 13.0,
+      "leading": 16.0,
+      "old_height": 16.0,
+      "new_height": 16.0,
+      "rect_pdf": [
+        74.0315,
+        399.3622,
+        521.2441,
+        415.3622
+      ],
+      "original_text": "A Held-Out Evaluation Materials\n",
+      "replacement_text": "A Archived Held-Out Evaluation Materials"
+    },
+    {
+      "page": 12,
+      "group": 3,
+      "font": "Times-Bold",
+      "font_size": 9.0,
+      "leading": 11.2,
+      "old_height": 11.2,
+      "new_height": 11.2,
+      "rect_pdf": [
+        275.49289999999996,
+        738.7622,
+        420.49289999999996,
+        749.9622
+      ],
+      "original_text": "Base: JSON / schema\n",
+      "replacement_text": "Base: JSON / keys"
+    },
+    {
+      "page": 12,
+      "group": 4,
+      "font": "Times-Bold",
+      "font_size": 9.0,
+      "leading": 11.2,
+      "old_height": 11.2,
+      "new_height": 11.2,
+      "rect_pdf": [
+        406.3685,
+        738.7622,
+        551.3685,
+        749.9622
+      ],
+      "original_text": "Adapted: JSON / schema\n",
+      "replacement_text": "Adapted: JSON / keys"
+    },
+    {
+      "page": 12,
+      "group": 60,
+      "font": "Times-Roman",
+      "font_size": 9.1,
+      "leading": 11.5,
+      "old_height": 23.0,
+      "new_height": 23.0,
+      "rect_pdf": [
+        74.0315,
+        224.5622,
+        521.2441,
+        247.5622
+      ],
+      "original_text": "The cases were not selected through a documented random sampling procedure. The reported pattern should therefore be\ninterpreted alongside the aggregate structural results rather than as an estimated factual error rate.\n",
+      "replacement_text": "Cases were not randomly selected. Their historical judge scores use truncated prompt context and do not measure complete-evidence fidelity; these examples do not estimate factual error frequency."
+    }
+  ],
+  "protocol_hash": "b0fc3242e40019a55578a50c2d10f8663d4e5f0eab32a9bdc448270aea9e7d79",
+  "format_preservation": "Original page content retained except listed text operators; all original images and graphics retained; standard Times fonts and sizes preserved"
+}

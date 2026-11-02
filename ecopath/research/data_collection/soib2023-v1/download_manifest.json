@@ -1,0 +1,38 @@
+[
+  {
+    "file": "zenodo-record.json",
+    "url": "https://zenodo.org/api/records/11124590",
+    "retrieved_at": "2026-10-20T15:53:25.807372+00:00",
+    "bytes": 17105,
+    "sha256": "1ac8dd009cd9c57ec346998e32bf6dab0b878df95d055a3c34076286c7e88662",
+    "http_last_modified": null,
+    "content_type": null
+  },
+  {
+    "file": "README.txt",
+    "url": "https://zenodo.org/api/records/11124590/files/01_README.txt/content",
+    "retrieved_at": "2026-10-20T15:53:26.277702+00:00",
+    "bytes": 659,
+    "sha256": "dc4f9073caa1c71282fb2cab0d007eb1eaf024a3ec7afede78688494fbde1c63",
+    "http_last_modified": null,
+    "content_type": null
+  },
+  {
+    "file": "india.csv",
+    "url": "https://zenodo.org/api/records/11124590/files/SoIB%202023%20India.csv/content",
+    "retrieved_at": "2026-10-20T15:53:27.971984+00:00",
+    "bytes": 603239,
+    "sha256": "51f8f2be3a50545b18e508b4b7e6345083fbe369dda7f18f47a45fcb1959f1e2",
+    "http_last_modified": null,
+    "content_type": null
+  },
+  {
+    "file": "LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/stateofindiasbirds/soib_2023/1ce6d0bf72f5a0bae46427ad5fb4686372f3b031/LICENSE",
+    "retrieved_at": "2026-10-20T15:53:28.317056+00:00",
+    "bytes": 1077,
+    "sha256": "d5691437c1780bc55901d2ff3845cd2bf60e01882a3f17d8f59097982bd301cc",
+    "http_last_modified": null,
+    "content_type": "text/plain; charset=utf-8"
+  }
+]

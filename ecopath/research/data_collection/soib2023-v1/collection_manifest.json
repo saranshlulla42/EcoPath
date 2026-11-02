@@ -1,0 +1,89 @@
+{
+  "files": [
+    {
+      "file": "LICENSE.txt",
+      "bytes": 1077,
+      "sha256": "d5691437c1780bc55901d2ff3845cd2bf60e01882a3f17d8f59097982bd301cc"
+    },
+    {
+      "file": "README.md",
+      "bytes": 5700,
+      "sha256": "af03d0cbedc78858978ddca8228b49c34e0977cfa8d03229e3fb2a8de827b84d"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 659,
+      "sha256": "dc4f9073caa1c71282fb2cab0d007eb1eaf024a3ec7afede78688494fbde1c63"
+    },
+    {
+      "file": "build_draft.py",
+      "bytes": 9470,
+      "sha256": "1f0e7dbaa85df8205be72d7336a2cefae8d843ae80bfbcbdaba389e167d94748"
+    },
+    {
+      "file": "collection_summary.json",
+      "bytes": 1475,
+      "sha256": "74f217668e2ada0e3cd066d5d80a0330297328454633129c08d2235966ec076d"
+    },
+    {
+      "file": "composition.json",
+      "bytes": 2981,
+      "sha256": "4ae7923acb3c67a4bad0ba97ed9fa5aecd34c4f106b0b68bad0a6d95828e660b"
+    },
+    {
+      "file": "download_manifest.json",
+      "bytes": 1386,
+      "sha256": "97398bc187f6d2eb739cdc9d24ba1e38c0b45f01ad98f98d8d43f301e4336e82"
+    },
+    {
+      "file": "extraction_review_queue.jsonl",
+      "bytes": 78923,
+      "sha256": "8d92271838044a09c94c630c1c9f7e854ebd636755893ddebc89c491954ef701"
+    },
+    {
+      "file": "india.csv",
+      "bytes": 603239,
+      "sha256": "51f8f2be3a50545b18e508b4b7e6345083fbe369dda7f18f47a45fcb1959f1e2"
+    },
+    {
+      "file": "model_payloads.DRAFT.jsonl",
+      "bytes": 152258,
+      "sha256": "b801acafe652d289c24f75cf65bd80e09c0bf5408f5f5bf80087b2cbdfbd71de"
+    },
+    {
+      "file": "pilot_overview.csv",
+      "bytes": 7818,
+      "sha256": "5eadde8f84a53e55c74a3caacfd4180fc83e254dad179c43af2ac8f3205b37ef"
+    },
+    {
+      "file": "pilot_records.DRAFT.jsonl",
+      "bytes": 147011,
+      "sha256": "17de1d036409ddd90aff3e92ebff52b41227d9b4d043e8b23671275e6d79b759"
+    },
+    {
+      "file": "provisional_variants.PRIVATE.jsonl",
+      "bytes": 1034906,
+      "sha256": "d2f5c23bbe50f3e6ae402bfc464fb2b7072fb33fe224610ebf4fda69e9ef70e9"
+    },
+    {
+      "file": "qa.json",
+      "bytes": 262,
+      "sha256": "c3099fc6594fab7ab494f52f5f5edc01703672d8b53f7d3987a08b65dfc8e87f"
+    },
+    {
+      "file": "sampling_exclusions.jsonl",
+      "bytes": 44717,
+      "sha256": "c368936a7a6220084a0c5320c76a9e0f2e41a2283d81eed4094fe4a4d59547b9"
+    },
+    {
+      "file": "selected_source_rows.jsonl",
+      "bytes": 59405,
+      "sha256": "e02b98240e29513a92a725cf500dc7943f932c032a4b212eec650df4a8e1ad61"
+    },
+    {
+      "file": "zenodo-record.json",
+      "bytes": 17105,
+      "sha256": "1ac8dd009cd9c57ec346998e32bf6dab0b878df95d055a3c34076286c7e88662"
+    }
+  ]
+}

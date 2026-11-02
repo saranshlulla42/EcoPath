@@ -1,0 +1,37 @@
+{
+  "status": "AI source-consistency review; no human credentials claimed",
+  "species": 120,
+  "pilot_species": 30,
+  "validation_species": 30,
+  "test_species": 60,
+  "source_assertions": 720,
+  "iucn_categories_2023_snapshot": {
+    "Least Concern": 100,
+    "Near Threatened": 11,
+    "Endangered": 3,
+    "Vulnerable": 3,
+    "Critically Endangered": 3
+  },
+  "source_mismatches_in_2023_iucn_column": 0,
+  "soib_2025_table_value_differences_vs_2023": [
+    {
+      "scientific_name": "Coracias benghalensis",
+      "2023": "Least Concern",
+      "2025": "Near Threatened"
+    },
+    {
+      "scientific_name": "Pluvialis squatarola",
+      "2023": "Least Concern",
+      "2025": "Vulnerable"
+    }
+  ],
+  "iucn_date_semantics": "IUCN categories are exact SoIB 2023 source values; the dataset documentation and source map scope them to that release. Two differing values in the later SoIB table are retained as dated comparisons, not silently backfilled into the 2023 target.",
+  "reviewer": "Codex AI assistant (user-authorized source review)",
+  "retrieval_date": "2026-10-20T15:53:27.971984+00:00",
+  "remaining_limits": [
+    "The source has a single categorical IUCN Category field and does not provide IUCN assessment date/version per species.",
+    "Population size, breeding behavior and key threats remain missing; no proxy fields were relabelled.",
+    "The 2025 SoIB table is a later snapshot whose file-level license was not exposed on the inspected Zenodo rights page.",
+    "India Checklist v10.1 (published 2026-05-15) and the linked SoIB 2026 workbook were not reviewed; use this as a dated SoIB 2023 experiment snapshot, not current 2026 status."
+  ]
+}

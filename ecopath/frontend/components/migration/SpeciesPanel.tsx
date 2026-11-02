@@ -30,6 +30,8 @@ interface SpeciesPanelProps {
   selectedSpeciesCode: string;
   onSelectSpecies: (speciesCode: string) => void;
   isLoading?: boolean;
+  /** Why the species list could not be loaded, if it failed. */
+  loadError?: string | null;
   /** Gemini-generated migration narrative */
   narrative?: string | null;
   /** Whether the narrative is loading */
@@ -43,6 +45,7 @@ export function SpeciesPanel({
   selectedSpeciesCode,
   onSelectSpecies,
   isLoading = false,
+  loadError = null,
   narrative = null,
   narrativeLoading = false,
   iucnStatus = null,
@@ -123,12 +126,31 @@ export function SpeciesPanel({
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "0.75rem",
-            color: C_TEXT2,
+            color: loadError ? "#F0C8C0" : C_TEXT2,
             fontStyle: "italic",
           }}
         >
-          {speciesList.length} species tracked
+          {/* An empty list because the source is unreachable is a different
+              fact from a source that genuinely tracks nothing — say which. */}
+          {loadError
+            ? "Species list unavailable"
+            : isLoading
+            ? "Loading species\u2026"
+            : `${speciesList.length} species tracked`}
         </p>
+        {loadError && (
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.7rem",
+              color: C_TEXT2,
+              marginTop: "0.35rem",
+              lineHeight: 1.4,
+            }}
+          >
+            {loadError}
+          </p>
+        )}
         <div style={{ marginTop: "0.75rem", position: "relative" }}>
           <input
             type="text"

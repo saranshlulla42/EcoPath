@@ -1,0 +1,42 @@
+{
+  "model": {
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "compute_dtype": "float16"
+  },
+  "seeds": [
+    43
+  ],
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "batch_size": 1,
+  "eval_batch_size": 1,
+  "gradient_accumulation_steps": 8,
+  "max_seq_length": 4096,
+  "learning_rate": 0.0002,
+  "epochs": 3,
+  "warmup_ratio": 0.03,
+  "weight_decay": 0.0,
+  "optimizer": "paged_adamw_8bit",
+  "scheduler": "linear",
+  "gradient_checkpointing": true,
+  "logging_steps": 1,
+  "save_total_limit": 2,
+  "keep_frozen_base_fp16": true,
+  "gradient_checkpointing_kwargs": {
+    "use_reentrant": false
+  },
+  "training_prompt_style": "engineered_compact_schema"
+}

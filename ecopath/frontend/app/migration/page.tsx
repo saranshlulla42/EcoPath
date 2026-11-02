@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, Suspense, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -33,9 +34,20 @@ const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY ?? "
 
 function MigrationMapInner() {
   // ── State ────────────────────────────────────────────────────────────────
+  // The command bar links here with ?species=<eBird species code>, which is the
+  // same canonical id the taxonomy resolver produces, so no mapping is needed.
+  const searchParams = useSearchParams();
+  const requestedSpecies = searchParams.get("species");
+
   const [speciesList, setSpeciesList] = useState<MigrationSpeciesInfo[]>([]);
-  const [selectedSpecies, setSelectedSpecies] = useState<string>("batgod");
+  const [selectedSpecies, setSelectedSpecies] = useState<string>(
+    requestedSpecies || "batgod",
+  );
+  // Set when the link named a species this map cannot show, so the page can say
+  // so rather than silently displaying a different bird.
+  const [requestedMissing, setRequestedMissing] = useState<string | null>(null);
   const [taxLoading, setTaxLoading] = useState(true);
+  const [taxError, setTaxError] = useState<string | null>(null);
   const frameAnimation = useFrameAnimation({ totalFrames: 52, intervalMs: 800 });
   const currentWeek = frameAnimation.currentFrame + 1;
   const isPlaying = frameAnimation.isPlaying;
@@ -53,16 +65,33 @@ function MigrationMapInner() {
         if (!mounted) return;
         setSpeciesList(list);
         setTaxLoading(false);
-        if (list.length > 0 && !list.find((s) => s.speciesCode === "batgod")) {
+        if (!list.length) return;
+
+        if (requestedSpecies) {
+          if (list.find((s) => s.speciesCode === requestedSpecies)) {
+            setSelectedSpecies(requestedSpecies);
+          } else {
+            // Falling back to a default here would show one bird's migration
+            // under another bird's name.
+            setRequestedMissing(requestedSpecies);
+            setSelectedSpecies(list[0].speciesCode);
+          }
+          return;
+        }
+        if (!list.find((s) => s.speciesCode === "batgod")) {
           setSelectedSpecies(list[0].speciesCode);
         }
       })
       .catch((err) => {
         console.error("[migration] taxonomy load failed:", err);
-        if (mounted) setTaxLoading(false);
+        if (!mounted) return;
+        setTaxError(
+          err instanceof Error ? err.message : "Could not load the species list."
+        );
+        setTaxLoading(false);
       });
     return () => { mounted = false; };
-  }, []);
+  }, [requestedSpecies]);
 
   // ── eBird data ──────────────────────────────────────────────────────────
   const { data: ebirdObservations, isLoading: ebirdLoading } = useQuery({
@@ -451,6 +480,13 @@ Write 3–4 sentences only. Cover: where this species breeds and winters, the ge
           selectedSpeciesCode={selectedSpecies}
           onSelectSpecies={handleSpeciesChange}
           isLoading={taxLoading}
+          loadError={
+            taxError ??
+            (requestedMissing
+              ? `“${requestedMissing}” is not in this map’s migratory species list, ` +
+                `so a different species is shown. This map covers eBird’s migratory orders only.`
+              : null)
+          }
           narrative={narrative}
           narrativeLoading={narrativeLoading}
           iucnStatus={null}

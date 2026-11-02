@@ -1,0 +1,22 @@
+{
+  "status": "source_audited_ai_review; independent expert ecological validation pending",
+  "source_doi": "10.5281/zenodo.11124590",
+  "source_md5_matches_publisher": true,
+  "reviewed_assertions": 600,
+  "pilot_species": 30,
+  "validation_species": 30,
+  "test_species": 60,
+  "heldout_genus_count": 90,
+  "all_species_and_genera_disjoint": true,
+  "split_seed": 9173,
+  "variants_per_heldout_species": 3,
+  "reviewer": "Codex AI assistant (user-authorized source audit)",
+  "review_date": "2026-10-29",
+  "test_partition_rule": "Do not inspect test outputs until model and protocol are frozen.",
+  "limitations": [
+    "AI source audit checks transcription and field scope, not ornithological truth.",
+    "All partitions draw from one 2023 national assessment; this is not an independent source replication.",
+    "Exact scientific-name matching does not resolve synonyms.",
+    "2023 classifications are historical snapshot values, not current 2026 status."
+  ]
+}

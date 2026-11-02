@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "heldout_eval_ratio": 0.15,
+  "train_examples": 85,
+  "eval_examples": 15,
+  "eval_usage": "final base-vs-fine-tuned comparison only; never used during training",
+  "train_jsonl": "/content/drive/MyDrive/ecopath/extinction_risk/ecopath_gemini100_run1/splits/train.jsonl",
+  "eval_jsonl": "/content/drive/MyDrive/ecopath/extinction_risk/ecopath_gemini100_run1/splits/eval.jsonl"
+}

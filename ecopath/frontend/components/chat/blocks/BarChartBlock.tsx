@@ -12,11 +12,14 @@ import { BarChartBlock as BarChartBlockType } from '../../../types/chat';
 import { CHART_COLORS, AXIS_STYLE, GRID_STYLE, TOOLTIP_STYLE, CONTAINER_STYLE, TITLE_STYLE } from './chart-theme';
 
 export function BarChartBlockView({ block }: { block: BarChartBlockType }) {
-  if (!block.series || block.series.length === 0) return null;
+  // Bound to a local so narrowing survives into the closure below: `series`
+  // is optional now that a block may instead carry a `series_ref`.
+  const series = block.series;
+  if (!series || series.length === 0) return null;
 
-  const chartData = block.series[0].data.map((point, i) => {
+  const chartData = series[0].data.map((point, i) => {
     const row: Record<string, any> = { [block.x_label || 'x']: point.x };
-    block.series.forEach(s => {
+    series.forEach(s => {
       row[s.name] = s.data[i]?.y ?? null;
     });
     return row;
@@ -36,11 +39,11 @@ export function BarChartBlockView({ block }: { block: BarChartBlockType }) {
             labelStyle={{ color: 'rgba(255,255,255,0.7)', marginBottom: '8px', fontFamily: 'DM Sans', fontSize: '12px' }}
             cursor={{ fill: 'rgba(26,43,26,0.05)' }}
           />
-          {block.series.length > 1 && (
+          {series.length > 1 && (
             <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px', fontFamily: 'DM Sans', color: '#4A6741' }} />
           )}
 
-          {block.series.map((s, index) => (
+          {series.map((s, index) => (
             <Bar
               key={s.name}
               dataKey={s.name}

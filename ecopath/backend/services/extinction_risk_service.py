@@ -26,6 +26,10 @@ import httpx
 from fastapi import HTTPException
 
 from config import get_settings
+from data import repository as repo
+from data.sources import evidence as evidence_source
+from data.sources import gbif as gbif_source
+from data.sources import ollama as ollama_source
 
 
 logger = logging.getLogger("ecopath.extinction_risk")
@@ -33,15 +37,9 @@ settings = get_settings()
 
 
 GBIF_BASE = settings.gbif_base_url
-_GDELT_CACHE_TTL_SECONDS = 6 * 60 * 60
-_GDELT_THROTTLE_SECONDS = 15.0
-_GDELT_LAST_REQUEST_AT = 0.0
-_GDELT_LOCK = asyncio.Lock()
-_GDELT_CACHE: dict[str, tuple[float, list[EvidenceItem]]] = {}
-_GDELT_COOLDOWN_SECONDS = 120.0
-_GDELT_COOLDOWN_UNTIL = 0.0
-_NEWS_CACHE_TTL_SECONDS = 6 * 60 * 60
-_NEWS_CACHE: dict[str, tuple[float, list[EvidenceItem]]] = {}
+# GDELT and news throttling, cooldowns and caching now live in the shared data
+# layer (see data/registry.py and data/cache.py), so the private globals that
+# used to coordinate them here have been removed.
 
 _THREAT_QUERY_TEMPLATES = [
     "habitat loss deforestation land-use change",
@@ -470,179 +468,69 @@ def _build_species_queries(species: SpeciesProfile, country_code: Optional[str] 
 
 
 async def _resolve_gbif_species(species_name: str, gbif_key: Optional[int] = None) -> SpeciesProfile:
-    async with httpx.AsyncClient(timeout=20.0) as client:
-        try:
-            if gbif_key:
-                resp = await client.get(f"{GBIF_BASE}/species/{gbif_key}")
-                resp.raise_for_status()
-                data = resp.json()
-            else:
-                resp = await client.get(
-                    f"{GBIF_BASE}/species/match",
-                    params={"name": species_name,
-                            "kingdom": "Animalia", "class": "Aves"},
-                )
-                resp.raise_for_status()
-                match = resp.json()
-                usage_key = match.get("usageKey") or match.get("key")
-                if usage_key:
-                    resp = await client.get(f"{GBIF_BASE}/species/{usage_key}")
-                    resp.raise_for_status()
-                    data = resp.json()
-                else:
-                    return SpeciesProfile(
-                        gbif_key=None,
-                        common_name=species_name,
-                        scientific_name=species_name,
-                        source_urls=[],
-                    )
-        except Exception as exc:
-            logger.warning("GBIF lookup failed for %s: %s", species_name, exc)
-            return SpeciesProfile(
-                gbif_key=gbif_key,
-                common_name=species_name,
-                scientific_name=species_name,
-                source_urls=[],
-            )
+    """Resolve a species profile through the shared GBIF adapter."""
+    if not gbif_key:
+        match = await gbif_source.match_species_key(species_name)
+        gbif_key = match.data if match.ok else None
 
+    if not gbif_key:
+        return SpeciesProfile(gbif_key=None, common_name=species_name,
+                              scientific_name=species_name, source_urls=[])
+
+    detail = await gbif_source.species_detail(gbif_key)
+    if not detail.ok or not detail.data:
+        logger.warning("GBIF lookup failed for %s: %s", species_name, detail.error)
+        return SpeciesProfile(gbif_key=gbif_key, common_name=species_name,
+                              scientific_name=species_name, source_urls=[])
+
+    data = detail.data
+    iucn = await gbif_source.iucn_category(gbif_key)
     return SpeciesProfile(
-        gbif_key=data.get("key"),
-        common_name=data.get("vernacularName") or data.get(
-            "canonicalName") or data.get("scientificName") or species_name,
-        scientific_name=data.get("canonicalName") or data.get(
-            "scientificName") or species_name,
+        gbif_key=data.get("gbif_key"),
+        common_name=data.get("common_name") or data.get("scientific_name") or species_name,
+        scientific_name=data.get("scientific_name") or species_name,
         family=data.get("family"),
-        order_name=data.get("order"),
-        iucn_status=data.get("threatStatus") or data.get(
-            "iucnRedListCategory"),
-        habitat=[value for value in [data.get("habitat")] if value],
+        order_name=data.get("order_name"),
+        iucn_status=iucn.data if iucn.ok else None,
+        habitat=[],
         range_summary=[],
-        source_urls=[
-            f"{GBIF_BASE}/species/{data.get('key')}"] if data.get("key") else [],
+        source_urls=[f"{GBIF_BASE}/species/{data.get('gbif_key')}"] if data.get("gbif_key") else [],
     )
 
 
 async def _fetch_gbif_descriptions(gbif_key: int) -> dict[str, Any]:
-    try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            resp = await client.get(
-                f"{GBIF_BASE}/species/{gbif_key}/descriptions",
-                params={"limit": 12},
-            )
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as exc:
-        logger.warning(
-            "GBIF descriptions lookup failed for %s: %s", gbif_key, exc)
+    """Habitat and threat text blocks, grouped by description type."""
+    res = await gbif_source.species_descriptions(gbif_key, limit=12)
+    if not res.ok:
         return {}
-
-    habitats: list[str] = []
-    ranges: list[str] = []
-    diet: Optional[str] = None
-    breeding: Optional[str] = None
-    migration: Optional[str] = None
-
-    for item in data.get("results", []):
-        desc_type = str(item.get("type") or "").lower()
-        description = re.sub(
-            r"\s+", " ", str(item.get("description") or "")).strip()
-        if not description:
-            continue
-        if desc_type in {"habitat", "habitats"} and description not in habitats:
-            habitats.append(description[:180])
-        elif desc_type in {"distribution", "range", "native range"} and description not in ranges:
-            ranges.append(description[:180])
-        elif desc_type in {"food", "diet", "feeding"} and not diet:
-            diet = description[:220]
-        elif desc_type in {"behaviour", "behavior", "reproduction", "breeding"} and not breeding:
-            breeding = description[:220]
-        elif desc_type in {"migration", "migratory"} and not migration:
-            migration = description[:220]
-
-    return {
-        "habitat": habitats[:4],
-        "range_summary": ranges[:4],
-        "diet": diet,
-        "breeding_behavior": breeding,
-        "migratory_behavior": migration,
-    }
+    grouped: dict[str, list[str]] = {}
+    for entry in res.data or []:
+        text = re.sub(r"\s+", " ", str(entry.get("description") or "")).strip()
+        if text:
+            grouped.setdefault((entry.get("type") or "general").lower(), []).append(text)
+    return grouped
 
 
 async def _fetch_gbif_range_summary(gbif_key: int, country_code: Optional[str] = None) -> list[str]:
-    params: dict[str, Any] = {
-        "taxonKey": gbif_key,
-        "limit": 0,
-        "facet": "country",
-        "facetLimit": 8,
-        "hasCoordinate": "true",
-        "hasGeospatialIssue": "false",
-    }
-    if country_code:
-        params["country"] = country_code.upper()
-    try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            resp = await client.get(f"{GBIF_BASE}/occurrence/search", params=params)
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as exc:
-        logger.warning(
-            "GBIF range facet lookup failed for %s: %s", gbif_key, exc)
+    """Countries the species is recorded in, most-recorded first."""
+    res = await gbif_source.occurrence_country_facets(
+        gbif_key, limit=8, country=country_code.upper() if country_code else None)
+    if not res.ok:
         return []
-
-    ranges: list[str] = []
-    for facet in data.get("facets", []):
-        if facet.get("field") != "COUNTRY":
-            continue
-        for item in facet.get("counts", []):
-            country = str(item.get("name") or "").strip()
-            if country:
-                ranges.append(country)
-    return ranges[:6]
+    return [c["country"] for c in (res.data or []) if c.get("country")][:6]
 
 
 async def _fetch_wikipedia_context(scientific_name: str, common_name: str) -> dict[str, Any]:
-    headers = {
-        "User-Agent": (
-            "EcoPath-Student-Project/1.0 "
-            "(https://github.com/ecopath-capstone; contact: ecopath.project@example.com) "
-            "python-httpx"
-        ),
-        "Accept": "application/json",
-    }
-    for candidate in [scientific_name, common_name]:
-        if not candidate or candidate.lower() == "unknown bird":
-            continue
-        slug = quote_plus(candidate.replace(" ", "_"))
-        url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{slug}"
-        try:
-            async with httpx.AsyncClient(timeout=12.0, follow_redirects=True, headers=headers) as client:
-                resp = await client.get(url)
-                if resp.status_code in {403, 404}:
-                    if resp.status_code == 403:
-                        logger.warning(
-                            "Wikipedia REST API returned 403 for %s — check User-Agent policy compliance", candidate)
-                    continue
-                resp.raise_for_status()
-                data = resp.json()
-        except Exception as exc:
-            logger.warning(
-                "Wikipedia lookup failed for %s: %s", candidate, exc)
-            continue
-
-        extract = re.sub(r"\s+", " ", str(data.get("extract") or "")).strip()
-        if not extract:
-            continue
-        page_url = (
-            data.get("content_urls", {})
-            .get("desktop", {})
-            .get("page")
-        )
-        return {
-            "title": data.get("title") or candidate,
-            "extract": extract[:700],
-            "url": page_url or f"https://en.wikipedia.org/wiki/{slug}",
-        }
-    return {}
+    """Species summary via the shared Wikipedia adapter."""
+    if (common_name or "").lower() == "unknown bird":
+        common_name = ""
+    res = await evidence_source.wikipedia_summary(scientific_name, common_name)
+    data = res.data or {}
+    extract = re.sub(r"\s+", " ", str(data.get("extract") or "")).strip()
+    if not extract:
+        return {}
+    return {"title": data.get("title") or scientific_name,
+            "extract": extract[:700], "url": data.get("url")}
 
 
 def _merge_unique_strings(existing: list[str], incoming: list[str], limit: int = 6) -> list[str]:
@@ -801,64 +689,27 @@ def _build_structured_fallback_evidence(
 
 
 async def _search_gdelt(query: str, max_records: int = 6) -> list[EvidenceItem]:
-    cache_key = f"{query}|{max_records}"
-    cached = _GDELT_CACHE.get(cache_key)
-    if cached and (time.monotonic() - cached[0]) < _GDELT_CACHE_TTL_SECONDS:
-        return cached[1]
+    """
+    News evidence from GDELT.
 
-    global _GDELT_COOLDOWN_UNTIL
-    if time.monotonic() < _GDELT_COOLDOWN_UNTIL:
-        logger.info("Skipping GDELT for %s — still in post-429 cooldown", query)
-        return cached[1] if cached else []
+    Throttling, the post-429 cooldown and the private cache this used to carry
+    are now the shared layer's job — GDELT's concurrency cap and Retry-After
+    handling live with its registry entry.
+    """
+    res = await evidence_source.gdelt(query, max_records)
+    return [_evidence_from_dict(item) for item in (res.data or [])]
 
-    params = {
-        "query": query,
-        "mode": "ArtList",
-        "format": "json",
-        "maxrecords": max_records,
-        "sort": "hybridrel",
-    }
-    try:
-        async with _GDELT_LOCK:
-            global _GDELT_LAST_REQUEST_AT
-            elapsed = time.monotonic() - _GDELT_LAST_REQUEST_AT
-            if elapsed < _GDELT_THROTTLE_SECONDS:
-                await asyncio.sleep(_GDELT_THROTTLE_SECONDS - elapsed)
-            _GDELT_LAST_REQUEST_AT = time.monotonic()
 
-        async with httpx.AsyncClient(timeout=8.0) as client:
-            resp = await client.get(settings.gdelt_base_url, params=params)
-            if resp.status_code == 429:
-                logger.warning(
-                    "GDELT rate-limited query for %s — pausing GDELT for %.0fs", query, _GDELT_COOLDOWN_SECONDS)
-                _GDELT_COOLDOWN_UNTIL = time.monotonic() + _GDELT_COOLDOWN_SECONDS
-                return cached[1] if cached else []
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as exc:
-        logger.warning("GDELT lookup failed for %s: %s", query, exc)
-        return []
-
-    items: list[EvidenceItem] = []
-    for article in data.get("articles", [])[:max_records]:
-        url = article.get("url") or article.get("sourceUrl")
-        if not url:
-            continue
-        items.append(
-            EvidenceItem(
-                query=query,
-                title=article.get("title") or article.get(
-                    "seendate") or "Untitled article",
-                url=url,
-                snippet=article.get("snippet") or article.get("summary") or "",
-                source=article.get("sourceCountry") or article.get(
-                    "source") or article.get("domain"),
-                seendate=article.get("seendate"),
-                language=article.get("language"),
-            )
-        )
-    _GDELT_CACHE[cache_key] = (time.monotonic(), items)
-    return items
+def _evidence_from_dict(item: dict) -> EvidenceItem:
+    return EvidenceItem(
+        query=item.get("query", ""),
+        title=item.get("title", "Untitled article"),
+        url=item.get("url", ""),
+        snippet=item.get("snippet") or item.get("title", ""),
+        source=item.get("source", "unknown"),
+        seendate=item.get("seendate"),
+        language=item.get("language", "en"),
+    )
 
 
 def _rss_locale_for_country(country_code: Optional[str]) -> tuple[str, str]:
@@ -868,55 +719,10 @@ def _rss_locale_for_country(country_code: Optional[str]) -> tuple[str, str]:
     return "US", "US:en"
 
 
-async def _search_news_rss(query: str, max_records: int = 6, country_code: Optional[str] = None) -> list[EvidenceItem]:
-    cache_key = f"{query}|{max_records}|{country_code or ''}"
-    cached = _NEWS_CACHE.get(cache_key)
-    if cached and (time.monotonic() - cached[0]) < _NEWS_CACHE_TTL_SECONDS:
-        return cached[1]
-
-    gl, ceid = _rss_locale_for_country(country_code)
-    rss_url = (
-        "https://news.google.com/rss/search?"
-        f"q={quote_plus(query)}&hl=en&gl={gl}&ceid={ceid}"
-    )
-
-    try:
-        async with httpx.AsyncClient(timeout=20.0, follow_redirects=True) as client:
-            resp = await client.get(rss_url)
-            resp.raise_for_status()
-            xml_root = ET.fromstring(resp.text)
-    except Exception as exc:
-        logger.warning("News RSS lookup failed for %s: %s", query, exc)
-        return []
-
-    channel = xml_root.find("channel")
-    if channel is None:
-        return []
-
-    items: list[EvidenceItem] = []
-    for item in channel.findall("item")[:max_records]:
-        title = (item.findtext("title") or "Untitled article").strip()
-        url = (item.findtext("link") or "").strip()
-        if not url:
-            continue
-        snippet = re.sub(
-            r"<[^>]+>", "", item.findtext("description") or "").strip()
-        source_name = (item.findtext("source") or "Google News RSS").strip()
-        pub_date = (item.findtext("pubDate") or "").strip() or None
-        items.append(
-            EvidenceItem(
-                query=query,
-                title=title,
-                url=url,
-                snippet=snippet or title,
-                source=source_name,
-                seendate=pub_date,
-                language="en",
-            )
-        )
-
-    _NEWS_CACHE[cache_key] = (time.monotonic(), items)
-    return items
+async def _search_news_rss(query: str, max_records: int = 6,
+                           country_code: Optional[str] = None) -> list[EvidenceItem]:
+    res = await evidence_source.news_rss(query, max_records, country_code)
+    return [_evidence_from_dict(item) for item in (res.data or [])]
 
 
 def _parse_public_iucn_search(scientific_name: str, html_text: str) -> dict[str, Any]:
@@ -964,167 +770,62 @@ def _parse_public_iucn_search(scientific_name: str, html_text: str) -> dict[str,
 
 
 async def _fetch_public_iucn_context(scientific_name: str) -> dict[str, Any]:
-    search_url = (
-        "https://r.jina.ai/http://https://www.iucnredlist.org/search?"
-        f"query={quote_plus(scientific_name)}&searchType=species"
-    )
-
-    try:
-        async with httpx.AsyncClient(timeout=20.0, follow_redirects=True, headers={"User-Agent": "Mozilla/5.0"}) as client:
-            resp = await client.get(search_url)
-            resp.raise_for_status()
-    except Exception as exc:
-        logger.warning("Public IUCN search failed for %s: %s",
-                       scientific_name, exc)
+    """IUCN status parsed from the public site, when no API token is set."""
+    res = await evidence_source.iucn_status(scientific_name)
+    data = res.data or {}
+    if not data.get("category"):
         return {}
-
-    parsed = _parse_public_iucn_search(scientific_name, resp.text)
-    if not parsed:
-        return {}
-
-    return parsed
+    return {
+        "category": data.get("category"),
+        "population_trend": data.get("population_trend"),
+        "source_url": data.get("source_url"),
+        "source": res.provenance.source,
+    }
 
 
 async def _fetch_wikidata_iucn_status(scientific_name: str) -> dict[str, Any]:
-    """
-    Query Wikidata directly for the IUCN conservation status (property P141) of a
-    taxon matched by its scientific name (property P225, "taxon name"). This is a
-    free, keyless, structured alternative to scraping the IUCN Red List website,
-    and is far less brittle than regex-parsing a proxied HTML/markdown page.
-    """
-    if not scientific_name or not scientific_name.strip():
+    res = await evidence_source.wikidata_iucn(scientific_name)
+    data = res.data or {}
+    if not data.get("category"):
         return {}
-
-    sparql = f"""
-    SELECT ?species ?statusLabel WHERE {{
-      ?species wdt:P225 "{scientific_name.strip()}".
-      ?species wdt:P141 ?status.
-      SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
-    }}
-    LIMIT 1
-    """
-    try:
-        async with httpx.AsyncClient(timeout=15.0, headers={"User-Agent": "EcoPath-Student-Project/1.0"}) as client:
-            resp = await client.get(
-                "https://query.wikidata.org/sparql",
-                params={"query": sparql, "format": "json"},
-            )
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as exc:
-        logger.warning("Wikidata IUCN lookup failed for %s: %s",
-                       scientific_name, exc)
-        return {}
-
-    bindings = data.get("results", {}).get("bindings", [])
-    if not bindings:
-        return {}
-
-    binding = bindings[0]
-    label = (binding.get("statusLabel", {}) or {}).get("value", "").strip()
-    species_uri = (binding.get("species", {}) or {}).get("value", "")
-    if not label:
-        return {}
-
-    code = _IUCN_STATUS_ALIASES.get(label.lower())
-    if not code:
-        return {}
-
     return {
-        "category": code,
-        "red_list_category": code,
-        "population_trend": None,
-        "source_url": species_uri or "https://www.wikidata.org",
-        "iucn_title": scientific_name,
+        "category": data.get("category"),
+        "label": data.get("label"),
+        "source_url": data.get("source_url"),
+        "source": "wikidata",
     }
 
 
 async def _fetch_gbif_occurrence_trend(gbif_key: Optional[int], country_code: Optional[str] = None) -> dict[int, int]:
     """
-    Fetch per-year GBIF occurrence-record counts for the species. This is a proxy for
-    recording effort/detectability rather than true population size, but it gives the
-    report model concrete, verifiable numbers to reason with instead of vague language.
+    Per-year GBIF occurrence-record counts for the species.
+
+    This is a proxy for recording effort and detectability rather than true
+    population size, but it gives the report model concrete, verifiable numbers
+    to reason with instead of vague language.
     """
     if not gbif_key:
         return {}
-
-    params: dict[str, Any] = {
-        "taxonKey": gbif_key,
-        "hasCoordinate": "true",
-        "limit": 0,
-        "facet": "year",
-        "facetLimit": 15,
-    }
-    if country_code:
-        params["country"] = country_code.upper()
-
-    try:
-        async with httpx.AsyncClient(timeout=15.0) as client:
-            resp = await client.get(f"{GBIF_BASE}/occurrence/search", params=params)
-            resp.raise_for_status()
-            data = resp.json()
-    except Exception as exc:
-        logger.warning(
-            "GBIF occurrence trend lookup failed for %s: %s", gbif_key, exc)
+    res = await gbif_source.occurrence_counts_by_year(
+        gbif_key, 2010, 2024, country=country_code.upper() if country_code else None)
+    if not res.ok:
         return {}
-
-    trend: dict[int, int] = {}
-    for facet in data.get("facets", []):
-        if facet.get("field") != "YEAR":
-            continue
-        for item in facet.get("counts", []):
-            try:
-                year = int(item.get("name"))
-            except (TypeError, ValueError):
-                continue
-            trend[year] = item.get("count", 0)
-
-    return dict(sorted(trend.items()))
+    return {p["year"]: p["count"] for p in (res.data or []) if p.get("count")}
 
 
 async def _fetch_iucn_context(scientific_name: str) -> dict[str, Any]:
-    if not settings.iucn_api_token:
-        logger.info("No IUCN API token configured, using public search")
-        public_context = await _fetch_public_iucn_context(scientific_name)
-        if public_context:
-            return public_context
-        logger.info(
-            "Public IUCN search returned nothing, trying Wikidata for %s", scientific_name)
-        return await _fetch_wikidata_iucn_status(scientific_name)
+    """
+    IUCN status, trying each route in descending authority.
 
-    async with httpx.AsyncClient(timeout=20.0) as client:
-        try:
-            resp = await client.get(
-                f"{settings.iucn_base_url}/species/{scientific_name}",
-                params={"token": settings.iucn_api_token},
-            )
-            if resp.status_code in {401, 403}:
-                logger.warning(
-                    "IUCN API token invalid or expired (status %s), falling back to public search for %s",
-                    resp.status_code, scientific_name)
-                public_context = await _fetch_public_iucn_context(scientific_name)
-                return public_context or await _fetch_wikidata_iucn_status(scientific_name)
-            if resp.status_code == 404:
-                logger.info("Species not found in IUCN API for %s",
-                            scientific_name)
-                public_context = await _fetch_public_iucn_context(scientific_name)
-                return public_context or await _fetch_wikidata_iucn_status(scientific_name)
-            resp.raise_for_status()
-            data = resp.json()
-            if isinstance(data, dict) and data:
-                return data
-            public_context = await _fetch_public_iucn_context(scientific_name)
-            return public_context or await _fetch_wikidata_iucn_status(scientific_name)
-        except httpx.TimeoutException as exc:
-            logger.warning(
-                "IUCN API timeout for %s, using public search: %s", scientific_name, exc)
-            public_context = await _fetch_public_iucn_context(scientific_name)
-            return public_context or await _fetch_wikidata_iucn_status(scientific_name)
-        except Exception as exc:
-            logger.warning("IUCN API lookup failed for %s: %s, using public search",
-                           scientific_name, exc)
-            public_context = await _fetch_public_iucn_context(scientific_name)
-            return public_context or await _fetch_wikidata_iucn_status(scientific_name)
+    The keyed API, then the public site, then Wikidata — the fallback chain
+    itself now lives in the data layer, so token handling and status-code
+    fallbacks are not duplicated here.
+    """
+    res = await repo.conservation_status(scientific_name)
+    data = res.data or {}
+    if not data.get("category"):
+        return {}
+    return {**data, "source": res.provenance.source}
 
 
 def _heuristics_from_evidence(evidence: list[EvidenceItem]) -> dict[str, Any]:
@@ -1581,67 +1282,22 @@ async def _call_ollama_report_model(
     if want_json:
         payload["format"] = "json"
 
-    ollama_chat_url = f"{settings.ollama_base_url.rstrip('/')}/api/chat"
-
-    try:
-        async with httpx.AsyncClient(timeout=10.0) as client:
-            health_resp = await client.get(f"{settings.ollama_base_url.rstrip('/')}/api/tags")
-            health_resp.raise_for_status()
-    except Exception as exc:
-        logger.warning("Ollama HTTP endpoint unavailable at %s; trying CLI fallback: %s",
-                       settings.ollama_base_url, exc)
+    # Transport, retry and the single-flight concurrency cap live in the data
+    # layer; this keeps only the CLI fallback, which is specific to Ollama
+    # being installed locally but not serving HTTP.
+    if not await ollama_source.is_up():
+        logger.warning("Ollama HTTP endpoint unavailable at %s; trying CLI fallback",
+                       settings.ollama_base_url)
         return await asyncio.to_thread(_call_ollama_report_model_cli, messages)
 
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            async with httpx.AsyncClient(timeout=600.0) as client:
-                resp = await client.post(ollama_chat_url, json=payload)
-                resp.raise_for_status()
-                data = resp.json()
-
-                if isinstance(data, dict):
-                    if isinstance(data.get("message"), dict):
-                        content = data["message"].get("content", "")
-                        if content:
-                            return content
-                    if isinstance(data.get("response"), str):
-                        return data["response"]
-
-                if attempt < max_retries - 1:
-                    logger.warning(
-                        "Ollama returned malformed response on attempt %d, retrying...", attempt + 1)
-                    await asyncio.sleep(1.0)
-                    continue
-                raise Exception("Ollama returned malformed response")
-
-        except httpx.TimeoutException as exc:
-            logger.error("Ollama timeout on attempt %d: %s", attempt + 1, exc)
-            if attempt < max_retries - 1:
-                await asyncio.sleep(3.0)
-                continue
-            logger.warning("Falling back to Ollama CLI after timeout")
-            return await asyncio.to_thread(_call_ollama_report_model_cli, messages)
-        except httpx.HTTPStatusError as exc:
-            logger.error("Ollama HTTP error on attempt %d: %s",
-                         attempt + 1, exc)
-            if attempt < max_retries - 1 and exc.response.status_code >= 500:
-                await asyncio.sleep(3.0)
-                continue
-            logger.warning("Falling back to Ollama CLI after HTTP error")
-            return await asyncio.to_thread(_call_ollama_report_model_cli, messages)
-        except Exception as exc:
-            logger.error(
-                "Ollama report model error on attempt %d: %s", attempt + 1, exc)
-            if attempt < max_retries - 1:
-                await asyncio.sleep(2.0)
-                continue
-            logger.warning("Falling back to Ollama CLI after unexpected error")
-            return await asyncio.to_thread(_call_ollama_report_model_cli, messages)
-
-    raise RuntimeError(
-        "Ollama report model did not return a response after all retry attempts"
+    result = await ollama_source.chat(
+        messages, temperature=temperature, num_predict=num_predict, want_json=want_json,
     )
+    if result.ok:
+        return result.data
+
+    logger.warning("Ollama generation failed (%s); falling back to CLI", result.error)
+    return await asyncio.to_thread(_call_ollama_report_model_cli, messages)
 
 
 async def warm_report_model() -> None:
@@ -2428,4 +2084,24 @@ async def generate_extinction_risk_report(
 
     draft = final_report["decision_support_draft"]
     final_report["decision_support_draft"] = draft
+    # Legacy repair/heuristic output is not an evidence-fidelity validation.
+    final_report["draft_for_review"] = True
+    final_report["validation_status"] = "legacy_unverified"
+    final_report["validation_errors"] = [
+        "Legacy prose and heuristic threats require claim-by-claim human review."
+    ]
+    final_report["missing_evidence_fields"] = [
+        field_name for field_name in (
+            "iucn_status", "population_trend", "population_size", "habitat",
+            "range_summary", "diet", "breeding_behavior", "migratory_behavior",
+        ) if not getattr(profile, field_name, None)
+    ]
+    supplied_status = iucn_context.get("category") or iucn_context.get("red_list_category") or profile.iucn_status
+    if supplied_status and str(supplied_status).strip().lower() in {
+        key for key in _IUCN_STATUS_ALIASES if key not in {"unknown", "unassessed", "not assessed"}
+    }:
+        final_report["current_conservation_status"] = _format_conservation_status(str(supplied_status))
+    else:
+        final_report["current_conservation_status"] = "Unavailable in supplied evidence"
+        final_report["validation_errors"].append("No source-reported IUCN category was supplied; no official category inferred.")
     return final_report

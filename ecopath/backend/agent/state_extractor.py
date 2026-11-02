@@ -80,9 +80,12 @@ def get_cached_species_list() -> list[dict]:
         return _species_cache
 
     try:
-        from services.supabase_client import get_supabase
+        # Read through the data layer, which pages. A plain select stops at
+        # PostgREST's 1000-row default, which silently hid 413 of the 1413
+        # catalogued species from entity extraction.
+        from data import repository as repo
 
-        result = get_supabase().table("species").select("common_name,scientific_name").execute()
+        result = repo.species_catalogue("common_name,scientific_name")
         _species_cache = [s for s in (result.data or []) if s.get("common_name")]
         _species_cache_loaded_at = time.time()
         logger.info(f"Cached {len(_species_cache)} species names for entity extraction.")

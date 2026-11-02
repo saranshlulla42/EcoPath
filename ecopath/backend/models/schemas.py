@@ -232,6 +232,10 @@ class ExtinctionRiskReportResponse(BaseModel):
     model_output_status: str
     evidence_items_reviewed: int
     disclaimer: str
+    draft_for_review: bool = True
+    validation_status: str = "legacy_unverified"
+    validation_errors: list[str] = []
+    missing_evidence_fields: list[str] = []
 
 
 # ─── XENO-CANTO ───────────────────────────────────────────────────────────────

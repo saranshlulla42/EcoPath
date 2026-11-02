@@ -1,0 +1,24 @@
+flowchart LR
+  subgraph Platform[Existing live application]
+    UI[Next.js species report] --> API[FastAPI]
+    API --> Resolve[GBIF identity and profile enrichment]
+    Resolve --> Sources[IUCN and references and news]
+    Sources --> Hybrid[Heuristics plus Ollama plus repair]
+    Hybrid --> Draft[Unverified draft for human review]
+  end
+  subgraph Study[Fixed evidence evaluation]
+    Archive[Original artifacts and hashes] --> Audit[Read-only audit]
+    Curate[Licensed reviewed India frame] --> Split[Species and genus splits]
+    Split --> Mask[Complete partial minimal projections]
+    Mask --> Freeze[Frozen protocol and hashes]
+    Freeze --> Methods[Original engineered constrained QLoRA template]
+    Methods --> Raw[Raw outputs failures timing and seeds]
+    Raw --> Checks[Strict schema and structured support checks]
+    Raw --> Blind[Blinded claim review and adjudication]
+    Checks --> Stats[Paired species and seed resampling]
+    Blind --> Stats
+    Audit --> Paper[Verified paper material]
+    Stats --> Paper
+  end
+  UI --> Preview[Fixed evidence method preview]
+  Preview --> Checks

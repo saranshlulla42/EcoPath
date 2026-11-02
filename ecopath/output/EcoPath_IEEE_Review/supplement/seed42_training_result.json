@@ -1,0 +1,36 @@
+{
+  "seed": 42,
+  "status": "completed",
+  "failure": null,
+  "wall_seconds": 1322.218518010006,
+  "gpu_hours": 0.36247961890499936,
+  "peak_allocated_bytes": {
+    "0": 7068915712
+  },
+  "hardware": [
+    "NVIDIA GeForce RTX 3070 Laptop GPU"
+  ],
+  "environment": {
+    "python": "3.14.4",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "packages": {
+      "torch": "2.14.0",
+      "transformers": "5.16.1",
+      "peft": "0.20.0",
+      "bitsandbytes": "0.50.2",
+      "accelerate": "1.14.0",
+      "jsonschema": "4.26.0",
+      "lm-format-enforcer": "0.11.3",
+      "datasets": "5.1.0",
+      "matplotlib": "3.11.2",
+      "pytest": "8.3.2"
+    },
+    "git_revision": "d78817de1404d5b5dfda9e27bfc5a25aa5f6cd8d"
+  },
+  "training_seconds": 1304.9266280579977,
+  "gpu_hours_scope": "single GPU, Trainer.train wall time including checkpointing and validation; excludes loading/preprocessing",
+  "best_model_checkpoint": "research/artifacts/training.qwen-a09a354-v4/seed-42/checkpoints/checkpoint-36",
+  "best_validation_loss": 2.50380235229386e-05,
+  "memory_scope": "peak allocated tensor memory since before model loading; does not include all driver allocations",
+  "chat_template_sha256": "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75"
+}

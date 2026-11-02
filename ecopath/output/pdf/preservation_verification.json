@@ -1,0 +1,85 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "original_images_preserved": true,
+      "edited_blocks": 1,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 2,
+      "original_images_preserved": true,
+      "edited_blocks": 1,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 3,
+      "original_images_preserved": true,
+      "edited_blocks": 1,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 4,
+      "original_images_preserved": true,
+      "edited_blocks": 0,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 5,
+      "original_images_preserved": true,
+      "edited_blocks": 3,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 6,
+      "original_images_preserved": true,
+      "edited_blocks": 2,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 7,
+      "original_images_preserved": true,
+      "edited_blocks": 2,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 8,
+      "original_images_preserved": true,
+      "edited_blocks": 3,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 9,
+      "original_images_preserved": true,
+      "edited_blocks": 2,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 10,
+      "original_images_preserved": true,
+      "edited_blocks": 5,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 11,
+      "original_images_preserved": true,
+      "edited_blocks": 1,
+      "changed_pixels_outside_edits": 0
+    },
+    {
+      "page": 12,
+      "original_images_preserved": true,
+      "edited_blocks": 3,
+      "changed_pixels_outside_edits": 0
+    }
+  ],
+  "font_families": [
+    "Times-Bold",
+    "Times-Italic",
+    "Times-Roman"
+  ],
+  "total_changed_pixels_outside_edits": 0,
+  "appendix_pages": 2,
+  "visual_inspection_required": false,
+  "status": "pass_visually_verified"
+}
